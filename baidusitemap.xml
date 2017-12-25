@@ -4,12 +4,92 @@
 
     
   <url>
-    <loc>http://yoursite.com/2017/12/25/Retrofit2-Okhttp3-Rxjava2-%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82%E5%B0%81%E8%A3%85(%E4%B8%8A)/</loc>
-    <lastmod>2017-12-25T08:13:49.835Z</lastmod>
+    <loc>http://yoursite.com/2017/12/25/Android%E9%A1%B9%E7%9B%AE%E4%B8%AD%E4%BD%BF%E7%94%A8RxBus%E8%BF%9B%E8%A1%8C%E9%80%9A%E8%AE%AF/</loc>
+    <lastmod>2017-12-25T08:19:44.694Z</lastmod>
     <data>
         <display>
-        <title>Retrofit2 + Okhttp3 + Rxjava2 网络请求封装(上)</title>
-        <pubTime>2017-12-25T04:14:04.000Z</pubTime>
+        <title>Android项目中使用RxBus进行通讯</title>
+        <pubTime>2017-12-25T06:50:16.000Z</pubTime>
+        
+        <tag>Rxjava</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://yoursite.com/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/12/23/%E9%80%8F%E6%98%8E%E5%BA%A6%E5%AF%B9%E7%85%A7%E8%A1%A8/</loc>
+    <lastmod>2017-12-25T08:19:32.000Z</lastmod>
+    <data>
+        <display>
+        <title>透明度对照表</title>
+        <pubTime>2017-12-23T02:55:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://yoursite.com/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/12/25/%E4%BD%8E%E5%8A%9F%E8%80%97%E8%93%9D%E7%89%99iBeacon%E7%9A%84%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/</loc>
+    <lastmod>2017-12-25T08:19:26.000Z</lastmod>
+    <data>
+        <display>
+        <title>低功耗蓝牙iBeacon的开发笔记</title>
+        <pubTime>2017-12-25T01:37:23.000Z</pubTime>
+        
+        <tag>蓝牙</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://yoursite.com/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/12/25/TextView%E4%B8%AD%E7%9A%84%E6%96%87%E5%AD%97%E9%A2%9C%E8%89%B2-%E7%82%B9%E5%87%BB-%E6%96%9C%E4%BD%93%E7%AD%89%E5%AE%9E%E7%8E%B0-SpannableString/</loc>
+    <lastmod>2017-12-25T08:19:22.197Z</lastmod>
+    <data>
+        <display>
+        <title>TextView中的文字颜色,点击,斜体等实现--SpannableString</title>
+        <pubTime>2017-12-25T02:06:03.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://yoursite.com/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/12/25/Retrofit2-Okhttp3-Rxjava2-%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82%E5%B0%81%E8%A3%85-%E4%B8%8B/</loc>
+    <lastmod>2017-12-25T08:19:07.794Z</lastmod>
+    <data>
+        <display>
+        <title>Retrofit2 + Okhttp3 + Rxjava2 网络请求封装(下)</title>
+        <pubTime>2017-12-25T04:51:47.000Z</pubTime>
         
         <tag>Android</tag>
          
@@ -28,29 +108,18 @@
 
     
   <url>
-    <loc>http://yoursite.com/2017/12/25/Retrofit2-Okhttp3-Rxjava2-%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82%E5%B0%81%E8%A3%85-%E4%B8%8B/</loc>
-    <lastmod>2017-12-25T08:13:39.651Z</lastmod>
+    <loc>http://yoursite.com/2017/12/25/Retrofit2-Okhttp3-Rxjava2-%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82%E5%B0%81%E8%A3%85(%E4%B8%8A)/</loc>
+    <lastmod>2017-12-25T08:13:49.835Z</lastmod>
     <data>
         <display>
-        <title>Retrofit2 + Okhttp3 + Rxjava2 网络请求封装(下)</title>
-        <pubTime>2017-12-25T04:51:47.000Z</pubTime>
+        <title>Retrofit2 + Okhttp3 + Rxjava2 网络请求封装(上)</title>
+        <pubTime>2017-12-25T04:14:04.000Z</pubTime>
         
+        <tag>Android</tag>
          
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2017/12/25/Android%E9%A1%B9%E7%9B%AE%E4%B8%AD%E4%BD%BF%E7%94%A8RxBus%E8%BF%9B%E8%A1%8C%E9%80%9A%E8%AE%AF/</loc>
-    <lastmod>2017-12-25T07:10:30.840Z</lastmod>
-    <data>
-        <display>
-        <title>Android项目中使用RxBus进行通讯</title>
-        <pubTime>2017-12-25T06:50:16.000Z</pubTime>
-        
-        <tag>RxJava</tag>
+        <tag>Rxjava</tag>
+         
+        <tag>Okhttp</tag>
          
          
            
@@ -252,41 +321,6 @@
 
     
   <url>
-    <loc>http://yoursite.com/2017/12/25/TextView%E4%B8%AD%E7%9A%84%E6%96%87%E5%AD%97%E9%A2%9C%E8%89%B2-%E7%82%B9%E5%87%BB-%E6%96%9C%E4%BD%93%E7%AD%89%E5%AE%9E%E7%8E%B0-SpannableString/</loc>
-    <lastmod>2017-12-25T02:10:44.812Z</lastmod>
-    <data>
-        <display>
-        <title>TextView中的文字颜色,点击,斜体等实现--SpannableString</title>
-        <pubTime>2017-12-25T02:06:03.000Z</pubTime>
-        
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2017/12/25/%E4%BD%8E%E5%8A%9F%E8%80%97%E8%93%9D%E7%89%99iBeacon%E7%9A%84%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/</loc>
-    <lastmod>2017-12-25T01:59:22.000Z</lastmod>
-    <data>
-        <display>
-        <title>低功耗蓝牙iBeacon的开发笔记</title>
-        <pubTime>2017-12-25T01:37:23.000Z</pubTime>
-        
-        <tag>蓝牙</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://yoursite.com/categories/Android/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://yoursite.com/2017/12/25/Android-Studio-%E4%BD%BF%E7%94%A8%E6%AD%A3%E5%BC%8F%E7%AD%BE%E5%90%8Ddebug%E8%B0%83%E8%AF%95/</loc>
     <lastmod>2017-12-25T01:49:06.359Z</lastmod>
     <data>
@@ -391,26 +425,6 @@
 
     
     
-    
-  <url>
-    <loc>http://yoursite.com/2017/12/23/%E9%80%8F%E6%98%8E%E5%BA%A6%E5%AF%B9%E7%85%A7%E8%A1%A8/</loc>
-    <lastmod>2017-12-24T11:48:51.204Z</lastmod>
-    <data>
-        <display>
-        <title>透明度对照表</title>
-        <pubTime>2017-12-23T02:55:00.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://yoursite.com/categories/Android/"/>
-          
-        </display>
-    </data>
-    </url>
-
     
   <url>
     <loc>http://yoursite.com/2017/12/23/String-format%E7%9A%84%E5%8F%82%E6%95%B0%E8%A1%A8/</loc>

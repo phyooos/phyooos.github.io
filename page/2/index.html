@@ -345,7 +345,7 @@
       
         
           
-          EditText的输入属性1234567android:imeOptions=&quot;flagNoExtractUi&quot;  //使软键盘不全屏显示，只占用部分屏幕android:imeOptions=&quot;actionNone&quot;  //输入框右侧不带任何提示android
+          EditText的输入属性1234567android:imeOptions=&quot;flagNoExtractUi&quot;  //使软键盘不全屏显示，只占用部分屏幕android:imeOptions=&quot;actionNone&quot;  //输入框右侧不带任何提示android:imeOptions=&quot;actionGo&quot;    //右下角按键内容为&apos;开始&apos;android:imeOptions=&quot;actionSearch&quot;  //右下角按键为搜索android:imeOptions=&quot;actionSend
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -494,7 +494,12 @@
         
           
           一般实现方式如下:12String html = &quot;文字&lt;font color=\&quot;red\&quot;&gt;变色&lt;/font&gt;的效果&quot;;tvMainShow.setText(Html.fromHtml(html));
-使用Html的方式来实现,简单
+使用Html的方式来实现,简单的还好,复杂一点的真的很不方便
+Google显然早就已经想到了这样的问题,所以  
+
+SpannedString &amp; SpannableStringBuilder 就是干这个的
+
+他们都实现了 CharSequence,眼熟么?  text)```.也就是说,你可以直接赋值给TextView
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -647,7 +652,9 @@
 
 已经没办法给大家看问题了,我在github上提了问题.
 github issue
-12345678使用命令 command`flutter doctor`异常:exceptionSocketException: SocketException: Connection fai
+12345678使用命令 command`flutter doctor`异常:exceptionSocketException: SocketException: Connection failed (OS Error: No route to host, errno = 65), address = android.googlesource.com, port = 443
+总的来说就是下载 Downloading Gradle Wrapper…的时候连接不到外网,以至于失败
+githu
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -800,7 +807,10 @@ github issue
 Android Support Library 25 以上的support包中增加了 BottomNavigationView所以你必须使用com.android.support:design:25.0.0以上的版本才能玩
 1.在 build.gradle 文件中增加依赖：
 
-'co
+'com.android.support:design:25.0.0'```122.在main_activity.xml中添加:
+
+    
+123- 其中```app:menu=&quot;@menu/menu_tab_button&quot;```决定了展示几个item,都长什么样- 其中,分别决定*
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -953,7 +963,7 @@ Android Support Library 25 以上的support包中增加了 BottomNavigationView
 很多时候我们使用第三方登录什么的东西,需要我们提供正式签名,但是我们总是需要调试的.一般情况,我们不可能一次性OK,那么每一次调试都需要正式签名打包,并安装,然后再调试,这也太麻烦了,.
 
 所以,直接上代码:
-1234567891011121314151617181920sign
+1234567891011121314151617181920signingConfigs &#123;        release &#123;            keyAlias &apos;phyooos&apos;            keyPassword &apos;phyooos&apos;            storeFile file(&
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1103,7 +1113,8 @@ Android Support Library 25 以上的support包中增加了 BottomNavigationView
           
           ###1.挣扎的开始各种百度,google,发现国内资料很少,有的也是商业公司提供的sdk,这并不符合我需要,google倒是不少,然而以我的英语水平,望洋兴叹罢了@不发牢骚了:
 
-首先你需要了解这些资料1、profileprofile可以理解为一种规范，一个标准的通信协议，它存在于从机中。蓝牙组织
+首先你需要了解这些资料1、profileprofile可以理解为一种规范，一个标准的通信协议，它存在于从机中。蓝牙组织规定了一些标准的profile，例如 HID OVER GATT ，防丢器 ，心率计等。每个profile中会包含多个service，每个service代表从机的一种能力。
+2、serviceservice可以理解为一个服务，在ble从机中，通过有多个服务，例如电量信息服务、系统信息服务等，每个se
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1261,7 +1272,19 @@ get set 构造方法  重写方法以及一些插件如这里的 GsonFormat 以�
 
 Ctrl + Alt + F  全局变量
 
-Ctrl +Shift + Enter   加; 以及if
+Ctrl +Shift + Enter   加; 以及if 的(){}
+
+Ctrl + P  以及  Ctrl + Q  方法参数以及文档
+
+Ctrl +O 继承重写的方法
+
+Ctrl + /   Ctrl +Shift + /    注释
+
+Ctrl + Alt + L 格式化
+
+Ctrl + D  Ctrl + Y   复制 删除行
+
+Ctrl + S
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1413,7 +1436,13 @@ Ctrl +Shift + Enter   加; 以及if
 
 https://github.com/Bilibili/ijkplayer看看bilibili的开源播放器
 
-##Vitamio官方:https://www.vitamio.org/GitHub:https://github.com/yixia/Vitam
+##Vitamio官方:https://www.vitamio.org/GitHub:https://github.com/yixia/VitamioBundle
+
+Vitamio 能够流畅播放720P甚至1080P高清MKV，FLV，MP4，MOV，TS，RMVB等常见格式的视频，支持 MMS, RTSP, RTMP, HLS(m3u8) 等常见的多种视频流媒体协议，包括点播与直播。
+
+###1.下载Vitamio  
+
+地址https:/
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1568,7 +1597,19 @@ netstat -an
 
 more命令
 
-123456789101112131415选项-num    指定屏幕的行数（以整数表示）+num    从行号num开始显示-d    让more给用户显示信息[Press space to continue, &apos;q&ap
+123456789101112131415选项-num    指定屏幕的行数（以整数表示）+num    从行号num开始显示-d    让more给用户显示信息[Press space to continue, &apos;q&apos; to quit.]-f    使more计数逻辑行，而不是屏幕行（长行不会断到下一行）-s   把重复的空行压缩成一个空行-u    防止下划线交互基于VIM
+
+字符界面
+
+1.字符界面占用资源少
+2.减少了出错,别攻击的可能
+
+一切皆文件
+
+用户  硬件 文件….
+
+分区
+swap 内存的
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1720,7 +1761,9 @@ more命令
 Stetho是一个Android应用调试工具。集成后，开发人员可以通过Chrome的开发工具查看App相关的信息和调试；可视化操作，不需要自己使用adb也不需要root权限。
 ####二、APP集成
 1.下载最新的jar，或者通过Gradle引入stetho的libraay
-1co
+1compile &apos;com.facebook.stetho:stetho:1.3.1&apos;
+2.只需要在 Application的 onCreate 方法中调用
+123456public class MyApplication extends Application &#123;   pu
           ...
           <!--noindex-->
           <div class="post-button text-center">

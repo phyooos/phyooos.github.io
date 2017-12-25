@@ -352,7 +352,7 @@
 1.创建
 1234[root@localhost ~]# adduser wzm[root@localhost ~]# passwd wzm#此时,输入两次密码即可
 2.赋予sudo
-1234567891011121314#找到sudoers[r
+1234567891011121314#找到sudoers[root@localhost ~]# whereis sudoers#修改sudoers的读写权限[root@localhost ~]# chmod -v u+w /etc/sudoers#加入新用户## Allow root to run any commands anywher  root    
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -503,7 +503,7 @@
           加入JakeWharton大神的RxRelay
 JakeWharton/RxRelay1compile &apos;com.jakewharton.rxrelay2:rxrelay:2.0.0&apos;
 RxBus.java
-123456789101112131415161718192021222
+12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394/** * I
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -652,7 +652,7 @@ RxBus.java
         
           
           在做这些之前,先配置好adb环境变量,以我的配置为例
-12345678910111213$ vim ~/.bash_profileexport ANDROID_HOME=/Users/phyooos/Library/Android/sdk...export PATH=&#123;省略&#125;:$
+12345678910111213$ vim ~/.bash_profileexport ANDROID_HOME=/Users/phyooos/Library/Android/sdk...export PATH=&#123;省略&#125;:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools$ source ~/.bas$ adbAndroid Debug Bridge version 1.0.39Version 0.0.1-4500957Installed as /Users/phyooos
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -806,7 +806,13 @@ RxBus.java
 解压sudo tar -zxvf nginx-1.12.0.tar.gz
 其他的库,nginx依赖的库
 
-安装gcc
+安装gccyum -y install gcc
+安装pcreyum -y install pcre pcre-devel
+安装zlibyum -y install zlib zlib-devel
+安装opensslyum -y install openssl openssl-devel
+
+安装
+12345su
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -954,7 +960,7 @@ RxBus.java
       
         
           
-          1234567891011121314151617181920//请求:RetrofitApis.getNetworkApis().getFriendsCircle(userBean.token, String.valueOf(45),null,lastId)	.compose(new Defaul
+          1234567891011121314151617181920//请求:RetrofitApis.getNetworkApis().getFriendsCircle(userBean.token, String.valueOf(45),null,lastId)	.compose(new DefaultTransformer&lt;&gt;())	.subscribe(new Defaultubscriber&lt;List&lt;FriendItem&gt;&gt;() &#123;		@Override		protected void onError(ApiException ex) &#1
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1103,7 +1109,9 @@ RxBus.java
         
           
           最终结构
-1234567891011121314net├── RequestBuilder.java├── RetrofitApis.java├── base│   ├── ApiException.java│   ├── CustomGsonConverter.java│   ├── Defau
+1234567891011121314net├── RequestBuilder.java├── RetrofitApis.java├── base│   ├── ApiException.java│   ├── CustomGsonConverter.java│   ├── DefaultSubscriber.java│   └── DefaultTransformer.java└── response    ├── BaseResponse.java    └── ResultResponse.javaNetworkApis.java
+1.添加依赖
+1234567impleme
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1251,7 +1259,7 @@ RxBus.java
       
         
           
-          123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798
+          123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114apply plugin: &apos;com.android.application&apos;android &#123;   
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1400,7 +1408,9 @@ RxBus.java
         
           
           准备引入Arouter,做一个组件的demo,就开始慢慢的改造项目
-1234567891011121314151617.|-- app|   |-- build.gradle|   |-- libs|   |-- src|   |   |-- androidTest|   |   |-- main|
+1234567891011121314151617.|-- app|   |-- build.gradle|   |-- libs|   |-- src|   |   |-- androidTest|   |   |-- main|   |   `-- test||-- opensource|   |-- build.gradle|   |-- libs|   `-- src|       `-- main|-- build.gradle|-- settings.gradle`-- versions.gradle
+
+app 为
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1554,7 +1564,12 @@ RxBus.java
 
 推荐: ★★★
 2.Insight.io for Github
-Improve GitHub code browsing experienc.通过插件可以在git
+Improve GitHub code browsing experienc.通过插件可以在github的项目页面上,结构化的查看代码,甚至还有”引用”,”查找”等等功能.就像是把github项目页,变成了一个只能查看的ide.对了,还能很方便的下载单个文件
+
+推荐: ★★★★★
+3.Infinity新标签页
+重新定义了新标签页，一个追求极简美学和一站式服务体验更少的东西体验更多的功能。
+
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1685,7 +1700,13 @@ Improve GitHub code browsing experienc.通过插件可以在git
 
 armeabi: 早期的手机用的比较多,针对普通的或旧的arm v5 cpu,。
 armeabiv-v7a:目前主流版本 2011年以后的生产的大部分设备,针对有浮点运算或高级扩展功能的arm v7 cpu.
-arm64-v8a:  8代、64位ARM处
+arm64-v8a:  8代、64位ARM处理器，64位支持.
+x86: 我们见到的模拟器大多就是这个。
+x86_64: 64位的平板。
+
+
+然后特意说一下x86系列的,是兼容arm的,但是性能损失特别大.
+Android加载.so的原则同一目录下要么所有使用jni的项目都给加上.so文件,要么你就别给这个目录,也就是只要不齐全就都干掉比如你
           ...
           <!--noindex-->
           <div class="post-button text-center">

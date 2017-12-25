@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Server Linux," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -79,18 +79,16 @@
 
 
 
-<meta name="description" content="netstat -an  1查看所有网络连接  more命令  123456789101112131415选项-num    指定屏幕的行数（以整数表示）+num    从行号num开始显示-d    让more给用户显示信息[Press space to continue, &amp;apos;q&amp;apos; to quit.]-f    使more计数逻辑行，而不是屏幕行（长行不会断到下一行）-s">
-<meta name="keywords" content="Server Linux">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Linux 学习笔记">
-<meta property="og:url" content="http://yoursite.com/2017/12/24/Linux-学习笔记/index.html">
+<meta name="description" content="王诛魔">
+<meta property="og:type" content="website">
+<meta property="og:title" content="王诛魔">
+<meta property="og:url" content="http://yoursite.com/page/2/index.html">
 <meta property="og:site_name" content="王诛魔">
-<meta property="og:description" content="netstat -an  1查看所有网络连接  more命令  123456789101112131415选项-num    指定屏幕的行数（以整数表示）+num    从行号num开始显示-d    让more给用户显示信息[Press space to continue, &amp;apos;q&amp;apos; to quit.]-f    使more计数逻辑行，而不是屏幕行（长行不会断到下一行）-s">
+<meta property="og:description" content="王诛魔">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-24T15:52:00.574Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Linux 学习笔记">
-<meta name="twitter:description" content="netstat -an  1查看所有网络连接  more命令  123456789101112131415选项-num    指定屏幕的行数（以整数表示）+num    从行号num开始显示-d    让more给用户显示信息[Press space to continue, &amp;apos;q&amp;apos; to quit.]-f    使more计数逻辑行，而不是屏幕行（长行不会断到下一行）-s">
+<meta name="twitter:title" content="王诛魔">
+<meta name="twitter:description" content="王诛魔">
 
 
 
@@ -120,13 +118,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/12/24/Linux-学习笔记/"/>
+  <link rel="canonical" href="http://yoursite.com/page/2/"/>
 
 
 
 
 
-  <title>Linux 学习笔记 | 王诛魔</title>
+  <title>王诛魔</title>
   
 
 
@@ -145,7 +143,8 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <div class="container sidebar-position-left 
+  page-home">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -238,9 +237,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-
-  <div id="posts" class="posts-expand">
+  <section id="posts" class="posts-expand">
     
+      
 
   
 
@@ -270,7 +269,9 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Linux 学习笔记</h1>
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/24/Linux-学习笔记/" itemprop="url">Linux 学习笔记</a></h1>
         
 
         <div class="post-meta">
@@ -342,7 +343,9 @@
       
 
       
-        <ul>
+        
+          
+            <ul>
 <li>netstat -an</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">查看所有网络连接</span><br></pre></td></tr></table></figure>
@@ -486,6 +489,8 @@
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">?       任意一个字符</span><br><span class="line">*       任意内容</span><br><span class="line">[]      匹配括号中的某一个字符</span><br><span class="line">[-]     匹配括号中的任意一个字符 - 代表一个范围 [a-z] [1-3]</span><br><span class="line">[^]     表示匹配不是括号中的字符 比如[^0-9] 指匹配不是数字的字符</span><br><span class="line"></span><br><span class="line">&apos;&apos;      单引号   在单引号中所有字符都没有特殊含义</span><br><span class="line">&quot;&quot;      双引号 除了&quot;$&quot; 和 &quot;`&quot; &quot;\&quot; 其他字符都没有特殊意义</span><br><span class="line"></span><br><span class="line">``      反引号 是系统命令内容</span><br><span class="line">$()     用来引用系统命令</span><br><span class="line">#       shell中表示注释</span><br><span class="line">$       调用变量的值</span><br><span class="line">\       转义符</span><br></pre></td></tr></table></figure>
 
+          
+        
       
     </div>
     
@@ -500,40 +505,14 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/Server-Linux/" rel="tag"># Server Linux</a>
-          
-        </div>
+
+      
+
       
 
       
       
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2017/12/24/Facebook-Stetho——Android开发调试神器/" rel="next" title="Facebook/Stetho——Android开发调试神器">
-                <i class="fa fa-chevron-left"></i> Facebook/Stetho——Android开发调试神器
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/12/25/Android-Studio-导入-Vitamio及横竖屏切换/" rel="prev" title="Android Studio 导入 Vitamio及横竖屏切换">
-                Android Studio 导入 Vitamio及横竖屏切换 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
+        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -543,11 +522,457 @@
   </article>
 
 
+    
+      
 
-    <div class="post-spread">
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/24/Facebook-Stetho——Android开发调试神器/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wangzhumo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/headimage.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="王诛魔">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/24/Facebook-Stetho——Android开发调试神器/" itemprop="url">Facebook/Stetho——Android开发调试神器</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-24T23:47:55+08:00">
+                2017-12-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>####一、简介</p>
+<p>Stetho是一个Android应用调试工具。集成后，开发人员可以通过Chrome的开发工具查看App相关的信息和调试；可视化操作，不需要自己使用adb也不需要root权限。</p>
+<p>####二、APP集成</p>
+<p>1.下载最新的jar，或者通过Gradle引入stetho的libraay</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">compile &apos;com.facebook.stetho:stetho:1.3.1&apos;</span><br></pre></td></tr></table></figure>
+<p>2.只需要在 Application的 onCreate 方法中调用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public class MyApplication extends Application &#123;</span><br><span class="line">   public void onCreate() &#123;</span><br><span class="line">     super.onCreate();</span><br><span class="line">     Stetho.initializeWithDefaults(this);</span><br><span class="line">   &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<p>3.如果还想查看网络请求的话，需要引入另外的Library</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">compile &apos;com.facebook.stetho:stetho-okhttp3:1.3.1&apos;</span><br></pre></td></tr></table></figure>
+<p>4.使用okhttp 还需要添加 StethoInterceptor</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">OkHttpClient client = new OkHttpClient.Builder()</span><br><span class="line">             .addNetworkInterceptor(new StethoInterceptor())</span><br><span class="line">             .build();</span><br></pre></td></tr></table></figure>
+<p>####三、使用<br>配置完成之后，在Chrome地址栏输入<code>chrome://inspect</code></p>
+<blockquote>
+<p>chrome://inspect/#devices</p>
+</blockquote>
+<p>chrome会检测到我们的app，点击 <em>inspect</em> 进入查看页面</p>
+
+          
+        
       
     </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
   </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/23/String-format的参数表/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wangzhumo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/headimage.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="王诛魔">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/23/String-format的参数表/" itemprop="url">String.format的参数表</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-23T10:56:53+08:00">
+                2017-12-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>####String.format()</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">%s  字符串类型 &quot;mingrisoft&quot;</span><br><span class="line">%c  字符类型    &apos;m&apos;</span><br><span class="line">%b  布尔类型    true</span><br><span class="line">%d  整数类型（十进制）   99</span><br><span class="line">%x  整数类型（十六进制）  FF</span><br><span class="line">%o  整数类型（八进制）   77</span><br><span class="line">%f  浮点类型    99.99</span><br><span class="line">%a  十六进制浮点类型    FF.35AE</span><br><span class="line">%e  指数类型    9.38e+5</span><br><span class="line">%g  通用浮点类型（f和e类型中较短的）</span><br><span class="line">%h  散列码 </span><br><span class="line">%%  百分比类型   ％</span><br><span class="line">%n  换行符</span><br><span class="line">%tx 日期与时间类型（x代表不同的日期与时间转换符</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/23/透明度对照表/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wangzhumo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/headimage.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="王诛魔">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/23/透明度对照表/" itemprop="url">透明度对照表</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-23T10:55:00+08:00">
+                2017-12-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>####透明度对照表</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">100% — FF</span><br><span class="line"></span><br><span class="line">95% — F2</span><br><span class="line"></span><br><span class="line">90% — E6</span><br><span class="line"></span><br><span class="line">85% — D9</span><br><span class="line"></span><br><span class="line">80% — CC</span><br><span class="line"></span><br><span class="line">75% — BF</span><br><span class="line"></span><br><span class="line">70% — B3</span><br><span class="line"></span><br><span class="line">65% — A6</span><br><span class="line"></span><br><span class="line">60% — 99</span><br><span class="line"></span><br><span class="line">55% — 8C</span><br><span class="line"></span><br><span class="line">50% — 80</span><br><span class="line"></span><br><span class="line">45% — 73</span><br><span class="line"></span><br><span class="line">40% — 66</span><br><span class="line"></span><br><span class="line">35% — 59</span><br><span class="line"></span><br><span class="line">30% — 4D</span><br><span class="line"></span><br><span class="line">25% — 40</span><br><span class="line"></span><br><span class="line">20% — 33</span><br><span class="line"></span><br><span class="line">15% — 26</span><br><span class="line"></span><br><span class="line">10% — 1A</span><br><span class="line"></span><br><span class="line">5% — 0D</span><br><span class="line"></span><br><span class="line">0% — 00</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+  </section>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+  </nav>
+
 
 
           </div>
@@ -555,10 +980,6 @@
 
 
           
-
-  
-
-
 
         </div>
         
@@ -812,10 +1233,6 @@
 
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
-
-
 
   
 

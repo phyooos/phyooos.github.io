@@ -4,6 +4,100 @@
 
     
   <url>
+    <loc>http://yoursite.com/2017/12/25/%E5%B8%B8%E7%94%A8%E7%9A%84Google-Chrome-%E6%B5%8F%E8%A7%88%E5%99%A8%E6%8F%92%E4%BB%B6/</loc>
+    <lastmod>2017-12-25T03:28:14.133Z</lastmod>
+    <data>
+        <display>
+        <title>常用的Google Chrome 浏览器插件</title>
+        <pubTime>2017-12-25T02:35:02.000Z</pubTime>
+        
+        <tag>tools</tag>
+         
+         
+           
+             
+              <breadCrumb title="语言工具" url="http://yoursite.com/categories/%E8%AF%AD%E8%A8%80%E5%B7%A5%E5%85%B7/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/12/25/jni%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97-%E5%85%B3%E4%BA%8E-so%E4%BD%A0%E5%BA%94%E8%AF%A5%E7%9F%A5%E9%81%93%E7%9A%84/</loc>
+    <lastmod>2017-12-25T02:13:30.345Z</lastmod>
+    <data>
+        <display>
+        <title>jni使用指南,关于.so你应该知道的</title>
+        <pubTime>2017-12-25T02:12:59.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/12/25/EditText%E7%9A%84%E8%BE%93%E5%85%A5%E5%B1%9E%E6%80%A7InputType%E4%BB%A5%E5%8F%8AimeOptions/</loc>
+    <lastmod>2017-12-25T02:12:54.159Z</lastmod>
+    <data>
+        <display>
+        <title>EditText的输入属性InputType以及imeOptions</title>
+        <pubTime>2017-12-25T02:11:15.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://yoursite.com/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/12/25/Flutter-%E5%AE%89%E8%A3%85/</loc>
+    <lastmod>2017-12-25T02:10:48.418Z</lastmod>
+    <data>
+        <display>
+        <title>Flutter 安装</title>
+        <pubTime>2017-12-25T02:03:55.000Z</pubTime>
+        
+        <tag>Google</tag>
+         
+        <tag>Server</tag>
+         
+         
+           
+             
+              <breadCrumb title="语言工具" url="http://yoursite.com/categories/%E8%AF%AD%E8%A8%80%E5%B7%A5%E5%85%B7/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/12/25/TextView%E4%B8%AD%E7%9A%84%E6%96%87%E5%AD%97%E9%A2%9C%E8%89%B2-%E7%82%B9%E5%87%BB-%E6%96%9C%E4%BD%93%E7%AD%89%E5%AE%9E%E7%8E%B0-SpannableString/</loc>
+    <lastmod>2017-12-25T02:10:44.812Z</lastmod>
+    <data>
+        <display>
+        <title>TextView中的文字颜色,点击,斜体等实现--SpannableString</title>
+        <pubTime>2017-12-25T02:06:03.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2017/12/25/%E4%BD%8E%E5%8A%9F%E8%80%97%E8%93%9D%E7%89%99iBeacon%E7%9A%84%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/</loc>
     <lastmod>2017-12-25T01:59:22.000Z</lastmod>
     <data>

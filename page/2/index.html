@@ -252,6 +252,925 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/25/TextView中的文字颜色-点击-斜体等实现-SpannableString/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wangzhumo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/headimage.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="王诛魔">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/25/TextView中的文字颜色-点击-斜体等实现-SpannableString/" itemprop="url">TextView中的文字颜色,点击,斜体等实现--SpannableString</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-25T10:06:03+08:00">
+                2017-12-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><strong>一般实现方式如下</strong>:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String html = &quot;文字&lt;font color=\&quot;red\&quot;&gt;变色&lt;/font&gt;的效果&quot;;</span><br><span class="line">tvMainShow.setText(Html.fromHtml(html));</span><br></pre></td></tr></table></figure></p>
+<p>使用Html的方式来实现,简单的还好,复杂一点的真的很不方便</p>
+<p>Google显然早就已经想到了这样的问题,所以  </p>
+<blockquote>
+<p><a href="https://developer.android.com/reference/android/text/SpannedString.html" target="_blank" rel="noopener">SpannedString</a> &amp; <a href="https://developer.android.com/reference/android/text/SpannableStringBuilder.html" target="_blank" rel="noopener">SpannableStringBuilder</a> 就是干这个的</p>
+</blockquote>
+<p>他们都实现了 <a href="https://developer.android.com/reference/java/lang/CharSequence.html" target="_blank" rel="noopener">CharSequence</a>,眼熟么?  <figure class="highlight plain"><figcaption><span>text)```.也就是说,你可以直接赋值给TextView</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">他们两个的区别就是    </span><br><span class="line">This is the class for text whose content is immutable but to which markup objects can be attached and detached. For mutable text, see SpannableStringBuilder</span><br><span class="line">文档说的很清楚了,就是CharSequence是固定长度的,一旦通过 new SpannableString(&quot;设置文字&quot;);则不可以更改文字内容,而SpannableStringBuilder是可以的,个人理解比较像String 和 StringBuilder 的关系</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">###不多说了,开搞:</span><br><span class="line">**1.设置文字**</span><br><span class="line">&gt;SpannableString spannableString = new SpannableString(&quot;文字的前景色与背景色&quot;);</span><br><span class="line"></span><br><span class="line">---</span><br><span class="line">**2.通过setSpan来修改文字的样式**</span><br><span class="line">```setSpan [Object what, int start, int end, int flags)</span><br></pre></td></tr></table></figure></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2520304-e821febbebd4f8dc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="入参.png"></p>
+<p>flags:<br>Spannable.SPAN_EXCLUSIVE_EXCLUSIVE：前后都不包括<br>Spannable.SPAN_EXCLUSIVE_INCLUSIVE    ：前面不包括<br>Spannable.SPAN_INCLUSIVE_EXCLUSIVE    ：前面包括<br>Spannable.SPAN_INCLUSIVE_INCLUSIVE    ：前后都包括</p>
+<p>为了说明这四个参数,有例子如下:</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2520304-3784e1b0d6a15d73.gif?imageMogr2/auto-orient/strip" alt="flags.gif"><br>代码如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line"> *</span><br><span class="line"> * @author 王诛魔 2017/1/21 上午11:31</span><br><span class="line"> * @e-mail  phyooos@163.com</span><br><span class="line"> */</span><br><span class="line">public class MainActivity extends AppCompatActivity &#123;</span><br><span class="line"></span><br><span class="line">    @BindView(R.id.edit_show)</span><br><span class="line">    EditText etMainShow;</span><br><span class="line">    @BindView(R.id.tab_view)</span><br><span class="line">    TabLayout tabLayout;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void onCreate(@Nullable Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_main);</span><br><span class="line">        ButterKnife.bind(this);</span><br><span class="line">        showText(Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);</span><br><span class="line">        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onTabSelected(TabLayout.Tab tab) &#123;</span><br><span class="line">                switch (tab.getPosition()) &#123;</span><br><span class="line">                    case 0:</span><br><span class="line">                        showText(Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);</span><br><span class="line">                        break;</span><br><span class="line">                    case 1:</span><br><span class="line">                        showText(Spannable.SPAN_EXCLUSIVE_INCLUSIVE);</span><br><span class="line">                        break;</span><br><span class="line">                    case 2:</span><br><span class="line">                        showText(Spannable.SPAN_INCLUSIVE_EXCLUSIVE);</span><br><span class="line">                        break;</span><br><span class="line">                    case 3:</span><br><span class="line">                        showText(Spannable.SPAN_INCLUSIVE_INCLUSIVE);</span><br><span class="line">                        break;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            @Override</span><br><span class="line">            public void onTabUnselected(TabLayout.Tab tab) &#123;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            @Override</span><br><span class="line">            public void onTabReselected(TabLayout.Tab tab) &#123;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 展示文字</span><br><span class="line">     */</span><br><span class="line">    private void showText(int type) &#123;</span><br><span class="line">        //构造SpannableString</span><br><span class="line">        SpannableString spanString = new SpannableString(&quot;这里是王诛魔的简书文章&quot;);</span><br><span class="line">        //字体颜色的Span</span><br><span class="line">        ForegroundColorSpan span = new ForegroundColorSpan(Color.RED);</span><br><span class="line">        //指定范围</span><br><span class="line">        spanString.setSpan(span, 3, 6, type);</span><br><span class="line">        //设置给EditText显示出来</span><br><span class="line">        etMainShow.setText(spanString);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>上面的代码中:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//字体颜色的Span</span><br><span class="line">ForegroundColorSpan span = new ForegroundColorSpan(Color.RED);</span><br><span class="line">ForegroundColorSpan就是设置的文字样式,,这个是前景色,,也就是字体的颜色</span><br><span class="line">//指定范围</span><br><span class="line">spanString.setSpan(span, 3, 6, type);</span><br><span class="line">这里的三个参数已经在上面说过了,通过上面的代码也会发现,其实3,6  其中下标3是包含的,而下标6就不会改变</span><br></pre></td></tr></table></figure></p>
+<hr>
+<p><strong>3.至于Span的这些个样式在哪里找,请看文档:</strong><br><strong>关键词:<a href="https://developer.android.com/reference/android/text/style/CharacterStyle.html" target="_blank" rel="noopener">CharacterStyle</a></strong></p>
+<blockquote>
+<p><a href="https://developer.android.com/reference/android/text/style/CharacterStyle.html" target="_blank" rel="noopener">https://developer.android.com/reference/android/text/style/CharacterStyle.html</a></p>
+</blockquote>
+<p><img src="http://upload-images.jianshu.io/upload_images/2520304-50978874ad4c3a7f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Span的一些类型.png"></p>
+<p>说几个常用的吧:</p>
+<ul>
+<li>ForegroundColorSpan  字体颜色</li>
+<li>BackgroundColorSpan 字体背景色设置</li>
+<li>AbsoluteSizeSpan 字体大小</li>
+<li>StyleSpan 粗体等<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">//字体由Typeface来控制</span><br><span class="line">StyleSpan span = new StyleSpan(Typeface.BOLD_ITALIC);</span><br><span class="line"></span><br><span class="line">- UnderlineSpan 下划线</span><br><span class="line">- ImageSpan 图片置换</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">[ImageSpan https://developer.android.com/reference/android/text/style/ImageSpan.html](https://developer.android.com/reference/android/text/style/ImageSpan.html)</span><br><span class="line"></span><br><span class="line">这个有一点不同,它是将文字中的指定部分替换为一个图片,至于如何构造请参考文档</span><br><span class="line">让我想起来了那个EmojiEditText的库,其实可以用这个ImageSpan实现一个简单的可以显示表情的TextView</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">- ClickableSpan 点击</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>//这个有些不同,需要<br>class CustomClickable extends ClickableSpan {</p>
+<pre><code>@Override
+public void updateDrawState(TextPaint ds) {
+    //这里其实还可以对可点击部分设置一些东西
+}
+
+@Override
+public void onClick(View widget) {
+      ...do something
+}
+</code></pre><p>}</p>
+<p>//对了,加上这行代码<br>TextView.setMovementMethod(LinkMovementMethod.getInstance());<br>//要不点不动哦</p>
+<p>```</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2520304-7ccd2161c4d5f5e7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="2017-04-05_23-36-38.png"></p>
+<ul>
+<li>URLSpan 这个完全可以用ClickableSpan实现</li>
+</ul>
+<p><strong>SpannableStringBuilder</strong></p>
+<p>SpannableString都说的这么明白了,SpannableStringBuilder就省了</p>
+<p>####End</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/25/Flutter-安装/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wangzhumo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/headimage.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="王诛魔">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/25/Flutter-安装/" itemprop="url">Flutter 安装</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-25T10:03:55+08:00">
+                2017-12-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/语言工具/" itemprop="url" rel="index">
+                    <span itemprop="name">语言工具</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>使用系统Mac OS</p>
+</blockquote>
+<p>已经没办法给大家看问题了,我在github上提了问题.</p>
+<p><a href="https://github.com/flutter/flutter/issues/11674" target="_blank" rel="noopener">github issue</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">使用命令 command</span><br><span class="line"></span><br><span class="line">`flutter doctor`</span><br><span class="line"></span><br><span class="line">异常:</span><br><span class="line">exception</span><br><span class="line"></span><br><span class="line">SocketException: SocketException: Connection failed (OS Error: No route to host, errno = 65), address = android.googlesource.com, port = 443</span><br></pre></td></tr></table></figure>
+<p>总的来说就是下载 Downloading Gradle Wrapper…的时候连接不到外网,以至于失败</p>
+<p>github上的这位小哥提醒了我<a href="https://github.com/lishuhao" target="_blank" rel="noopener">@lishuhao</a></p>
+<blockquote>
+<p><a href="https://github.com/eseidelgoogle" target="_blank" rel="noopener">@eseidelGoogle</a>it’s reachable via https from Chrome<br>Maybe his chrome use proxy but terminal not use proxy.</p>
+</blockquote>
+<p>我确实开了ss,但是终端确实连接不到代理的,不走代理,那当然无解</p>
+<p>##解决:</p>
+<p>####1.Mac下使用Homebrew安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install polipo</span><br></pre></td></tr></table></figure>
+<p>####2.修改配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ln -sfv /usr/local/opt/polipo/*.plist ~/Library/LaunchAgents</span><br></pre></td></tr></table></figure>
+<p><img src="http://upload-images.jianshu.io/upload_images/2520304-bfa92bf302955c0d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /usr/local/opt/polipo/homebrew.mxcl.polipo.plist</span><br></pre></td></tr></table></figure>
+<p><img src="http://upload-images.jianshu.io/upload_images/2520304-b14154bf99746494.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p>在配置文件中添加<br><code>&lt;string&gt;socksParentProxy=localhost:1086&lt;/string&gt;</code></p>
+<p>其中1086这个端口号,自己去看</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2520304-40564c01c67e3f13.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p>####3.启动</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">launchctl load ~/Library/LaunchAgents/homebrew.mxcl.polipo.plist</span><br></pre></td></tr></table></figure>
+<p>####4.使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ http_proxy=http://localhost:8123 curl ip.gs</span><br><span class="line">Current IP / 当前 IP: 47.90.88.133</span><br><span class="line">ISP / 运营商:  ALIYUN</span><br><span class="line">City / 城市:  Hong Kong</span><br><span class="line">Country / 国家: China</span><br><span class="line">IP.GS is now IP.SB, please visit https://ip.sb/ for more IP information, ip.gs will only use for curl purpose. / IP.GS 已更新至 IP.SB 请访问 https://ip.sb/ 获取更多信息, ip.gs 域名仅作 curl 使用</span><br><span class="line">Please join Telegram group https://t.me/sbfans if you have any issues. / 如有问题，请加入 Telegram 群 https://t.me/sbfans</span><br></pre></td></tr></table></figure>
+<p>可以看到,现在我是香港的IP了,http_proxy=<a href="http://localhost:8123这个是提供默认的,至于怎么修改我没有看,也不知道" target="_blank" rel="noopener">http://localhost:8123这个是提供默认的,至于怎么修改我没有看,也不知道</a></p>
+<p><strong>把代理设置为全局的</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">~ ⌚ 11:42:51</span><br><span class="line">$ export http_proxy=http://localhost:8123</span><br><span class="line"></span><br><span class="line">~ ⌚ 11:43:02</span><br><span class="line">$ export https_proxy=http://localhost:8123</span><br><span class="line"></span><br><span class="line">~ ⌚ 11:43:09</span><br><span class="line">$ curl https://www.google.com</span><br><span class="line">&lt;HTML&gt;&lt;HEAD&gt;&lt;meta http-equiv=&quot;content-type&quot; content=&quot;text/html;charset=utf-8&quot;&gt;</span><br><span class="line">&lt;TITLE&gt;302 Moved&lt;/TITLE&gt;&lt;/HEAD&gt;&lt;BODY&gt;</span><br><span class="line">&lt;H1&gt;302 Moved&lt;/H1&gt;</span><br><span class="line">The document has moved</span><br><span class="line">&lt;A HREF=&quot;https://www.google.com.hk/?gfe_rd=cr&amp;ei=5FaaWZDNOMLU8Af_nriwDw&quot;&gt;here&lt;/A&gt;.</span><br><span class="line">&lt;/BODY&gt;&lt;/HTML&gt;</span><br><span class="line"></span><br><span class="line">~ ⌚ 11:43:33</span><br><span class="line">$ curl www.google.com</span><br><span class="line">&lt;HTML&gt;&lt;HEAD&gt;&lt;meta http-equiv=&quot;content-type&quot; content=&quot;text/html;charset=utf-8&quot;&gt;</span><br><span class="line">&lt;TITLE&gt;302 Moved&lt;/TITLE&gt;&lt;/HEAD&gt;&lt;BODY&gt;</span><br><span class="line">&lt;H1&gt;302 Moved&lt;/H1&gt;</span><br><span class="line">The document has moved</span><br><span class="line">&lt;A HREF=&quot;http://www.google.com.hk/?gfe_rd=cr&amp;ei=6laaWZqEO8_U8AeLlID4CA&quot;&gt;here&lt;/A&gt;.</span><br><span class="line">&lt;/BODY&gt;&lt;/HTML&gt;</span><br></pre></td></tr></table></figure></p>
+<p>####5.End</p>
+<p>##见证奇迹的时刻到了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">~/develop/flutter on  alpha! ⌚ 11:44:11</span><br><span class="line">$ flutter doctor</span><br><span class="line">Downloading Gradle Wrapper...                         1.3s</span><br><span class="line">[✓] Flutter (on Mac OS X 10.12.6 16G29, locale zh-Hans-CN, channel alpha)</span><br><span class="line">    • Flutter at /Users/phyooos/develop/flutter</span><br><span class="line">    • Framework revision b156a0f054 (9 days ago), 2017-08-11 22:01:40 -0700</span><br><span class="line">    • Engine revision fef7d827d6</span><br><span class="line">    • Tools Dart version 1.25.0-dev.9.0</span><br><span class="line"></span><br><span class="line">[✓] Android toolchain - develop for Android devices (Android SDK 26.0.1)</span><br><span class="line">    • Android SDK at /Users/phyooos/Library/Android/sdk</span><br><span class="line">    • Platform android-26, build-tools 26.0.1</span><br><span class="line">    • ANDROID_HOME = /Users/phyooos/Library/Android/sdk</span><br><span class="line">    • Java binary at: /Applications/Android Studio.app/Contents/jre/jdk/Contents/Home/bin/java</span><br><span class="line">    • Java version OpenJDK Runtime Environment (build 1.8.0_112-release-b06)</span><br><span class="line"></span><br><span class="line">[-] iOS toolchain - develop for iOS devices</span><br><span class="line">    ✗ Xcode installation is incomplete; a full installation is necessary for iOS development.</span><br><span class="line">      Download at: https://developer.apple.com/xcode/download/</span><br><span class="line">      Or install Xcode via the App Store.</span><br><span class="line">      Once installed, run:</span><br><span class="line">        sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer</span><br><span class="line">    ✗ libimobiledevice and ideviceinstaller are not installed or require updating. To update, run:</span><br><span class="line">        brew uninstall --ignore-dependencies libimobiledevice</span><br><span class="line">        brew install --HEAD libimobiledevice</span><br><span class="line">        brew install ideviceinstaller</span><br><span class="line">    ✗ ios-deploy not installed. To install:</span><br><span class="line">        brew install ios-deploy</span><br><span class="line">    ✗ CocoaPods not installed.</span><br><span class="line">        CocoaPods is used to retrieve the iOS platform side&apos;s plugin code that responds to your plugin usage on the Dart side.</span><br><span class="line">        Without resolving iOS dependencies with CocoaPods, plugins will not work on iOS.</span><br><span class="line">        For more info, see https://flutter.io/platform-plugins</span><br><span class="line">      To install:</span><br><span class="line">        brew install cocoapods</span><br><span class="line">        pod setup</span><br><span class="line"></span><br><span class="line">[✓] Android Studio (version 2.3)</span><br><span class="line">    • Android Studio at /Applications/Android Studio.app/Contents</span><br><span class="line">    • Java version OpenJDK Runtime Environment (build 1.8.0_112-release-b06)</span><br><span class="line"></span><br><span class="line">[✓] IntelliJ IDEA Ultimate Edition (version 2017.1.3)</span><br><span class="line">    • Flutter plugin version 16.0</span><br><span class="line">    • Dart plugin version 171.4424.63</span><br><span class="line"></span><br><span class="line">[✓] Connected devices</span><br><span class="line">    • None</span><br></pre></td></tr></table></figure>
+<p>我的Flutter就ok了</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/25/BottomNavigationView使用指南/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wangzhumo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/headimage.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="王诛魔">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/25/BottomNavigationView使用指南/" itemprop="url">BottomNavigationView使用指南</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-25T09:40:44+08:00">
+                2017-12-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><strong>最终效果:</strong></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2520304-f952921225e06fb8.gif?imageMogr2/auto-orient/strip" alt="最后效果.gif"></p>
+<p>Android Support Library 25 以上的support包中增加了 BottomNavigationView<br>所以你必须使用<code>com.android.support:design:25.0.0</code>以上的版本才能玩</p>
+<p>1.在 build.gradle 文件中增加依赖：</p>
+<blockquote>
+<figure class="highlight plain"><figcaption><span>'com.android.support:design:25.0.0'```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">2.在main_activity.xml中添加:</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p><android.support.design.widget.bottomnavigationview android:id="@+id/bottom_nav" android:layout_width="match_parent" android:layout_height="@dimen/title_height" android:layout_alignparentbottom="true" app:menu="@menu/menu_tab_button" app:itemicontint="@color/nav_color_select" app:itemtextcolor="@color/nav_color_select" app:itembackground="@color/text_white_color"><br>    </android.support.design.widget.bottomnavigationview></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- 其中```app:menu=&quot;@menu/menu_tab_button&quot;```决定了展示几个item,都长什么样</span><br><span class="line">- 其中,分别决定**图标和文字**选中和未选中item的状态,颜色</span><br></pre></td></tr></table></figure>
+<p>app:itemIconTint=”@color/nav_color_select”<br>app:itemTextColor=”@color/nav_color_select”<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- 其中```app:itemBackground=&quot;@color/text_white_color&quot;```则是整个view的背景颜色</span><br><span class="line"></span><br><span class="line">3.menu_tab_button.xml的代码如下:</span><br></pre></td></tr></table></figure></p>
+<p>&lt;?xml version=”1.0” encoding=”utf-8”?&gt;</p>
+<p><menu xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"><br>    <item android:id="@+id/mian_tab_statistics" android:enabled="true" android:checked="true" 默认选中="" android:title="@string/nav_tongji" android:icon="@drawable/tongji"></item></menu></p>
+<pre><code>&lt;item android:id=&quot;@+id/mian_tab_paidui&quot;
+    android:enabled=&quot;true&quot;
+    android:title=&quot;@string/nav_paidui&quot;   //文字内容
+    android:icon=&quot;@drawable/paidui&quot;/&gt;   //icon图标
+
+&lt;item android:id=&quot;@+id/mian_tab_find&quot;
+    android:enabled=&quot;true&quot;
+    android:title=&quot;@string/nav_faxiang&quot;
+    android:icon=&quot;@drawable/faxian&quot;/&gt;
+
+&lt;item android:id=&quot;@+id/mian_tab_more&quot;
+    android:enabled=&quot;true&quot;
+    android:title=&quot;@string/nav_more&quot;
+    android:icon=&quot;@drawable/more&quot;/&gt;
+</code></pre><p><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">###然而,你以为会这么简单?? shiftingMode教你做人()</span><br><span class="line">###这个只会在item个数超过3个才会出现.</span><br><span class="line"></span><br><span class="line">![牛逼的特效(shiftingMode).gif](http://upload-images.jianshu.io/upload_images/2520304-464b090fa4c8919c.gif?imageMogr2/auto-orient/strip)</span><br><span class="line"></span><br><span class="line">4.这让我如何是好?看了半天,在网上找到一个方法.</span><br></pre></td></tr></table></figure></p>
+<p>/**</p>
+<ul>
+<li>一个关于BottomNavigationView的帮助类,用来关闭shiftingMode</li>
+<li>@author 王诛魔 2017/2/10 下午6:35</li>
+<li>@e-mail phyooos@163.com<br>*/</li>
+</ul>
+<p>public class BNVHelper {</p>
+<pre><code>public static void disableShiftMode(BottomNavigationView navigationView) {
+    BottomNavigationMenuView menuView = (BottomNavigationMenuView) navigationView.getChildAt(0);
+    try {
+        Field shiftingMode = menuView.getClass().getDeclaredField(&quot;mShiftingMode&quot;);
+        shiftingMode.setAccessible(true);
+        shiftingMode.setBoolean(menuView, false);
+        shiftingMode.setAccessible(false);
+
+        for (int i = 0; i &lt; menuView.getChildCount(); i++) {
+            BottomNavigationItemView itemView = (BottomNavigationItemView) menuView.getChildAt(i);
+            itemView.setShiftingMode(false);
+            itemView.setChecked(itemView.getItemData().isChecked());
+        }
+    } catch (NoSuchFieldException e) {
+        // Log
+    } catch (IllegalAccessException e) {
+        // Log
+    }
+}
+</code></pre><p>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">原作者@[ChristmasJason](http://www.jianshu.com/u/4d132a94e6e8):http://www.jianshu.com/p/e2a8791e80d6</span><br><span class="line"></span><br><span class="line">然后我看了一下源码**mShiftingMode** 这个布尔值决定了是否启用shiftingMode,所以上面的方法就是shiftingMode.setBoolean(menuView, false);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">然后就好了......</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">提示:</span><br><span class="line">google说选中图标的颜色是这么改的,然而都是骗人的,这个应该是默认的设置,我也偷懒没有验证</span><br><span class="line"></span><br><span class="line">![2017-02-21_17-59-10.png](http://upload-images.jianshu.io/upload_images/2520304-c6c71ad14a9e0106.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)</span><br></pre></td></tr></table></figure></p>
+<p>app:itemIconTint=”@color/nav_color_select”<br>app:itemTextColor=”@color/nav_color_select”<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">其实你配置了之后,就是这个东西来决定的,而不是app&apos;s primary color</span><br><span class="line">nav_color_select.xml这就是个选择器,代码如下:</span><br></pre></td></tr></table></figure></p>
+<p>&lt;?xml version=”1.0” encoding=”utf-8”?&gt;</p>
+<p><selector xmlns:android="http://schemas.android.com/apk/res/android"><br>    <item android:state_checked="true" android:color="@color/colorPrimary"><br>    <item android:state_pressed="true" android:color="@color/colorPrimary"><br>    <item android:color="@color/gray_light"><br></item></item></item></selector><br>```</p>
+<p>####End,到这里你的导航条也应该ok了</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/25/Android-Studio-使用正式签名debug调试/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wangzhumo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/headimage.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="王诛魔">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/25/Android-Studio-使用正式签名debug调试/" itemprop="url">Android Studio 使用正式签名debug调试</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-25T09:38:59+08:00">
+                2017-12-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>###解决问题:</p>
+<blockquote>
+<p>很多时候我们使用第三方登录什么的东西,需要我们提供正式签名,但是我们总是需要调试的.<br>一般情况,我们不可能一次性OK,那么每一次调试都需要正式签名打包,并安装,然后再调试,这也太麻烦了,.</p>
+</blockquote>
+<p>所以,直接上代码:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">signingConfigs &#123;</span><br><span class="line">        release &#123;</span><br><span class="line">            keyAlias &apos;phyooos&apos;</span><br><span class="line">            keyPassword &apos;phyooos&apos;</span><br><span class="line">            storeFile file(&apos;phyooos.jks&apos;)</span><br><span class="line">            storePassword &apos;phyooos&apos;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    buildTypes &#123;</span><br><span class="line">        release &#123;</span><br><span class="line">            minifyEnabled false</span><br><span class="line">            signingConfig signingConfigs.release</span><br><span class="line">            proguardFiles getDefaultProguardFile(&apos;proguard-android.txt&apos;), &apos;proguard-rules.pro&apos;</span><br><span class="line">        &#125;</span><br><span class="line">        debug&#123;</span><br><span class="line">            minifyEnabled false</span><br><span class="line">            signingConfig signingConfigs.release</span><br><span class="line">            proguardFiles getDefaultProguardFile(&apos;proguard-android.txt&apos;), &apos;proguard-rules.pro&apos;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p><strong>解释一下:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">signingConfigs &#123;</span><br><span class="line">        release &#123;</span><br><span class="line">            keyAlias &apos;phyooos&apos;</span><br><span class="line">            keyPassword &apos;phyooos&apos;</span><br><span class="line">            storeFile file(&apos;phyooos.jks&apos;)</span><br><span class="line">            storePassword &apos;phyooos&apos;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>这一段代码写在项目app目录下&gt;gradle配置文件中&gt;android节点下,<br>是我们自定义的一个配置</p>
+<ul>
+<li>keyAlias ‘phyooos’  这是签名文件的Alias</li>
+<li>keyPassword ‘phyooos’   这是签名文件的密码</li>
+<li>storeFile file(‘phyooos.jks’)  这个就是签名文件的地址,我放在app目录下了</li>
+<li>storePassword ‘phyooos’  这是store密码</li>
+</ul>
+<hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">buildTypes &#123;</span><br><span class="line">        release &#123;</span><br><span class="line">            minifyEnabled false</span><br><span class="line">            signingConfig signingConfigs.release</span><br><span class="line">            proguardFiles getDefaultProguardFile(&apos;proguard-android.txt&apos;), &apos;proguard-rules.pro&apos;</span><br><span class="line">        &#125;</span><br><span class="line">        debug&#123;</span><br><span class="line">            minifyEnabled false</span><br><span class="line">            signingConfig signingConfigs.release</span><br><span class="line">            proguardFiles getDefaultProguardFile(&apos;proguard-android.txt&apos;), &apos;proguard-rules.pro&apos;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>这一段的意思就是debug调试以及正式打包都使用上面自定义的配置</p>
+<h4 id="The-End-好了-愉快的玩耍吧"><a href="#The-End-好了-愉快的玩耍吧" class="headerlink" title="The End   好了,愉快的玩耍吧"></a>The End   好了,愉快的玩耍吧</h4>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/25/低功耗蓝牙iBeacon的开发笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wangzhumo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/headimage.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="王诛魔">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/25/低功耗蓝牙iBeacon的开发笔记/" itemprop="url">低功耗蓝牙iBeacon的开发笔记</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-25T09:37:23+08:00">
+                2017-12-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>###1.挣扎的开始<br>各种百度,google,发现国内资料很少,有的也是商业公司提供的sdk,这并不符合我需要,<br>google倒是不少,然而以我的英语水平,望洋兴叹罢了@<br>不发牢骚了:</p>
+<blockquote>
+<p>首先你需要了解这些资料<br>1、profile<br>profile可以理解为一种规范，一个标准的通信协议，它存在于从机中。蓝牙组织规定了一些标准的profile，例如 HID OVER GATT ，防丢器 ，心率计等。每个profile中会包含多个service，每个service代表从机的一种能力。</p>
+<p>2、service<br>service可以理解为一个服务，在ble从机中，通过有多个服务，例如电量信息服务、系统信息服务等，每个service中又包含多个characteristic特征值。每个具体的characteristic特征值才是ble通信的主题。比如当前的电量是80%，所以会通过电量的characteristic特征值存在从机的profile里，这样主机就可以通过这个characteristic来读取80%这个数据</p>
+<p>3、characteristic<br>characteristic特征值，ble主从机的通信均是通过characteristic来实现，可以理解为一个标签，通过这个标签可以获取或者写入想要的内容。</p>
+<p>4、UUID<br>UUID，统一识别码，我们刚才提到的service和characteristic，都需要一个唯一的uuid来标识<br>PS: 百度到的,我以一个过来人的身份保证这个很重要</p>
+</blockquote>
+<p>###2.资料,准备<br>资料看这里:</p>
+<ul>
+<li>这也是最重要的资料来源,谷歌SDK的例子里面有的项目<br><img src="http://img.blog.csdn.net/20160710190336812" alt="Android SDK 中的doc文档"></li>
+</ul>
+<ul>
+<li>接上文,说完资料,<blockquote>
+<p>这是一个很好的demo<br>sdk\samples\android-22\connectivity\BluetoothLeGatt</p>
+</blockquote>
+</li>
+</ul>
+<p>该目录下为谷歌提供的demo,我的应用也是在它的基础上改进而成的.<br>由以下部分组成:<br>1.一个服务 BluetoothLeService,主负责与蓝牙设备进行数据交换</p>
+<p>2.两个activity:DeviceControlActivity,DeviceScanActivity<br>    见名知意,一个负责扫描设备,而两外一个与设备进行交互</p>
+<p>3.一个SampleGattAttributes<br>   主要是存储了一些UUID,我对它进行了加强</p>
+<p>###3.BLE设备的使用步骤概况<br>1.首先要说明的一点是,要求Android版本为4.3及其以上<br>  接着确认设备支持<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 支持BLE</span><br><span class="line"> *  check to determine whether BLE is supported on the device</span><br><span class="line"> */</span><br><span class="line">public void isSupported()&#123;</span><br><span class="line">     if (!getPackageManager().hasSystemFeature(PackageManager.FEATURE_BLUETOOTH_LE)) &#123;</span><br><span class="line">            Toast.makeText(this, &quot;设备不支持BLE功能&quot;, Toast.LENGTH_SHORT).show();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">```  </span><br><span class="line"></span><br><span class="line">2.确认手机支持并打开蓝牙的状态下,你就可以进行设备的搜索了</span><br><span class="line">   有两种模式</span><br></pre></td></tr></table></figure></p>
+<p>//第一种<br>//serviceUuids   指定设备的UUID<br>//callback       搜索的回调<br>startLeScan(final UUID[] serviceUuids, final LeScanCallback callback)</p>
+<p>//第二种<br>//其实就是不传入serviceUuids的,就是说搜索范围内所有蓝牙设备<br>public boolean startLeScan(LeScanCallback callback) {<br>     return startLeScan(null, callback);<br>}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">3.同时记得停止搜索,当然你也可以一直搜</span><br><span class="line">PS：其实我见到的app大部分是不停的搜索，这样的话会有一个广播数据持续刷新的效果,那么很多的距离判断什么的都是通过这种不停搜索的形式来工作的</span><br></pre></td></tr></table></figure>
+<p>//mBluetoothAdapter   请自行查看谷歌文档<br>//mLeScanCallback     这就是上面提过的LeScanCallback的实例<br>mBluetoothAdapter.stopLeScan(mLeScanCallback);<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">接着就是在回调中拿到各个设备数据了</span><br></pre></td></tr></table></figure></p>
+<p>/**</p>
+<ul>
+<li><p>搜索设备回调<br>*/<br>private BluetoothAdapter.LeScanCallback mLeScanCallback =</p>
+<pre><code>new BluetoothAdapter.LeScanCallback() {
+</code></pre><p> @Override<br> public void onLeScan(final BluetoothDevice device, int rssi, </p>
+<pre><code>byte[] scanRecord) {
+</code></pre><p> }<br>};</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">这里有几个值得说一下的东西</span><br><span class="line">- **1.BluetoothDevice device**</span><br><span class="line">![这里写图片描述](http://img.blog.csdn.net/20160712000123059)</span><br><span class="line">应该可以看的很清楚,	device中包含了设备的基本信息			   </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">- **2.rssi信号质量,也有人告诉我是质量**</span><br><span class="line">不过我这次并没有使用到</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">- **3.byte[] scanRecord (重头戏)**</span><br><span class="line">广播响应包数据</span><br><span class="line">一般包括两个部分,我使用的主要是ServiceData域</span><br><span class="line">**在这里需要注意的是，这两个部分都存在于广播数据，而且并不是两部分都有，有可能是只有一个部分，所以一定要看情设备的硬件规范，因为这涉及到后面解析广播数据**</span><br><span class="line"></span><br><span class="line">要知道，我们都是拿byte[]数组中的某些部分对应特定值,一旦对应关系打乱，那么数据解析就没什么正确性可言了 </span><br><span class="line">这些广播数据都是依据一定的规则指定 的,所以这时候你需要设备厂商的文档来查看对应的数据,以及其结构</span><br><span class="line">PS:需要注意的一点是,这些数据都是byte[],你需要将它们转化(一般常用的做法是,先转化为16进制的字符串,而后再进行读取解析)</span><br><span class="line"></span><br><span class="line">###4.读取蓝牙设备内部数据</span><br><span class="line">这里涉及到两个重要部分</span><br><span class="line">service  以及 characteristic</span><br><span class="line"></span><br><span class="line">一般来说</span><br><span class="line"> 一个Service  eg: FF01-XXXXXXXXXXX-XXXXX</span><br><span class="line"> 下面可能有很多的characteristic</span><br><span class="line">Marjor : FF16 -XXXXXX</span><br><span class="line">Power : FF17 - XXX</span><br><span class="line">....一堆的characteristic </span><br><span class="line"></span><br><span class="line">- **如果需要给指定的项目写入一个数据**</span><br><span class="line">   条件：</span><br><span class="line">                1.此特征在哪个Service下，即该service的UUID</span><br><span class="line">                2.该特征的UUID</span><br><span class="line">                3.该特征的写入格式，16进制还是其他的东西</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>//代码片段1<br>//此方法获取对应特征值的对象BluetoothGattCharacteristic的实体<br>    public BluetoothGattCharacteristic getCharacteristic(String service,String charact) {<br>        if (mBluetoothGatt == null) return null;<br>        if(mBluetoothGatt.getService(UUID.fromString(service))==null){return null ;}<br>        return mBluetoothGatt.getService(UUID.fromString(service)).getCharacteristic(UUID.fromString(charact));<br>    }</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>//代码片段2<br>if(!TextUtils.isEmpty(value)){//输入非空<br>      byte[] arrayOfByte= new byte[2];//传入数据规定为2个byte<br>      arrayOfByte[0] = ((byte)Integer.parseInt((value).substring(0, 2), 16));<br>      arrayOfByte[1] = ((byte)Integer.parseInt((value).substring(2, 4), 16));<br>      //上面操作，先切，再转为16进制<br>      characteristic.setValue(arrayOfByte);<br>      //characteristic实体就是片段1代码获取到的<br>      gattServer.writeCharacteristic(characteristic);<br>      //所有的操作都封装在一个service中，gattServer为其实体对象<br>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
+<p>  //片段3就是服务中的写入方法<br>  /**</p>
+<pre><code> * 写入一个数据
+ * @param characteristic
+ */
+public void writeCharacteristic(BluetoothGattCharacteristic characteristic) {
+    mBluetoothGatt.setCharacteristicNotification(characteristic, true);
+    mBluetoothGatt.writeCharacteristic(characteristic);
+}
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>//代码片段4   这是回调，<br>//在连接时就作为参数传入了 mBluetoothGatt = device.connectGatt(this, false, mGattCallback);<br>private final BluetoothGattCallback mGattCallback = new BluetoothGattCallback() {<br>        @Override<br>        public void onConnectionStateChange(BluetoothGatt gatt, int status, int newState) {<br>            if (newState == BluetoothProfile.STATE_CONNECTED) {<br>                Log.e(TAG, “连接至 GATT server.”);<br>            } else if (newState == BluetoothProfile.STATE_DISCONNECTED) {<br>                Log.e(TAG, “断开 GATT server.”);<br>            }<br>        }</p>
+<pre><code>@Override
+public void onServicesDiscovered(BluetoothGatt gatt, int status) {
+    if (status == BluetoothGatt.GATT_SUCCESS) {
+        Log.e(TAG, &quot;建立连接成功&quot;);              
+    } else {
+        Log.e(TAG, &quot;连接状态异常: &quot; + status);
+    }
+}
+
+@Override
+public void onCharacteristicWrite(BluetoothGatt gatt, BluetoothGattCharacteristic characteristic, int status) {
+    if (status == BluetoothGatt.GATT_SUCCESS) {
+          Log.e(TAG, &quot;写入数据成功&quot;);   
+    } 
+}
+
+@Override
+public void onCharacteristicRead(BluetoothGatt gatt, BluetoothGattCharacteristic
+        characteristic, int status) {
+    if (status == BluetoothGatt.GATT_SUCCESS) {
+       Log.e(TAG, &quot;读取数据成功&quot;);   
+    }
+}
+
+@Override
+public void onCharacteristicChanged(BluetoothGatt gatt,
+                                    BluetoothGattCharacteristic characteristic) {
+    Log.e(TAG, &quot;连接状态发生改变&quot;);      
+};
+</code></pre><p>}<br>```</p>
+<blockquote>
+<p>PS:<strong>这里的例子是写入，其实读取的操作与此类似，操作完成后在回调里面判断状态以及读取数据即可</strong></p>
+</blockquote>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/25/Android-Studio-基本设置/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1213,154 +2132,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/23/透明度对照表/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="wangzhumo">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/headimage.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="王诛魔">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/12/23/透明度对照表/" itemprop="url">透明度对照表</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-23T10:55:00+08:00">
-                2017-12-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android/" itemprop="url" rel="index">
-                    <span itemprop="name">Android</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>####透明度对照表</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">100% — FF</span><br><span class="line"></span><br><span class="line">95% — F2</span><br><span class="line"></span><br><span class="line">90% — E6</span><br><span class="line"></span><br><span class="line">85% — D9</span><br><span class="line"></span><br><span class="line">80% — CC</span><br><span class="line"></span><br><span class="line">75% — BF</span><br><span class="line"></span><br><span class="line">70% — B3</span><br><span class="line"></span><br><span class="line">65% — A6</span><br><span class="line"></span><br><span class="line">60% — 99</span><br><span class="line"></span><br><span class="line">55% — 8C</span><br><span class="line"></span><br><span class="line">50% — 80</span><br><span class="line"></span><br><span class="line">45% — 73</span><br><span class="line"></span><br><span class="line">40% — 66</span><br><span class="line"></span><br><span class="line">35% — 59</span><br><span class="line"></span><br><span class="line">30% — 4D</span><br><span class="line"></span><br><span class="line">25% — 40</span><br><span class="line"></span><br><span class="line">20% — 33</span><br><span class="line"></span><br><span class="line">15% — 26</span><br><span class="line"></span><br><span class="line">10% — 1A</span><br><span class="line"></span><br><span class="line">5% — 0D</span><br><span class="line"></span><br><span class="line">0% — 00</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1410,7 +2186,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">21</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1432,7 +2208,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

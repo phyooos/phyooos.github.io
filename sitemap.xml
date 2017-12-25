@@ -2,6 +2,48 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2017/12/25/Retrofit2-Okhttp3-Rxjava2-%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82%E5%B0%81%E8%A3%85(%E4%B8%8A)/</loc>
+    
+    <lastmod>2017-12-25T08:13:49.835Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2017/12/25/Retrofit2-Okhttp3-Rxjava2-%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82%E5%B0%81%E8%A3%85-%E4%B8%8B/</loc>
+    
+    <lastmod>2017-12-25T08:13:39.651Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2017/12/25/Android%E9%A1%B9%E7%9B%AE%E4%B8%AD%E4%BD%BF%E7%94%A8RxBus%E8%BF%9B%E8%A1%8C%E9%80%9A%E8%AE%AF/</loc>
+    
+    <lastmod>2017-12-25T07:10:30.840Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2017/12/25/Android%E5%BC%80%E5%8F%91%E4%B8%AD%E5%B8%B8%E7%94%A8%E7%9A%84Adb%E5%91%BD%E4%BB%A4/</loc>
+    
+    <lastmod>2017-12-25T06:42:14.770Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2017/12/25/Nginx%E5%AE%89%E8%A3%85%E5%8F%8A%E5%85%B6%E7%AE%80%E5%8D%95%E9%85%8D%E7%BD%AE/</loc>
+    
+    <lastmod>2017-12-25T06:03:27.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2017/12/24/Linux-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</loc>
+    
+    <lastmod>2017-12-25T05:40:28.004Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2017/12/25/Android%E9%A1%B9%E7%9B%AE%E7%9A%84build-gradle%E9%80%9A%E7%94%A8%E8%AE%BE%E7%BD%AE/</loc>
     
     <lastmod>2017-12-25T04:25:51.673Z</lastmod>
@@ -82,13 +124,6 @@
     <loc>http://yoursite.com/2017/12/25/Android-Studio-%E5%AF%BC%E5%85%A5-Vitamio%E5%8F%8A%E6%A8%AA%E7%AB%96%E5%B1%8F%E5%88%87%E6%8D%A2/</loc>
     
     <lastmod>2017-12-25T01:33:44.501Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2017/12/24/Linux-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</loc>
-    
-    <lastmod>2017-12-24T15:52:00.574Z</lastmod>
     
   </url>
   

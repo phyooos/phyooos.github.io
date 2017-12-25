@@ -4,6 +4,110 @@
 
     
   <url>
+    <loc>http://yoursite.com/2017/12/25/%E4%BD%8E%E5%8A%9F%E8%80%97%E8%93%9D%E7%89%99iBeacon%E7%9A%84%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/</loc>
+    <lastmod>2017-12-25T01:59:22.000Z</lastmod>
+    <data>
+        <display>
+        <title>低功耗蓝牙iBeacon的开发笔记</title>
+        <pubTime>2017-12-25T01:37:23.000Z</pubTime>
+        
+        <tag>蓝牙</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://yoursite.com/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/12/25/Android-Studio-%E4%BD%BF%E7%94%A8%E6%AD%A3%E5%BC%8F%E7%AD%BE%E5%90%8Ddebug%E8%B0%83%E8%AF%95/</loc>
+    <lastmod>2017-12-25T01:49:06.359Z</lastmod>
+    <data>
+        <display>
+        <title>Android Studio 使用正式签名debug调试</title>
+        <pubTime>2017-12-25T01:38:59.000Z</pubTime>
+        
+        <tag>Android Studio</tag>
+         
+        <tag>Android</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://yoursite.com/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/12/25/BottomNavigationView%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/</loc>
+    <lastmod>2017-12-25T01:47:43.000Z</lastmod>
+    <data>
+        <display>
+        <title>BottomNavigationView使用指南</title>
+        <pubTime>2017-12-25T01:40:44.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://yoursite.com/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/12/25/Android-Studio-%E5%9F%BA%E6%9C%AC%E8%AE%BE%E7%BD%AE/</loc>
+    <lastmod>2017-12-25T01:36:14.099Z</lastmod>
+    <data>
+        <display>
+        <title>Android Studio 基本设置</title>
+        <pubTime>2017-12-25T01:35:39.000Z</pubTime>
+        
+        <tag>Android Studio</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://yoursite.com/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/12/25/Android-Studio-%E5%AF%BC%E5%85%A5-Vitamio%E5%8F%8A%E6%A8%AA%E7%AB%96%E5%B1%8F%E5%88%87%E6%8D%A2/</loc>
+    <lastmod>2017-12-25T01:33:44.501Z</lastmod>
+    <data>
+        <display>
+        <title>Android Studio 导入 Vitamio及横竖屏切换</title>
+        <pubTime>2017-12-25T01:28:42.000Z</pubTime>
+        
+        <tag>Android Studio</tag>
+         
+        <tag>Android</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://yoursite.com/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2017/12/24/Linux-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</loc>
     <lastmod>2017-12-24T15:52:00.574Z</lastmod>
     <data>

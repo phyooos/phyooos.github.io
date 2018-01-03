@@ -13,6 +13,17 @@
 <meta name="theme-color" content="#222">
 
 
+<script>
+	(function(){
+		if(''){
+			if (prompt('请输入文章密码','') !== ''){
+				alert('密码错误！');
+				history.back();
+			}
+		}
+	})();
+</script>
+
 
 
 
@@ -1387,7 +1398,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/25/Room数据库使用指北/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/25/Room数据库使用指北List<>的问题/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="wangzhumo">
@@ -1406,7 +1417,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/12/25/Room数据库使用指北/" itemprop="url">Room数据库使用指北</a></h1>
+                <a class="post-title-link" href="/2017/12/25/Room数据库使用指北List<>的问题/" itemprop="url">Room数据库使用指北List<>的问题</a></h1>
         
 
         <div class="post-meta">
@@ -1482,20 +1493,148 @@
           
             <p>Room依赖</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">implementation &quot;android.arch.persistence.room:runtime:1.0.0&quot;</span><br><span class="line">annotationProcessor &quot;android.arch.persistence.room:compiler:1.0.0&quot;</span><br></pre></td></tr></table></figure>
-<p><strong>1.创建一个数据库表</strong></p>
-<p>比如我想创建一个文章的表</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * If you have any questions, you can contact by email &#123; wangzhumoo@gmail.com&#125;</span><br><span class="line"> *</span><br><span class="line"> * @author 王诛魔 2017/10/24 上午10:38</span><br><span class="line"> */</span><br><span class="line"></span><br><span class="line">@Entity(tableName = &quot;articles&quot;)</span><br><span class="line">public class ArticleModel &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * _id : 58b8ec1b421aa90efc4fb64d</span><br><span class="line">     * createdAt : 2017-03-03T12:07:55.251Z</span><br><span class="line">     * desc : 注解方式来解析 html 节点</span><br><span class="line">     * publishedAt : 2017-03-03T12:13:36.333Z</span><br><span class="line">     * source : chrome</span><br><span class="line">     * type : Android</span><br><span class="line">     * url : https://github.com/florent37/RxRetroJsoup</span><br><span class="line">     * used : true</span><br><span class="line">     * who : 带马甲</span><br><span class="line">     */</span><br><span class="line"></span><br><span class="line">    @PrimaryKey(autoGenerate = true)</span><br><span class="line">    @NonNull</span><br><span class="line">    private String _id;</span><br><span class="line">    private String createdAt;</span><br><span class="line">    private String desc;</span><br><span class="line">    private String publishedAt;</span><br><span class="line">    private String source;</span><br><span class="line">    private String type;</span><br><span class="line">    @ColumnInfo(name = &quot;articleUrl&quot;)</span><br><span class="line">    private String url;</span><br><span class="line">    private boolean used;</span><br><span class="line">    private String who;</span><br><span class="line"></span><br><span class="line">    //需要重写</span><br><span class="line">    //1. get/set</span><br><span class="line"></span><br><span class="line">    //2. equals</span><br><span class="line"></span><br><span class="line">    //3. hashCode</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>1.@Entity(tableName = “articles”)<br>创建一个表,名字叫做”articles”</p>
-<p>2.@PrimaryKey()<br>主键,每个表都需要<br>@PrimaryKey(autoGenerate = true)<br>表示,这个_id是自增的.</p>
-<p>3.@ColumnInfo(name = “articleUrl”)<br>  private String url;<br>默认名字为 url<br>但是可以使用ColumnInfo(name = “”)指定一个名字</p>
-<p><strong>2.数据库的初始化</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * If you have any questions, you can contact by email &#123; wangzhumoo@gmail.com&#125;</span><br><span class="line"> *</span><br><span class="line"> * @author 王诛魔 2017/10/24 上午10:13</span><br><span class="line"> *</span><br><span class="line"> * 数据库</span><br><span class="line"> */</span><br><span class="line">@Database(entities = &#123;ArticleModel.class&#125;,version = 1,exportSchema = false)</span><br><span class="line">public abstract class AppDatabase extends RoomDatabase &#123;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 文章列表</span><br><span class="line">     * @return</span><br><span class="line">     */</span><br><span class="line">    public abstract ArticleDao articleDao();</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>1.extends RoomDatabase 必须继承RoomDatabase</p>
-<p>2.@Database(entities = {ArticleModel.class},version = 1,exportSchema = false)</p>
+<p><strong>查找</strong></p>
 <ul>
-<li>entities 包含的表(当前只有一个,ArticleModel,如果有多个加入即可,”,”隔开)</li>
-<li>version = 1 数据库的版本</li>
+<li>查找表中所有数据</li>
 </ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">   * 查找user</span><br><span class="line">   * @return</span><br><span class="line">   */</span><br><span class="line">  @Query(&quot;SELECT * FROM banners&quot;)</span><br><span class="line">  List&lt;BannerModel&gt; findBanners();</span><br></pre></td></tr></table></figure>
+<ul>
+<li>按条件查找</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * filters</span><br><span class="line"> * @return</span><br><span class="line"> * @param typeSort</span><br><span class="line"> */</span><br><span class="line">@Query(&quot;SELECT * FROM filters WHERE type != :typeSort&quot;)</span><br><span class="line">List&lt;FilterItemModel&gt; findFilters(String typeSort);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>限制条数的条件查找</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 获取排序</span><br><span class="line"> * @return</span><br><span class="line"> */</span><br><span class="line">@Query(&quot;SELECT * FROM filters WHERE type = :name LIMIT 0,1&quot;)</span><br><span class="line">FilterItemModel findSort(String name);</span><br></pre></td></tr></table></figure>
+<p>现在获取的是第一条数据</p>
+<p>//文档中的例子<br>@Dao<br>public interface MyDao {<br>    @Query(“SELECT first_name, last_name FROM user WHERE region IN (:regions)”)<br>    public List<nametuple> loadUsersFromRegions(List<string> regions);<br>}</string></nametuple></p>
+<p>在user表中查找满足集合List<string> regions中条件的元素</string></p>
+<ul>
+<li>获取总行数</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 获取数据库表中总条数</span><br><span class="line"> * @return</span><br><span class="line"> */</span><br><span class="line">@Query(&quot;SELECT count(*) FROM search_history&quot;)</span><br><span class="line">long findHistoryCount();</span><br></pre></td></tr></table></figure>
+<ul>
+<li>获取某一列的和</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 求和</span><br><span class="line"> * @return</span><br><span class="line"> */</span><br><span class="line">@Query(&quot;SELECT sum(count) FROM status_stock&quot;)</span><br><span class="line">long findStatusStockCount();</span><br></pre></td></tr></table></figure>
+<ul>
+<li>按照降序排列(ASC升序  DESC降序)</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 查找user</span><br><span class="line"> * @return</span><br><span class="line"> */</span><br><span class="line">@Query(&quot;SELECT * FROM search_history ORDER BY time DESC&quot;)</span><br><span class="line">List&lt;SearchHistoryModel&gt; findSearchHistory();</span><br></pre></td></tr></table></figure>
+<hr>
+<p>文档中的例子:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">@Dao</span><br><span class="line">public interface MyDao &#123;</span><br><span class="line"></span><br><span class="line">    //正常的查询</span><br><span class="line">    @Query(&quot;SELECT * FROM user WHERE age != :minAge&quot;)</span><br><span class="line">    public User[] loadAllUsersOlderThan(int minAge);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">@Dao</span><br><span class="line">public interface MyDao &#123;</span><br><span class="line"></span><br><span class="line">    //区间中的值</span><br><span class="line">    @Query(&quot;SELECT * FROM user WHERE age BETWEEN :minAge AND :maxAge&quot;)</span><br><span class="line">    public User[] loadAllUsersBetweenAges(int minAge, int maxAge);</span><br><span class="line"></span><br><span class="line">    //或关系的查询</span><br><span class="line">    @Query(&quot;SELECT * FROM user WHERE first_name LIKE :search &quot;</span><br><span class="line">           + &quot;OR last_name LIKE :search&quot;)</span><br><span class="line">    public List&lt;User&gt; findUserWithName(String search);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>如果,你不想查到表 行中所有字段,则</strong><br>1.定义一个实体<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public class NameTuple &#123;</span><br><span class="line">    @ColumnInfo(name=&quot;first_name&quot;)</span><br><span class="line">    public String firstName;</span><br><span class="line"></span><br><span class="line">    @ColumnInfo(name=&quot;last_name&quot;)</span><br><span class="line">    public String lastName;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>2.查询<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@Dao</span><br><span class="line">public interface MyDao &#123;</span><br><span class="line">    @Query(&quot;SELECT first_name, last_name FROM user&quot;)</span><br><span class="line">    public List&lt;NameTuple&gt; loadFullName();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>多表查询Querying multiple tables</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">@Dao</span><br><span class="line">public interface MyDao &#123;</span><br><span class="line">   @Query(&quot;SELECT user.name AS userName, pet.name AS petName &quot;</span><br><span class="line">          + &quot;FROM user, pet &quot;</span><br><span class="line">          + &quot;WHERE user.id = pet.user_id&quot;)</span><br><span class="line">   public LiveData&lt;List&lt;UserPet&gt;&gt; loadUserAndPetNames();</span><br><span class="line"></span><br><span class="line">   // You can also define this class in a separate file, as long as you add the</span><br><span class="line">   // &quot;public&quot; access modifier.</span><br><span class="line">   //注意 public</span><br><span class="line">   static class UserPet &#123;</span><br><span class="line">       public String userName;</span><br><span class="line">       public String petName;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>更新</strong></p>
+<ul>
+<li>更新指定条目</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 更新时间</span><br><span class="line"> * @param time</span><br><span class="line"> */</span><br><span class="line">@Query(&quot;UPDATE search_history SET time = :time WHERE content = :content&quot;)</span><br><span class="line">void updateSearchHistory(String content,long time);</span><br></pre></td></tr></table></figure>
+<p><strong>删除数据</strong></p>
+<ul>
+<li>删除所有数据</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 删除表</span><br><span class="line"> * @return</span><br><span class="line"> */</span><br><span class="line">@Query(&quot;DELETE FROM filters&quot;)</span><br><span class="line">void delectFilters();</span><br></pre></td></tr></table></figure>
+<ul>
+<li>删除最后一条</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 删除最后一个</span><br><span class="line"> * @return</span><br><span class="line"> */</span><br><span class="line">@Query(&quot;DELETE FROM search_history WHERE time in(SELECT time FROM search_history ORDER BY time ASC LIMIT 1 )&quot;)</span><br><span class="line">void delectLastHistory();</span><br></pre></td></tr></table></figure>
+<ul>
+<li>按条件删除</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 删除表by listtype</span><br><span class="line"> * @return</span><br><span class="line"> */</span><br><span class="line">@Query(&quot;DELETE FROM vehicle_model WHERE listType = :type&quot;)</span><br><span class="line">void delectVehicleByType(String type);</span><br></pre></td></tr></table></figure>
+<p>####补充</p>
+<p><strong><code>1.List&lt;String&gt;</code>这样的元素</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">private ArrayList&lt;String&gt; tags;</span><br></pre></td></tr></table></figure></p>
+<p>这样的元素,可以通过Converter搞定</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">/**</span><br><span class="line">* If you have any questions, you can contact by email &#123; wangzhumoo@gmail.com&#125;</span><br><span class="line">*</span><br><span class="line">* @author 王诛魔 2017/12/27 上午11:51</span><br><span class="line">*/</span><br><span class="line"></span><br><span class="line">public class TagsConverter &#123;</span><br><span class="line">    @TypeConverter</span><br><span class="line">    public static ArrayList&lt;String&gt; fromString(String value) &#123;</span><br><span class="line">        Type listType = new TypeToken&lt;ArrayList&lt;String&gt;&gt;() &#123;&#125;.getType();</span><br><span class="line">        return new Gson().fromJson(value, listType);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @TypeConverter</span><br><span class="line">    public static String fromArrayList(ArrayList&lt;String&gt; list) &#123;</span><br><span class="line">        Gson gson = new Gson();</span><br><span class="line">        String json = gson.toJson(list);</span><br><span class="line">        return json;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在db中,会存为 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[&quot;精选&quot;]</span><br><span class="line">[&quot;精选&quot;,&quot;急售&quot;]</span><br><span class="line">[&quot;准新&quot;,&quot;SUV&quot;]</span><br></pre></td></tr></table></figure>
+<p><strong>3.@Embedded</strong></p>
+<p>作用是,把已经写好的普通的类添加到数据表中.<br>用Room的文档做说明:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">//这是一个标准的数据表</span><br><span class="line"></span><br><span class="line">@Entity</span><br><span class="line">class User &#123;</span><br><span class="line">    @PrimaryKey</span><br><span class="line">    public int id;</span><br><span class="line"></span><br><span class="line">    public String firstName;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其中只有id , firstName</p>
+<p>而我想添加<br>    street;<br>    state;<br>    city;<br>    postCode;<br>刚好之前写了一个类叫Address</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">class Address &#123;</span><br><span class="line">    public String street;</span><br><span class="line">    public String state;</span><br><span class="line">    public String city;</span><br><span class="line">    @Ignore</span><br><span class="line">    public String nothing;</span><br><span class="line">    @ColumnInfo(name = &quot;post_code&quot;)</span><br><span class="line">    public int postCode;</span><br><span class="line">&#125;</span><br><span class="line">```   </span><br><span class="line"></span><br><span class="line">那么我通过 @Embedded</span><br></pre></td></tr></table></figure>
+<p>@Entity<br>class User {<br>    @PrimaryKey<br>    public int id;</p>
+<pre><code>public String firstName;
+
+@Embedded
+public Address address;
+</code></pre><p>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">表中就会有:</span><br><span class="line">` names: id, firstName, street, state, city, and post_code`</span><br><span class="line"></span><br><span class="line">如果你想给@Embedded的类中所有元素前面加上统一的标志</span><br><span class="line"></span><br><span class="line">`@Embedded(prefix = &quot;address_&quot;)`</span><br><span class="line"></span><br><span class="line">表中就会有:</span><br><span class="line"></span><br><span class="line">` names: id, firstName, address_street, address_state, address_city, and address_post_code`</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">**3.`List&lt;Object&gt;`这样的数据**</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">- 二逼解决方法</span><br></pre></td></tr></table></figure></p>
+<p>/**</p>
+<ul>
+<li>If you have any questions, you can contact by email { wangzhumoo@gmail.com}<br>*</li>
+<li><p>@author 王诛魔 2018/1/3 下午1:31<br>*/<br>@Entity<br>public class User {</p>
+<p> @PrimaryKey<br> public int id;<br> public String name;<br> public int age;</p>
+</li>
+</ul>
+<p>}</p>
+<p>/**</p>
+<ul>
+<li>If you have any questions, you can contact by email { wangzhumoo@gmail.com}<br>*</li>
+<li>@author 王诛魔 2018/1/3 下午1:30<br>*/</li>
+</ul>
+<p>@Entity(foreignKeys = {<br>        @ForeignKey(entity = User.class,parentColumns ={“id”},childColumns = {“user_id”})<br>})<br>public class Book {</p>
+<pre><code>@PrimaryKey
+public int bookId;
+@ColumnInfo(name = &quot;user_id&quot;)
+public int userId;
+public String book;
+public String desc;
+</code></pre><p>}</p>
+<p>//这样查询的时候有一个问题,需要再定义一个包含所有的类型</p>
+<p>/**</p>
+<ul>
+<li>If you have any questions, you can contact by email { wangzhumoo@gmail.com}<br>*</li>
+<li>@author 王诛魔 2018/1/3 下午1:43<br>*/</li>
+</ul>
+<p>public class UserAndBook {</p>
+<pre><code>public int bookId;
+public int userId;
+public String book;
+public String desc;
+
+public int id;
+public String name;
+public int age;
+</code></pre><p>}</p>
+<p>@Query(“SELECT * FROM Book” +<br>       “INNER JOIN User ON Book.userId = User.id WHERE User.id= :id”)<br>UserAndBook getOwnerAndPetDetails(int id)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- 高端解决方法</span><br><span class="line">[google developer](https://developer.android.com/reference/android/arch/persistence/room/Relation.html)</span><br><span class="line"></span><br><span class="line">真的给谷歌跪了,什么鬼文档</span><br></pre></td></tr></table></figure>
+<p>@Entity<br>public class User {</p>
+<pre><code>// 这里是用户的 Id
+@PrimaryKey
+public int id;
+
+//省略
+...
+</code></pre><p>}</p>
+<p>@Entity<br>public class Book {</p>
+<pre><code>//书的id
+@PrimaryKey
+public int bookId;
+
+//这里就是这本书与 User的关系,这里的是User.id
+public int userId;
+public String name;
+public String desc;
+</code></pre><p>}</p>
+<p>//注意,什么注解也不要加<br>public class UserAndBooks {</p>
+<pre><code>//加入所有的user的属性
+</code></pre><p>   @Embedded<br>   public User user;</p>
+<pre><code>//这里定义User 和 Book的关系
+</code></pre><p>   @Relation(parentColumn = “id”, entityColumn = “userId”, entity = Book.class)<br>   public List<book> books; </book></p>
+<p>}</p>
+<p>//文档上还讲了一个比较牛逼的功能,这里不讨论</p>
+<p>public class UserAndAllPets {<br>   @Embedded<br>   public User user;<br>   @Relation(parentColumn = “id”, entityColumn = “userId”, entity = Book.class,<br>           projection = {“name”})<br>   public List<string> bookNames;<br> }</string></p>
+<p>//然后,dao是这样的</p>
+<p>@Dao<br>public interface UserDao {<br>    @Query(“SELECT * FROM User”)<br>    public List<userandbooks> loadUserWithBooks();<br>}</userandbooks></p>
+<p>PS:当然你存的时候,分辨别存User  和 Book 即可</p>
+<p>```</p>
 
           
         
@@ -2009,7 +2148,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

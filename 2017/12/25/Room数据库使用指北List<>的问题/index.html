@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="王诛魔">
 <meta property="og:description" content="Room依赖 12implementation &amp;quot;android.arch.persistence.room:runtime:1.0.0&amp;quot;annotationProcessor &amp;quot;android.arch.persistence.room:compiler:1.0.0&amp;quot; 查找  查找表中所有数据  123456/**   * 查找user   * @retu">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-03T08:24:59.000Z">
+<meta property="og:updated_time" content="2018-01-03T08:27:20.619Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Room数据库使用指北List&lt;&gt;的问题">
 <meta name="twitter:description" content="Room依赖 12implementation &amp;quot;android.arch.persistence.room:runtime:1.0.0&amp;quot;annotationProcessor &amp;quot;android.arch.persistence.room:compiler:1.0.0&amp;quot; 查找  查找表中所有数据  123456/**   * 查找user   * @retu">
@@ -411,81 +411,24 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">//这是一个标准的数据表</span><br><span class="line"></span><br><span class="line">@Entity</span><br><span class="line">class User &#123;</span><br><span class="line">    @PrimaryKey</span><br><span class="line">    public int id;</span><br><span class="line"></span><br><span class="line">    public String firstName;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>其中只有id , firstName</p>
 <p>而我想添加<br>    street;<br>    state;<br>    city;<br>    postCode;<br>刚好之前写了一个类叫Address</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">class Address &#123;</span><br><span class="line">    public String street;</span><br><span class="line">    public String state;</span><br><span class="line">    public String city;</span><br><span class="line">    @Ignore</span><br><span class="line">    public String nothing;</span><br><span class="line">    @ColumnInfo(name = &quot;post_code&quot;)</span><br><span class="line">    public int postCode;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">```   </span><br><span class="line"></span><br><span class="line">那么我通过 @Embedded</span><br></pre></td></tr></table></figure>
-<p>@Entity<br>class User {<br>    @PrimaryKey<br>    public int id;</p>
-<pre><code>public String firstName;
-
-@Embedded
-public Address address;
-</code></pre><p>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">表中就会有:</span><br><span class="line">` names: id, firstName, street, state, city, and post_code`</span><br><span class="line"></span><br><span class="line">如果你想给@Embedded的类中所有元素前面加上统一的标志</span><br><span class="line"></span><br><span class="line">`@Embedded(prefix = &quot;address_&quot;)`</span><br><span class="line"></span><br><span class="line">表中就会有:</span><br><span class="line"></span><br><span class="line">` names: id, firstName, address_street, address_state, address_city, and address_post_code`</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">**3.`List&lt;Object&gt;`这样的数据**</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">- 二逼解决方法</span><br></pre></td></tr></table></figure></p>
-<p>/**</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">class Address &#123;</span><br><span class="line">    public String street;</span><br><span class="line">    public String state;</span><br><span class="line">    public String city;</span><br><span class="line">    @Ignore</span><br><span class="line">    public String nothing;</span><br><span class="line">    @ColumnInfo(name = &quot;post_code&quot;)</span><br><span class="line">    public int postCode;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>那么我通过 @Embedded</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">@Entity</span><br><span class="line">class User &#123;</span><br><span class="line">    @PrimaryKey</span><br><span class="line">    public int id;</span><br><span class="line"></span><br><span class="line">    public String firstName;</span><br><span class="line"></span><br><span class="line">    @Embedded</span><br><span class="line">    public Address address;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>表中就会有:<br><code>names: id, firstName, street, state, city, and post_code</code></p>
+<p>如果你想给@Embedded的类中所有元素前面加上统一的标志</p>
+<p><code>@Embedded(prefix = &quot;address_&quot;)</code></p>
+<p>表中就会有:</p>
+<p><code>names: id, firstName, address_street, address_state, address_city, and address_post_code</code></p>
+<p><strong>3.<code>List&lt;Object&gt;</code>这样的数据</strong></p>
 <ul>
-<li>If you have any questions, you can contact by email { wangzhumoo@gmail.com}<br>*</li>
-<li><p>@author 王诛魔 2018/1/3 下午1:31<br>*/<br>@Entity<br>public class User {</p>
-<p> @PrimaryKey<br> public int id;<br> public String name;<br> public int age;</p>
-</li>
+<li>二逼解决方法</li>
 </ul>
-<p>}</p>
-<p>/**</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * If you have any questions, you can contact by email &#123; wangzhumoo@gmail.com&#125;</span><br><span class="line"> *</span><br><span class="line"> * @author 王诛魔 2018/1/3 下午1:31</span><br><span class="line"> */</span><br><span class="line">@Entity</span><br><span class="line">public class User &#123;</span><br><span class="line"></span><br><span class="line">    @PrimaryKey</span><br><span class="line">    public int id;</span><br><span class="line">    public String name;</span><br><span class="line">    public int age;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * If you have any questions, you can contact by email &#123; wangzhumoo@gmail.com&#125;</span><br><span class="line"> *</span><br><span class="line"> * @author 王诛魔 2018/1/3 下午1:30</span><br><span class="line"> */</span><br><span class="line"></span><br><span class="line">@Entity(foreignKeys = &#123;</span><br><span class="line">        @ForeignKey(entity = User.class,parentColumns =&#123;&quot;id&quot;&#125;,childColumns = &#123;&quot;user_id&quot;&#125;)</span><br><span class="line">&#125;)</span><br><span class="line">public class Book &#123;</span><br><span class="line"></span><br><span class="line">    @PrimaryKey</span><br><span class="line">    public int bookId;</span><br><span class="line">    @ColumnInfo(name = &quot;user_id&quot;)</span><br><span class="line">    public int userId;</span><br><span class="line">    public String book;</span><br><span class="line">    public String desc;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//这样查询的时候有一个问题,需要再定义一个包含所有的类型</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * If you have any questions, you can contact by email &#123; wangzhumoo@gmail.com&#125;</span><br><span class="line"> *</span><br><span class="line"> * @author 王诛魔 2018/1/3 下午1:43</span><br><span class="line"> */</span><br><span class="line"></span><br><span class="line">public class UserAndBook &#123;</span><br><span class="line"></span><br><span class="line">    public int bookId;</span><br><span class="line">    public int userId;</span><br><span class="line">    public String book;</span><br><span class="line">    public String desc;</span><br><span class="line">    </span><br><span class="line">    public int id;</span><br><span class="line">    public String name;</span><br><span class="line">    public int age;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">@Query(&quot;SELECT * FROM Book&quot; + </span><br><span class="line">       &quot;INNER JOIN User ON Book.userId = User.id WHERE User.id= :id&quot;)</span><br><span class="line">UserAndBook getOwnerAndPetDetails(int id)</span><br></pre></td></tr></table></figure>
 <ul>
-<li>If you have any questions, you can contact by email { wangzhumoo@gmail.com}<br>*</li>
-<li>@author 王诛魔 2018/1/3 下午1:30<br>*/</li>
+<li>高端解决方法<br><a href="https://developer.android.com/reference/android/arch/persistence/room/Relation.html" target="_blank" rel="noopener">google developer</a></li>
 </ul>
-<p>@Entity(foreignKeys = {<br>        @ForeignKey(entity = User.class,parentColumns ={“id”},childColumns = {“user_id”})<br>})<br>public class Book {</p>
-<pre><code>@PrimaryKey
-public int bookId;
-@ColumnInfo(name = &quot;user_id&quot;)
-public int userId;
-public String book;
-public String desc;
-</code></pre><p>}</p>
-<p>//这样查询的时候有一个问题,需要再定义一个包含所有的类型</p>
-<p>/**</p>
-<ul>
-<li>If you have any questions, you can contact by email { wangzhumoo@gmail.com}<br>*</li>
-<li>@author 王诛魔 2018/1/3 下午1:43<br>*/</li>
-</ul>
-<p>public class UserAndBook {</p>
-<pre><code>public int bookId;
-public int userId;
-public String book;
-public String desc;
-
-public int id;
-public String name;
-public int age;
-</code></pre><p>}</p>
-<p>@Query(“SELECT * FROM Book” +<br>       “INNER JOIN User ON Book.userId = User.id WHERE User.id= :id”)<br>UserAndBook getOwnerAndPetDetails(int id)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- 高端解决方法</span><br><span class="line">[google developer](https://developer.android.com/reference/android/arch/persistence/room/Relation.html)</span><br><span class="line"></span><br><span class="line">真的给谷歌跪了,什么鬼文档</span><br></pre></td></tr></table></figure>
-<p>@Entity<br>public class User {</p>
-<pre><code>// 这里是用户的 Id
-@PrimaryKey
-public int id;
-
-//省略
-...
-</code></pre><p>}</p>
-<p>@Entity<br>public class Book {</p>
-<pre><code>//书的id
-@PrimaryKey
-public int bookId;
-
-//这里就是这本书与 User的关系,这里的是User.id
-public int userId;
-public String name;
-public String desc;
-</code></pre><p>}</p>
-<p>//注意,什么注解也不要加<br>public class UserAndBooks {</p>
-<pre><code>//加入所有的user的属性
-</code></pre><p>   @Embedded<br>   public User user;</p>
-<pre><code>//这里定义User 和 Book的关系
-</code></pre><p>   @Relation(parentColumn = “id”, entityColumn = “userId”, entity = Book.class)<br>   public List<book> books; </book></p>
-<p>}</p>
-<p>//文档上还讲了一个比较牛逼的功能,这里不讨论</p>
-<p>public class UserAndAllPets {<br>   @Embedded<br>   public User user;<br>   @Relation(parentColumn = “id”, entityColumn = “userId”, entity = Book.class,<br>           projection = {“name”})<br>   public List<string> bookNames;<br> }</string></p>
-<p>//然后,dao是这样的</p>
-<p>@Dao<br>public interface UserDao {<br>    @Query(“SELECT * FROM User”)<br>    public List<userandbooks> loadUserWithBooks();<br>}</userandbooks></p>
-<p>PS:当然你存的时候,分辨别存User  和 Book 即可<br>```</p>
+<p>真的给谷歌跪了,什么鬼文档</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line">@Entity</span><br><span class="line">public class User &#123;</span><br><span class="line"></span><br><span class="line">    // 这里是用户的 Id</span><br><span class="line">    @PrimaryKey</span><br><span class="line">    public int id;</span><br><span class="line"></span><br><span class="line">    //省略</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">@Entity</span><br><span class="line">public class Book &#123;</span><br><span class="line"></span><br><span class="line">    //书的id</span><br><span class="line">    @PrimaryKey</span><br><span class="line">    public int bookId;</span><br><span class="line">    </span><br><span class="line">    //这里就是这本书与 User的关系,这里的是User.id</span><br><span class="line">    public int userId;</span><br><span class="line">    public String name;</span><br><span class="line">    public String desc;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//注意,什么注解也不要加</span><br><span class="line">public class UserAndBooks &#123;</span><br><span class="line"></span><br><span class="line">    //加入所有的user的属性</span><br><span class="line">   @Embedded</span><br><span class="line">   public User user;</span><br><span class="line"></span><br><span class="line">    //这里定义User 和 Book的关系</span><br><span class="line">   @Relation(parentColumn = &quot;id&quot;, entityColumn = &quot;userId&quot;, entity = Book.class)</span><br><span class="line">   public List&lt;Book&gt; books; </span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//文档上还讲了一个比较牛逼的功能,这里不讨论</span><br><span class="line"></span><br><span class="line">public class UserAndAllPets &#123;</span><br><span class="line">   @Embedded</span><br><span class="line">   public User user;</span><br><span class="line">   @Relation(parentColumn = &quot;id&quot;, entityColumn = &quot;userId&quot;, entity = Book.class,</span><br><span class="line">           projection = &#123;&quot;name&quot;&#125;)</span><br><span class="line">   public List&lt;String&gt; bookNames;</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//然后,dao是这样的</span><br><span class="line"></span><br><span class="line">@Dao</span><br><span class="line">public interface UserDao &#123;</span><br><span class="line">    @Query(&quot;SELECT * FROM User&quot;)</span><br><span class="line">    public List&lt;UserAndBooks&gt; loadUserWithBooks();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">PS:当然你存的时候,分辨别存User  和 Book 即可</span><br></pre></td></tr></table></figure>
 
       
     </div>

@@ -4,6 +4,26 @@
 
     
   <url>
+    <loc>http://www.wangzhumo.com/2018/01/04/WebView%E6%92%AD%E6%94%BEH5%E8%A7%86%E5%B1%8F%E6%B2%A1%E6%9C%89%E7%94%BB%E9%9D%A2-%E5%8F%AA%E6%9C%89%E5%A3%B0%E9%9F%B3/</loc>
+    <lastmod>2018-01-04T03:04:10.668Z</lastmod>
+    <data>
+        <display>
+        <title>WebView播放H5视屏没有画面,只有声音</title>
+        <pubTime>2018-01-04T03:03:45.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://www.wangzhumo.com/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.wangzhumo.com/2017/12/25/Room%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8C%97List%3C%3E%E7%9A%84%E9%97%AE%E9%A2%98/</loc>
     <lastmod>2018-01-03T08:27:20.619Z</lastmod>
     <data>
@@ -97,9 +117,9 @@
         <title>Android Studio报错Error Running app: cannot debug application</title>
         <pubTime>2017-12-26T07:26:29.000Z</pubTime>
         
-        <tag>Android Studio</tag>
-         
         <tag>Android</tag>
+         
+        <tag>Android Studio</tag>
          
         <tag>Bug</tag>
          
@@ -460,9 +480,9 @@
         <title>Android Studio 使用正式签名debug调试</title>
         <pubTime>2017-12-25T01:38:59.000Z</pubTime>
         
-        <tag>Android Studio</tag>
-         
         <tag>Android</tag>
+         
+        <tag>Android Studio</tag>
          
          
            
@@ -522,9 +542,9 @@
         <title>Android Studio 导入 Vitamio及横竖屏切换</title>
         <pubTime>2017-12-25T01:28:42.000Z</pubTime>
         
-        <tag>Android Studio</tag>
-         
         <tag>Android</tag>
+         
+        <tag>Android Studio</tag>
          
          
            

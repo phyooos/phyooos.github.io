@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.wangzhumo.com/404.html</loc>
+    
+    <lastmod>2018-01-10T15:30:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.wangzhumo.com/2018/01/10/OkHttp%E4%B8%AD%E6%B7%BB%E5%8A%A0https%E6%94%AF%E6%8C%81/</loc>
     
-    <lastmod>2018-01-10T15:23:00.138Z</lastmod>
+    <lastmod>2018-01-10T15:29:54.000Z</lastmod>
     
   </url>
   
@@ -215,13 +222,6 @@
     <loc>http://www.wangzhumo.com/2017/12/23/String-format%E7%9A%84%E5%8F%82%E6%95%B0%E8%A1%A8/</loc>
     
     <lastmod>2017-12-24T11:48:40.633Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.wangzhumo.com/404.html</loc>
-    
-    <lastmod>2017-12-24T11:32:00.000Z</lastmod>
     
   </url>
   

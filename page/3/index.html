@@ -50,25 +50,25 @@
 
 <link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
 
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
 
 
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
 
 
 
 
 
-  <meta name="keywords" content="wangzhumo, 王诛魔" />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -97,7 +97,7 @@
   var CONFIG = {
     root: '/',
     scheme: 'Pisces',
-    version: '5.1.3',
+    version: '5.1.4',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
@@ -221,43 +221,9 @@
       
 
       
-        <li class="menu-item menu-item-search">
-          
-            <a href="javascript:;" class="popup-trigger">
-          
-            
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
-            
-            搜索
-          </a>
-        </li>
-      
     </ul>
   
 
-  
-    <div class="site-search">
-      
-  <div class="popup search-popup local-search-popup">
-  <div class="local-search-header clearfix">
-    <span class="search-icon">
-      <i class="fa fa-search"></i>
-    </span>
-    <span class="popup-btn-close">
-      <i class="fa fa-times-circle"></i>
-    </span>
-    <div class="local-search-input-wrapper">
-      <input autocomplete="off"
-             placeholder="搜索..." spellcheck="false"
-             type="text" id="local-search-input">
-    </div>
-  </div>
-  <div id="local-search-result"></div>
-</div>
-
-
-
-    </div>
   
 </nav>
 
@@ -379,66 +345,20 @@
       
         
           
-            <p><strong>最终效果:</strong></p>
-<p><img src="http://upload-images.jianshu.io/upload_images/2520304-f952921225e06fb8.gif?imageMogr2/auto-orient/strip" alt="最后效果.gif"></p>
-<p>Android Support Library 25 以上的support包中增加了 BottomNavigationView<br>所以你必须使用<code>com.android.support:design:25.0.0</code>以上的版本才能玩</p>
-<p>1.在 build.gradle 文件中增加依赖：</p>
-<blockquote>
-<figure class="highlight plain"><figcaption><span>'com.android.support:design:25.0.0'```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">2.在main_activity.xml中添加:</span><br></pre></td></tr></table></figure>
-</blockquote>
-<p><android.support.design.widget.bottomnavigationview android:id="@+id/bottom_nav" android:layout_width="match_parent" android:layout_height="@dimen/title_height" android:layout_alignparentbottom="true" app:menu="@menu/menu_tab_button" app:itemicontint="@color/nav_color_select" app:itemtextcolor="@color/nav_color_select" app:itembackground="@color/text_white_color"><br>    </android.support.design.widget.bottomnavigationview></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- 其中```app:menu=&quot;@menu/menu_tab_button&quot;```决定了展示几个item,都长什么样</span><br><span class="line">- 其中,分别决定**图标和文字**选中和未选中item的状态,颜色</span><br></pre></td></tr></table></figure>
-<p>app:itemIconTint=”@color/nav_color_select”<br>app:itemTextColor=”@color/nav_color_select”<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- 其中```app:itemBackground=&quot;@color/text_white_color&quot;```则是整个view的背景颜色</span><br><span class="line"></span><br><span class="line">3.menu_tab_button.xml的代码如下:</span><br></pre></td></tr></table></figure></p>
-<p>&lt;?xml version=”1.0” encoding=”utf-8”?&gt;</p>
-<p><menu xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"><br>    <item android:id="@+id/mian_tab_statistics" android:enabled="true" android:checked="true" 默认选中="" android:title="@string/nav_tongji" android:icon="@drawable/tongji"></item></menu></p>
-<pre><code>&lt;item android:id=&quot;@+id/mian_tab_paidui&quot;
-    android:enabled=&quot;true&quot;
-    android:title=&quot;@string/nav_paidui&quot;   //文字内容
-    android:icon=&quot;@drawable/paidui&quot;/&gt;   //icon图标
+          最终效果:
 
-&lt;item android:id=&quot;@+id/mian_tab_find&quot;
-    android:enabled=&quot;true&quot;
-    android:title=&quot;@string/nav_faxiang&quot;
-    android:icon=&quot;@drawable/faxian&quot;/&gt;
+Android Support Library 25 以上的support包中增加了 BottomNavigationView所以你必须使用com.android.support:design:25.0.0以上的版本才能玩
+1.在 build.gradle 文件中增加依赖：
 
-&lt;item android:id=&quot;@+id/mian_tab_more&quot;
-    android:enabled=&quot;true&quot;
-    android:title=&quot;@string/nav_more&quot;
-    android:icon=&quot;@drawable/more&quot;/&gt;
-</code></pre><p><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">###然而,你以为会这么简单?? shiftingMode教你做人()</span><br><span class="line">###这个只会在item个数超过3个才会出现.</span><br><span class="line"></span><br><span class="line">![牛逼的特效(shiftingMode).gif](http://upload-images.jianshu.io/upload_images/2520304-464b090fa4c8919c.gif?imageMogr2/auto-orient/strip)</span><br><span class="line"></span><br><span class="line">4.这让我如何是好?看了半天,在网上找到一个方法.</span><br></pre></td></tr></table></figure></p>
-<p>/**</p>
-<ul>
-<li>一个关于BottomNavigationView的帮助类,用来关闭shiftingMode</li>
-<li>@author 王诛魔 2017/2/10 下午6:35</li>
-<li>@e-mail phyooos@163.com<br>*/</li>
-</ul>
-<p>public class BNVHelper {</p>
-<pre><code>public static void disableShiftMode(BottomNavigationView navigationView) {
-    BottomNavigationMenuView menuView = (BottomNavigationMenuView) navigationView.getChildAt(0);
-    try {
-        Field shiftingMode = menuView.getClass().getDeclaredField(&quot;mShiftingMode&quot;);
-        shiftingMode.setAccessible(true);
-        shiftingMode.setBoolean(menuView, false);
-        shiftingMode.setAccessible(false);
-
-        for (int i = 0; i &lt; menuView.getChildCount(); i++) {
-            BottomNavigationItemView itemView = (BottomNavigationItemView) menuView.getChildAt(i);
-            itemView.setShiftingMode(false);
-            itemView.setChecked(itemView.getItemData().isChecked());
-        }
-    } catch (NoSuchFieldException e) {
-        // Log
-    } catch (IllegalAccessException e) {
-        // Log
-    }
-}
-</code></pre><p>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">原作者@[ChristmasJason](http://www.jianshu.com/u/4d132a94e6e8):http://www.jianshu.com/p/e2a8791e80d6</span><br><span class="line"></span><br><span class="line">然后我看了一下源码**mShiftingMode** 这个布尔值决定了是否启用shiftingMode,所以上面的方法就是shiftingMode.setBoolean(menuView, false);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">然后就好了......</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">提示:</span><br><span class="line">google说选中图标的颜色是这么改的,然而都是骗人的,这个应该是默认的设置,我也偷懒没有验证</span><br><span class="line"></span><br><span class="line">![2017-02-21_17-59-10.png](http://upload-images.jianshu.io/upload_images/2520304-c6c71ad14a9e0106.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)</span><br></pre></td></tr></table></figure></p>
-<p>app:itemIconTint=”@color/nav_color_select”<br>app:itemTextColor=”@color/nav_color_select”<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">其实你配置了之后,就是这个东西来决定的,而不是app&apos;s primary color</span><br><span class="line">nav_color_select.xml这就是个选择器,代码如下:</span><br></pre></td></tr></table></figure></p>
-<p>&lt;?xml version=”1.0” encoding=”utf-8”?&gt;</p>
-<p><selector xmlns:android="http://schemas.android.com/apk/res/android"><br>    <item android:state_checked="true" android:color="@color/colorPrimary"><br>    <item android:state_pressed="true" android:color="@color/colorPrimary"><br>    <item android:color="@color/gray_light"><br></item></item></item></selector><br>```</p>
-<p>####End,到这里你的导航条也应该ok了</p>
-
-          
+'co
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/12/25/BottomNavigationView使用指南/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -578,26 +498,20 @@
       
         
           
-            <p>###解决问题:</p>
-<blockquote>
-<p>很多时候我们使用第三方登录什么的东西,需要我们提供正式签名,但是我们总是需要调试的.<br>一般情况,我们不可能一次性OK,那么每一次调试都需要正式签名打包,并安装,然后再调试,这也太麻烦了,.</p>
-</blockquote>
-<p>所以,直接上代码:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">signingConfigs &#123;</span><br><span class="line">        release &#123;</span><br><span class="line">            keyAlias &apos;phyooos&apos;</span><br><span class="line">            keyPassword &apos;phyooos&apos;</span><br><span class="line">            storeFile file(&apos;phyooos.jks&apos;)</span><br><span class="line">            storePassword &apos;phyooos&apos;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    buildTypes &#123;</span><br><span class="line">        release &#123;</span><br><span class="line">            minifyEnabled false</span><br><span class="line">            signingConfig signingConfigs.release</span><br><span class="line">            proguardFiles getDefaultProguardFile(&apos;proguard-android.txt&apos;), &apos;proguard-rules.pro&apos;</span><br><span class="line">        &#125;</span><br><span class="line">        debug&#123;</span><br><span class="line">            minifyEnabled false</span><br><span class="line">            signingConfig signingConfigs.release</span><br><span class="line">            proguardFiles getDefaultProguardFile(&apos;proguard-android.txt&apos;), &apos;proguard-rules.pro&apos;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<p><strong>解释一下:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">signingConfigs &#123;</span><br><span class="line">        release &#123;</span><br><span class="line">            keyAlias &apos;phyooos&apos;</span><br><span class="line">            keyPassword &apos;phyooos&apos;</span><br><span class="line">            storeFile file(&apos;phyooos.jks&apos;)</span><br><span class="line">            storePassword &apos;phyooos&apos;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<p>这一段代码写在项目app目录下&gt;gradle配置文件中&gt;android节点下,<br>是我们自定义的一个配置</p>
-<ul>
-<li>keyAlias ‘phyooos’  这是签名文件的Alias</li>
-<li>keyPassword ‘phyooos’   这是签名文件的密码</li>
-<li>storeFile file(‘phyooos.jks’)  这个就是签名文件的地址,我放在app目录下了</li>
-<li>storePassword ‘phyooos’  这是store密码</li>
-</ul>
-<hr>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">buildTypes &#123;</span><br><span class="line">        release &#123;</span><br><span class="line">            minifyEnabled false</span><br><span class="line">            signingConfig signingConfigs.release</span><br><span class="line">            proguardFiles getDefaultProguardFile(&apos;proguard-android.txt&apos;), &apos;proguard-rules.pro&apos;</span><br><span class="line">        &#125;</span><br><span class="line">        debug&#123;</span><br><span class="line">            minifyEnabled false</span><br><span class="line">            signingConfig signingConfigs.release</span><br><span class="line">            proguardFiles getDefaultProguardFile(&apos;proguard-android.txt&apos;), &apos;proguard-rules.pro&apos;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<p>这一段的意思就是debug调试以及正式打包都使用上面自定义的配置</p>
-<h4 id="The-End-好了-愉快的玩耍吧"><a href="#The-End-好了-愉快的玩耍吧" class="headerlink" title="The End   好了,愉快的玩耍吧"></a>The End   好了,愉快的玩耍吧</h4>
-          
+          ###解决问题:
+
+很多时候我们使用第三方登录什么的东西,需要我们提供正式签名,但是我们总是需要调试的.一般情况,我们不可能一次性OK,那么每一次调试都需要正式签名打包,并安装,然后再调试,这也太麻烦了,.
+
+所以,直接上代码:
+1234567891011121314151617181920sign
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/12/25/Android-Studio-使用正式签名debug调试/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -737,89 +651,17 @@
       
         
           
-            <p>###1.挣扎的开始<br>各种百度,google,发现国内资料很少,有的也是商业公司提供的sdk,这并不符合我需要,<br>google倒是不少,然而以我的英语水平,望洋兴叹罢了@<br>不发牢骚了:</p>
-<blockquote>
-<p>首先你需要了解这些资料<br>1、profile<br>profile可以理解为一种规范，一个标准的通信协议，它存在于从机中。蓝牙组织规定了一些标准的profile，例如 HID OVER GATT ，防丢器 ，心率计等。每个profile中会包含多个service，每个service代表从机的一种能力。</p>
-<p>2、service<br>service可以理解为一个服务，在ble从机中，通过有多个服务，例如电量信息服务、系统信息服务等，每个service中又包含多个characteristic特征值。每个具体的characteristic特征值才是ble通信的主题。比如当前的电量是80%，所以会通过电量的characteristic特征值存在从机的profile里，这样主机就可以通过这个characteristic来读取80%这个数据</p>
-<p>3、characteristic<br>characteristic特征值，ble主从机的通信均是通过characteristic来实现，可以理解为一个标签，通过这个标签可以获取或者写入想要的内容。</p>
-<p>4、UUID<br>UUID，统一识别码，我们刚才提到的service和characteristic，都需要一个唯一的uuid来标识<br>PS: 百度到的,我以一个过来人的身份保证这个很重要</p>
-</blockquote>
-<p>###2.资料,准备<br>资料看这里:</p>
-<ul>
-<li>这也是最重要的资料来源,谷歌SDK的例子里面有的项目<br><img src="http://img.blog.csdn.net/20160710190336812" alt="Android SDK 中的doc文档"></li>
-</ul>
-<ul>
-<li>接上文,说完资料,<blockquote>
-<p>这是一个很好的demo<br>sdk\samples\android-22\connectivity\BluetoothLeGatt</p>
-</blockquote>
-</li>
-</ul>
-<p>该目录下为谷歌提供的demo,我的应用也是在它的基础上改进而成的.<br>由以下部分组成:<br>1.一个服务 BluetoothLeService,主负责与蓝牙设备进行数据交换</p>
-<p>2.两个activity:DeviceControlActivity,DeviceScanActivity<br>    见名知意,一个负责扫描设备,而两外一个与设备进行交互</p>
-<p>3.一个SampleGattAttributes<br>   主要是存储了一些UUID,我对它进行了加强</p>
-<p>###3.BLE设备的使用步骤概况<br>1.首先要说明的一点是,要求Android版本为4.3及其以上<br>  接着确认设备支持<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 支持BLE</span><br><span class="line"> *  check to determine whether BLE is supported on the device</span><br><span class="line"> */</span><br><span class="line">public void isSupported()&#123;</span><br><span class="line">     if (!getPackageManager().hasSystemFeature(PackageManager.FEATURE_BLUETOOTH_LE)) &#123;</span><br><span class="line">            Toast.makeText(this, &quot;设备不支持BLE功能&quot;, Toast.LENGTH_SHORT).show();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">```  </span><br><span class="line"></span><br><span class="line">2.确认手机支持并打开蓝牙的状态下,你就可以进行设备的搜索了</span><br><span class="line">   有两种模式</span><br></pre></td></tr></table></figure></p>
-<p>//第一种<br>//serviceUuids   指定设备的UUID<br>//callback       搜索的回调<br>startLeScan(final UUID[] serviceUuids, final LeScanCallback callback)</p>
-<p>//第二种<br>//其实就是不传入serviceUuids的,就是说搜索范围内所有蓝牙设备<br>public boolean startLeScan(LeScanCallback callback) {<br>     return startLeScan(null, callback);<br>}</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">3.同时记得停止搜索,当然你也可以一直搜</span><br><span class="line">PS：其实我见到的app大部分是不停的搜索，这样的话会有一个广播数据持续刷新的效果,那么很多的距离判断什么的都是通过这种不停搜索的形式来工作的</span><br></pre></td></tr></table></figure>
-<p>//mBluetoothAdapter   请自行查看谷歌文档<br>//mLeScanCallback     这就是上面提过的LeScanCallback的实例<br>mBluetoothAdapter.stopLeScan(mLeScanCallback);<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">接着就是在回调中拿到各个设备数据了</span><br></pre></td></tr></table></figure></p>
-<p>/**</p>
-<ul>
-<li><p>搜索设备回调<br>*/<br>private BluetoothAdapter.LeScanCallback mLeScanCallback =</p>
-<pre><code>new BluetoothAdapter.LeScanCallback() {
-</code></pre><p> @Override<br> public void onLeScan(final BluetoothDevice device, int rssi, </p>
-<pre><code>byte[] scanRecord) {
-</code></pre><p> }<br>};</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">这里有几个值得说一下的东西</span><br><span class="line">- **1.BluetoothDevice device**</span><br><span class="line">![这里写图片描述](http://img.blog.csdn.net/20160712000123059)</span><br><span class="line">应该可以看的很清楚,	device中包含了设备的基本信息			   </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">- **2.rssi信号质量,也有人告诉我是质量**</span><br><span class="line">不过我这次并没有使用到</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">- **3.byte[] scanRecord (重头戏)**</span><br><span class="line">广播响应包数据</span><br><span class="line">一般包括两个部分,我使用的主要是ServiceData域</span><br><span class="line">**在这里需要注意的是，这两个部分都存在于广播数据，而且并不是两部分都有，有可能是只有一个部分，所以一定要看情设备的硬件规范，因为这涉及到后面解析广播数据**</span><br><span class="line"></span><br><span class="line">要知道，我们都是拿byte[]数组中的某些部分对应特定值,一旦对应关系打乱，那么数据解析就没什么正确性可言了 </span><br><span class="line">这些广播数据都是依据一定的规则指定 的,所以这时候你需要设备厂商的文档来查看对应的数据,以及其结构</span><br><span class="line">PS:需要注意的一点是,这些数据都是byte[],你需要将它们转化(一般常用的做法是,先转化为16进制的字符串,而后再进行读取解析)</span><br><span class="line"></span><br><span class="line">###4.读取蓝牙设备内部数据</span><br><span class="line">这里涉及到两个重要部分</span><br><span class="line">service  以及 characteristic</span><br><span class="line"></span><br><span class="line">一般来说</span><br><span class="line"> 一个Service  eg: FF01-XXXXXXXXXXX-XXXXX</span><br><span class="line"> 下面可能有很多的characteristic</span><br><span class="line">Marjor : FF16 -XXXXXX</span><br><span class="line">Power : FF17 - XXX</span><br><span class="line">....一堆的characteristic </span><br><span class="line"></span><br><span class="line">- **如果需要给指定的项目写入一个数据**</span><br><span class="line">   条件：</span><br><span class="line">                1.此特征在哪个Service下，即该service的UUID</span><br><span class="line">                2.该特征的UUID</span><br><span class="line">                3.该特征的写入格式，16进制还是其他的东西</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>//代码片段1<br>//此方法获取对应特征值的对象BluetoothGattCharacteristic的实体<br>    public BluetoothGattCharacteristic getCharacteristic(String service,String charact) {<br>        if (mBluetoothGatt == null) return null;<br>        if(mBluetoothGatt.getService(UUID.fromString(service))==null){return null ;}<br>        return mBluetoothGatt.getService(UUID.fromString(service)).getCharacteristic(UUID.fromString(charact));<br>    }</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>//代码片段2<br>if(!TextUtils.isEmpty(value)){//输入非空<br>      byte[] arrayOfByte= new byte[2];//传入数据规定为2个byte<br>      arrayOfByte[0] = ((byte)Integer.parseInt((value).substring(0, 2), 16));<br>      arrayOfByte[1] = ((byte)Integer.parseInt((value).substring(2, 4), 16));<br>      //上面操作，先切，再转为16进制<br>      characteristic.setValue(arrayOfByte);<br>      //characteristic实体就是片段1代码获取到的<br>      gattServer.writeCharacteristic(characteristic);<br>      //所有的操作都封装在一个service中，gattServer为其实体对象<br>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
-<p>  //片段3就是服务中的写入方法<br>  /**</p>
-<pre><code> * 写入一个数据
- * @param characteristic
- */
-public void writeCharacteristic(BluetoothGattCharacteristic characteristic) {
-    mBluetoothGatt.setCharacteristicNotification(characteristic, true);
-    mBluetoothGatt.writeCharacteristic(characteristic);
-}
-</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>//代码片段4   这是回调，<br>//在连接时就作为参数传入了 mBluetoothGatt = device.connectGatt(this, false, mGattCallback);<br>private final BluetoothGattCallback mGattCallback = new BluetoothGattCallback() {<br>        @Override<br>        public void onConnectionStateChange(BluetoothGatt gatt, int status, int newState) {<br>            if (newState == BluetoothProfile.STATE_CONNECTED) {<br>                Log.e(TAG, “连接至 GATT server.”);<br>            } else if (newState == BluetoothProfile.STATE_DISCONNECTED) {<br>                Log.e(TAG, “断开 GATT server.”);<br>            }<br>        }</p>
-<pre><code>@Override
-public void onServicesDiscovered(BluetoothGatt gatt, int status) {
-    if (status == BluetoothGatt.GATT_SUCCESS) {
-        Log.e(TAG, &quot;建立连接成功&quot;);              
-    } else {
-        Log.e(TAG, &quot;连接状态异常: &quot; + status);
-    }
-}
+          ###1.挣扎的开始各种百度,google,发现国内资料很少,有的也是商业公司提供的sdk,这并不符合我需要,google倒是不少,然而以我的英语水平,望洋兴叹罢了@不发牢骚了:
 
-@Override
-public void onCharacteristicWrite(BluetoothGatt gatt, BluetoothGattCharacteristic characteristic, int status) {
-    if (status == BluetoothGatt.GATT_SUCCESS) {
-          Log.e(TAG, &quot;写入数据成功&quot;);   
-    } 
-}
-
-@Override
-public void onCharacteristicRead(BluetoothGatt gatt, BluetoothGattCharacteristic
-        characteristic, int status) {
-    if (status == BluetoothGatt.GATT_SUCCESS) {
-       Log.e(TAG, &quot;读取数据成功&quot;);   
-    }
-}
-
-@Override
-public void onCharacteristicChanged(BluetoothGatt gatt,
-                                    BluetoothGattCharacteristic characteristic) {
-    Log.e(TAG, &quot;连接状态发生改变&quot;);      
-};
-</code></pre><p>}<br>```</p>
-<blockquote>
-<p>PS:<strong>这里的例子是写入，其实读取的操作与此类似，操作完成后在回调里面判断状态以及读取数据即可</strong></p>
-</blockquote>
-
-          
+首先你需要了解这些资料1、profileprofile可以理解为一种规范，一个标准的通信协议，它存在于从机中。蓝牙组织
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/12/25/低功耗蓝牙iBeacon的开发笔记/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -959,66 +801,25 @@ public void onCharacteristicChanged(BluetoothGatt gatt,
       
         
           
-            <p>####1.常用的快捷键</p>
-<ul>
-<li>ALT + Enter 自动提示</li>
-<li><p>ALT + Ins<br><img src="http://img.blog.csdn.net/20160503215809984" alt="这里写图片描述"></p>
-<blockquote>
-<p>get set 构造方法  重写方法<br>以及一些插件如这里的 GsonFormat 以及 Butterknife</p>
-</blockquote>
-</li>
-<li><p>Ctrl + Alt + F  全局变量</p>
-</li>
-<li><p>Ctrl +Shift + Enter   加; 以及if 的(){}</p>
-</li>
-<li><p>Ctrl + P  以及  Ctrl + Q  方法参数以及文档</p>
-</li>
-<li><p>Ctrl +O 继承重写的方法</p>
-</li>
-<li><p>Ctrl + /   Ctrl +Shift + /    注释</p>
-</li>
-<li><p>Ctrl + Alt + L 格式化</p>
-</li>
-<li><p>Ctrl + D  Ctrl + Y   复制 删除行</p>
-</li>
-<li><p>Ctrl + Shift + U 大小写</p>
-</li>
-<li><p>Shift Shift     Ctrl + F  全局  当前 搜索 </p>
-</li>
-<li><p>Ctrl + U 到父类</p>
-</li>
-<li><p>Ctrl + Alt + B 找到子类</p>
-</li>
-<li><p>Ctrl + H     类结构</p>
-</li>
-<li><p>Ctrl+Shift + H   方法层次</p>
-</li>
-<li><p>Ctrl + Alt + H   调用层次</p>
-</li>
-<li><p>Alt + F7  find use  非常好用的功能</p>
-</li>
-<li><p>Shift + F6  重命名</p>
-</li>
-<li><p>logt + Enter    Tag </p>
-</li>
-<li><p>loge logd …    打印log</p>
-</li>
-</ul>
-<hr>
-<p>####2.自动生成代码 </p>
-<blockquote>
-<p>Ctrl  + J   </p>
-</blockquote>
-<p><img src="http://img.blog.csdn.net/20160503222913571" alt="这里写图片描述"></p>
-<p>里面相当多的模版代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">if 判空     ifn</span><br><span class="line">for 循环     for </span><br><span class="line">foreach     foreach</span><br><span class="line">setVisibility     gone</span><br><span class="line">findViewById   fbc</span><br><span class="line">instanceof    inst</span><br></pre></td></tr></table></figure></p>
-<p>这些比较常用</p>
-<p>####3.自动导入包<br>Settings&gt;Editor&gt;General&gt;Auto import<br><img src="http://img.blog.csdn.net/20160503215409545" alt="这里写图片描述"></p>
-<p>####4.其他设置已经导出</p>
-<blockquote>
-<p>ps : 在百度云里有<br><img src="http://img.blog.csdn.net/20160503223900468" alt="这里写图片描述"></p>
-</blockquote>
+          ####1.常用的快捷键
 
-          
+ALT + Enter 自动提示
+ALT + Ins
+
+get set 构造方法  重写方法以及一些插件如这里的 GsonFormat 以及 Butterknife
+
+
+Ctrl + Alt + F  全局变量
+
+Ctrl +Shift + Enter   加; 以及if
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/12/25/Android-Studio-基本设置/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1158,58 +959,19 @@ public void onCharacteristicChanged(BluetoothGatt gatt,
       
         
           
-            <p>##建议不要使用Vitamio,各种深坑</p>
-<blockquote>
-<p><a href="https://github.com/Bilibili/ijkplayer看看bilibili的开源播放器" target="_blank" rel="noopener">https://github.com/Bilibili/ijkplayer看看bilibili的开源播放器</a></p>
-</blockquote>
-<p>##Vitamio<br>官方:<a href="https://www.vitamio.org/" target="_blank" rel="noopener">https://www.vitamio.org/</a><br>GitHub:<a href="https://github.com/yixia/VitamioBundle" target="_blank" rel="noopener">https://github.com/yixia/VitamioBundle</a></p>
-<blockquote>
-<p><a href="https://www.vitamio.org/" target="_blank" rel="noopener">Vitamio</a> 能够流畅播放720P甚至1080P高清MKV，FLV，MP4，MOV，TS，RMVB等常见格式的视频，支持 MMS, RTSP, RTMP, HLS(m3u8) 等常见的多种视频流媒体协议，包括点播与直播。</p>
-</blockquote>
-<p>###1.下载Vitamio<br>  <img src="http://img.blog.csdn.net/20160408235109325" alt="去官网下载即可"></p>
-<ul>
-<li>地址<a href="https://www.vitamio.org/Download/" target="_blank" rel="noopener">https://www.vitamio.org/Download/</a></li>
-</ul>
-<hr>
-<p>###2.解压并导入Android</p>
-<ul>
-<li><p>找到到文件夹VitamioBundle</p>
-<p><img src="http://img.blog.csdn.net/20160408235743265" alt="VitamioBundle"></p>
-</li>
-<li><p>File &gt; New &gt; New Module<br><img src="http://img.blog.csdn.net/20160409000630784" alt="这里写图片描述"></p>
-</li>
-<li><p>导入完成后是这样的</p>
-<p><img src="http://img.blog.csdn.net/20160409001321974" alt="这里写图片描述"></p>
-</li>
-</ul>
-<p>###3.导入到自己的项目(即不使用Vitamio的libiary,强迫症专属)<br><img src="http://img.blog.csdn.net/20160908231510455" alt="这里写图片描述"></p>
-<p>####A.在自己的目录下建立io.vov.vitamio<br>    并导入所有的类,以及将jniLibs目录拷贝到main目录下,还有相关的资源文件</p>
-<p>####B.在AndroidManifest.xml文件中写入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;activity </span><br><span class="line">android:name=&quot;io.vov.vitamio.activity.InitActivity&quot;             android:configChanges=&quot;orientation|screenSize|smallestScreenSize|keyboard|keyboardHidden|navigation&quot;</span><br><span class="line">android:launchMode=&quot;singleTop&quot;</span><br><span class="line">android:theme=&quot;@android:style/Theme.NoTitleBar&quot;</span><br><span class="line">android:windowSoftInputMode=&quot;stateAlwaysHidden&quot;/&gt;</span><br></pre></td></tr></table></figure></p>
-<blockquote>
-<p>并加入相应的权限</p>
-</blockquote>
-<p>####C.在你喜欢的地方初始化Vitamio<br> 开玩笑的,放在activity或者是Application的onCreate中</p>
-<blockquote>
-<p>Vitamio.isInitialized(application.getApplicationContext()); </p>
-</blockquote>
-<hr>
-<p>###3.Vatimio的使用</p>
-<p>####A.界面的搭建<br><img src="http://img.blog.csdn.net/20160908232554310" alt="这里写图片描述"></p>
-<p>可以看到<br>    整个页面主要分上下两层,主要是为了视屏全屏的时候能方便的隐藏整个下面的布局</p>
-<p>####B.使用<br>在此之前为了方便的使用视屏全屏播放,对MediaController(package io.vov.vitamio.widget)做一个小小的改造:<br>添加一个构造:主要用于把视屏,进度条等放到一个View中,便于全屏展示<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">//这个全屏的操作可把我难坏了,看到这个真的是为原作者的机智点赞</span><br><span class="line">  public MediaController(Context context,boolean fromXml,View container) &#123;</span><br><span class="line">    super(context);</span><br><span class="line">    initController(context);</span><br><span class="line">    mFromXml = fromXml;</span><br><span class="line">    mRoot = makeControllerView();</span><br><span class="line">    //这个地方的FrameLayout.LayoutpParams是因为布局文件中要把MediaController的视图作为childView加到一个FrameLayout中去</span><br><span class="line">    LayoutParams p = new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT);</span><br><span class="line">    //想怎样布局MediaController就尽情的发挥这个LayoutParams吧</span><br><span class="line">    p.gravity = Gravity.BOTTOM;</span><br><span class="line">    mRoot.setLayoutParams(p);</span><br><span class="line">    ((FrameLayout)container).addView(mRoot);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></p>
-<p>接着你就可以愉快的玩耍了:<br>在oncreate中调用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">initVitamioView();</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">//初始化控件</span><br><span class="line">private void initVitamioView() &#123;</span><br><span class="line">//VideoView</span><br><span class="line">mVideoView = (VideoView) findViewById(R.id.buffer);</span><br><span class="line">//这个就是包裹整个视屏模块的FrameLayout</span><br><span class="line">fl_controller = (FrameLayout) findViewById(R.id.fl_controller);</span><br><span class="line">//缓冲时出现的进度条</span><br><span class="line">pb = (ProgressBar) findViewById(R.id.probar);</span><br><span class="line">//播放进度,并可以拖动调节视屏播放位置</span><br><span class="line">downloadRateView = (TextView) findViewById(R.id.download_rate);</span><br><span class="line">loadRateView = (TextView) findViewById(R.id.load_rate);</span><br><span class="line">//设置视屏setVideoURI可以缓冲并播放</span><br><span class="line">//setVideoPath()缓冲完再播放</span><br><span class="line">mVideoView.setVideoURI(Uri.parse(TextUtils.isEmpty(path)?defaultPath:path));</span><br><span class="line">//这里使用自定义的那个MediaController构造</span><br><span class="line">mMediaController= new MediaController(this, true, fl_controller);</span><br><span class="line">//这里的监听其实是在MediaController中自己定义的,主要就是全屏的切换按钮</span><br><span class="line">mMediaController.setOnControllerClick(new MediaController.OnControllerClick() &#123;</span><br><span class="line">     @Override</span><br><span class="line">     public void OnClick(int type) &#123;</span><br><span class="line">         if (type == 0) &#123;  //表示点击切换全屏按钮</span><br><span class="line">	          if (isPortrait) &#123;</span><br><span class="line">		          //不是全屏,切换为全屏</span><br><span class="line">	             //代码块1</span><br><span class="line">	           &#125; else &#123;</span><br><span class="line">		          //是全屏,近来就切为原来的大小</span><br><span class="line">	             //代码块2</span><br><span class="line">		       &#125;</span><br><span class="line">          &#125;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">//类似绑定 </span><br><span class="line">mVideoView.setMediaController(mMediaController);</span><br><span class="line">//隐藏控制模块</span><br><span class="line">mMediaController.setVisibility(View.GONE);</span><br><span class="line">mVideoView.requestFocus();</span><br><span class="line">//设置对视屏信息的监听</span><br><span class="line">mVideoView.setOnInfoListener(this);</span><br><span class="line">//视屏缓冲的监听</span><br><span class="line">mVideoView.setOnBufferingUpdateListener(this);</span><br><span class="line">//视屏OK</span><br><span class="line">mVideoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() &#123;</span><br><span class="line">     @Override</span><br><span class="line">     public void onPrepared(MediaPlayer mediaPlayer) &#123;</span><br><span class="line">	     //设置播放速度</span><br><span class="line">         mediaPlayer.setPlaybackSpeed(1.0f);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>补充代码块1<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt; RelativeLayout.LayoutParams fl_lp = new RelativeLayout.LayoutParams(displayheight, displayWidth);</span><br><span class="line">                        fl_controller.setLayoutParams(fl_lp);</span><br><span class="line">//设置横屏                        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);  //这样mVideoView会自己充满全屏</span><br><span class="line">                        mVideoView.setVideoLayout(VideoView.VIDEO_LAYOUT_SCALE, 0);</span><br><span class="line">                        isPortrait = false;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure></p>
-<p>代码块2<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt; RelativeLayout.LayoutParams fl_lp = new RelativeLayout.LayoutParams(</span><br><span class="line">                                LinearLayout.LayoutParams.MATCH_PARENT,</span><br><span class="line">                                DensityUtils.dip2px(ClassRoomActivity.this,200)</span><br><span class="line">                        );</span><br><span class="line">                        fl_controller.setLayoutParams(fl_lp);</span><br><span class="line">                        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);</span><br><span class="line">                        isPortrait = true;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure></p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line"> * 横竖屏切换的时候回走这个回调</span><br><span class="line"> *</span><br><span class="line"> */</span><br><span class="line">@Override</span><br><span class="line">public void onConfigurationChanged(Configuration newConfig) &#123;</span><br><span class="line">        //屏幕切换时，设置全屏</span><br><span class="line">        if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) &#123;</span><br><span class="line">	        //隐藏下面的布局和标题</span><br><span class="line">            tLBelow.setVisibility(View.GONE);</span><br><span class="line">            mTitlebar.setVisibility(View.GONE);</span><br><span class="line">        &#125;</span><br><span class="line">        if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) &#123;</span><br><span class="line">	         //显示下面的布局和标题</span><br><span class="line">            tLBelow.setVisibility(View.VISIBLE);</span><br><span class="line">            mTitlebar.setVisibility(View.VISIBLE);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        super.onConfigurationChanged(newConfig);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<p>####C.两个重要的监听(上面已经注册过了)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//缓冲的监听</span><br><span class="line">@Override</span><br><span class="line">    public void onBufferingUpdate(MediaPlayer mp, int percent) &#123;</span><br><span class="line">    //显示缓冲进度</span><br><span class="line">        loadRateView.setText(percent + &quot;%&quot;);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">//视屏信息监听</span><br><span class="line">@Override</span><br><span class="line">    public boolean onInfo(MediaPlayer mp, int what, int extra) &#123;</span><br><span class="line">        switch (what) &#123;</span><br><span class="line">        //开始缓冲</span><br><span class="line">            case MediaPlayer.MEDIA_INFO_BUFFERING_START:</span><br><span class="line">                if (mVideoView.isPlaying()) &#123;</span><br><span class="line">                    mVideoView.pause();</span><br><span class="line">                    pb.setVisibility(View.VISIBLE);</span><br><span class="line">                    downloadRateView.setText(&quot;&quot;);</span><br><span class="line">                    loadRateView.setText(&quot;&quot;);</span><br><span class="line">                    downloadRateView.setVisibility(View.VISIBLE);</span><br><span class="line">                    loadRateView.setVisibility(View.VISIBLE);</span><br><span class="line">                &#125;</span><br><span class="line">                break;</span><br><span class="line">                //停止缓冲,这里自动开始播放</span><br><span class="line">            case MediaPlayer.MEDIA_INFO_BUFFERING_END:</span><br><span class="line">                mVideoView.start();</span><br><span class="line">                pb.setVisibility(View.GONE);</span><br><span class="line">                downloadRateView.setVisibility(View.GONE);</span><br><span class="line">                loadRateView.setVisibility(View.GONE);</span><br><span class="line">                break;</span><br><span class="line">            case MediaPlayer.MEDIA_INFO_DOWNLOAD_RATE_CHANGED:</span><br><span class="line">	            //缓冲的...那个啥    change</span><br><span class="line">                downloadRateView.setText(&quot;&quot; + extra + &quot;kb/s&quot; + &quot;  &quot;);</span><br><span class="line">                break;</span><br><span class="line">        &#125;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<p>###4.就这样<br>   对了,完事记得<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">    protected void onDestroy() &#123;</span><br><span class="line">            mVideoView.stopPlayback();</span><br><span class="line">           super.onDestroy();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
-<p>基本就是这样了,其他的问题自己解决一下就好了…</p>
+          ##建议不要使用Vitamio,各种深坑
 
-          
+https://github.com/Bilibili/ijkplayer看看bilibili的开源播放器
+
+##Vitamio官方:https://www.vitamio.org/GitHub:https://github.com/yixia/Vitam
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/12/25/Android-Studio-导入-Vitamio及横竖屏切换/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1349,151 +1111,22 @@ public void onCharacteristicChanged(BluetoothGatt gatt,
       
         
           
-            <ul>
-<li>netstat -an</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">查看所有网络连接</span><br></pre></td></tr></table></figure>
-<ul>
-<li>more命令</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">选项</span><br><span class="line"></span><br><span class="line">-num    指定屏幕的行数（以整数表示）</span><br><span class="line"></span><br><span class="line">+num    从行号num开始显示</span><br><span class="line"></span><br><span class="line">-d    让more给用户显示信息[Press space to continue, &apos;q&apos; to quit.]</span><br><span class="line"></span><br><span class="line">-f    使more计数逻辑行，而不是屏幕行（长行不会断到下一行）</span><br><span class="line"></span><br><span class="line">-s   把重复的空行压缩成一个空行</span><br><span class="line"></span><br><span class="line">-u    防止下划线</span><br><span class="line"></span><br><span class="line">交互基于VIM</span><br></pre></td></tr></table></figure>
-<ul>
-<li>字符界面</li>
-</ul>
-<p>1.字符界面占用资源少</p>
-<p>2.减少了出错,别攻击的可能</p>
-<ul>
-<li>一切皆文件</li>
-</ul>
-<p>用户  硬件 文件….</p>
-<ul>
-<li>分区</li>
-<li>swap 内存的两倍</li>
-</ul>
-<p>/ 根分区</p>
-<p>/boot    boot分区  200m即可  (作为启动盘使用,启动需要空间)</p>
-<p>/home  </p>
-<p>/etc</p>
-<p>…</p>
-<ul>
-<li>安装日志</li>
-</ul>
-<p>/root/install.log     记录了安装在系统中的软件包和版本信息</p>
-<p>/root/install.log.syslog    安装过程的记录</p>
-<p>/root/anaconda-ks.cfg    记录安装过程中的配置信息(用于网络批量安装)</p>
-<ul>
-<li>linux起始符</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@hadoop ~]#</span><br><span class="line">root 用户名</span><br><span class="line">hadoop  当前用户的主机名</span><br><span class="line">"~" 当前的目录, "~"表示家目录</span><br><span class="line">"#" 超级用户的提示符</span><br><span class="line">"$" 普通用户的提示符</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<ul>
-<li>-rw-r–r–</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">drwxr-xr-x. 2 wzm wzm 4096 6月  21 16:19 Desktop</span><br><span class="line"><span class="meta">#</span>一共10位  drwxr-xr-x</span><br><span class="line"><span class="meta">#</span>d</span><br><span class="line">第一位 文件类型( -文件  d目录 |软链接文件   c  b )</span><br><span class="line"><span class="meta">#</span>rwx r-x r-x</span><br><span class="line">后面的每三位是一组</span><br><span class="line">第一个三位   所属者u</span><br><span class="line">第二个三位   所属组g</span><br><span class="line">第三个三位   其他人o</span><br><span class="line"><span class="meta">#</span>acf权限</span><br><span class="line">r读</span><br><span class="line">w写</span><br><span class="line">x执行</span><br></pre></td></tr></table></figure>
-<ul>
-<li>目录</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">/        根目录</span><br><span class="line">/etc     配置文件目录</span><br><span class="line">/bin     系统命令的目录 (普通用户即可读取)</span><br><span class="line">/sbin    系统命令的目录 (超级用户即可读取)</span><br><span class="line">/usr/bin 系统命令的目录 (普通用户即可读取)</span><br><span class="line">/usr/sbin系统命令的目录 (超级用户即可读取)</span><br><span class="line">/home    普通用户的家目录</span><br><span class="line">/root    超级用户的家目录</span><br><span class="line">/usr     系统软件资源目录</span><br><span class="line">/boot    启动目录</span><br><span class="line">/var     系统相关文档</span><br><span class="line">/sys	 直接写入内存</span><br><span class="line">/proc    直接写入内存</span><br><span class="line">/dev     设备文件目录</span><br><span class="line">/lib     系统库 保存目录</span><br><span class="line">/mnt     系统挂载目录</span><br><span class="line">/media   挂载目录</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>linux 常用命令     control + L  清屏</p>
-</li>
-<li><p>文件命令</p>
-<ul>
-<li>基本命令格式</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">命令 [选项] [参数]</span><br><span class="line"><span class="meta">#</span>ls</span><br><span class="line">ls </span><br><span class="line">   -a  显示所有文件</span><br><span class="line">   -l  显示详细信息,目录下所有内容</span><br><span class="line">   -d  查看目录属性,目录本身</span><br><span class="line">   -h  人性化显示文件大小</span><br><span class="line">   -i  显示inode  文件的id号</span><br><span class="line">ll ll -l</span><br><span class="line"><span class="meta">#</span></span><br></pre></td></tr></table></figure>
-<p>​</p>
-<ul>
-<li>目录文件处理</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>mkdir  创建目录</span><br><span class="line">mkdir </span><br><span class="line">  -p  递归创建,创建多级目录</span><br><span class="line">  </span><br><span class="line"><span class="meta">#</span>cd  切换目录</span><br><span class="line">cd </span><br><span class="line">  ~  当前用户的家目录</span><br><span class="line">  -  进入上次进入的目录</span><br><span class="line">  .. 进入上级目录</span><br><span class="line">  .  进入当前目录</span><br><span class="line">  </span><br><span class="line"><span class="meta">#</span>pwd</span><br><span class="line">pwd  显示当前目录全路径</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>rm -rf [文件或目录]</span><br><span class="line">rm </span><br><span class="line"> -f 强制删除</span><br><span class="line"> -r 删除目录</span><br><span class="line"> </span><br><span class="line"><span class="meta">#</span>cp</span><br><span class="line">cp</span><br><span class="line"> -r 复制目录</span><br><span class="line"> -p 连带文件的属性一起复制</span><br><span class="line"> -d 如果文件为链接文件,则复制链接属性</span><br><span class="line"> -a 相当于-pdr</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>mv</span><br><span class="line">mv [源地址] [目标地址]</span><br></pre></td></tr></table></figure>
-<p>​</p>
-<ul>
-<li>软链接命令(源文件一定写巨绝对路径)</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>ln [源] [目标]</span><br><span class="line">ln</span><br><span class="line">不能跨分区,不能是一个目录</span><br><span class="line">相当于一个文件   文件id号相同</span><br><span class="line"></span><br><span class="line"> -s    软链接   类似windows里面的快捷方式</span><br><span class="line"> 有自己的id号   </span><br><span class="line"> 其实是去查看自己的存储点,</span><br><span class="line"> 存储点里面是源文件的id号,</span><br><span class="line"> 然后又用源文件id号去找源文件的存储点</span><br></pre></td></tr></table></figure>
-<p>​</p>
-</li>
-<li><p>搜索命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">locate 文件搜索命令</span><br><span class="line">whereis 与 which</span><br><span class="line">find 文件搜索命令</span><br><span class="line">grep 字符串搜索命令</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>locate </p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>locate</span><br><span class="line">locate [文件名]</span><br><span class="line"></span><br><span class="line">在后台数据库中按文件名搜索</span><br><span class="line">位置在:</span><br><span class="line">/var/lib/mlocate</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>updatedb</span><br><span class="line">updatedb 更新数据库</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>whereis </p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>whereis</span><br><span class="line">whereis [命令名]</span><br><span class="line"> -b 之查找可执行文件</span><br><span class="line"> -m 只查找帮助文件</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>which</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">查看</span><br><span class="line"><span class="meta">#</span>which</span><br><span class="line">which [文件名]</span><br><span class="line">搜索命令所在目录路径已经别名</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>find</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>find</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>避大范围搜索,会非常消耗系统资源</span><br><span class="line"><span class="meta">#</span>如果不用通配符,则会搜索与文件名完全一致的文件</span><br><span class="line"></span><br><span class="line">find [搜素范围] [搜索条件]</span><br><span class="line"></span><br><span class="line">find [搜素范围] </span><br><span class="line">  -name [名字]</span><br><span class="line">  </span><br><span class="line">  -iname [名字]  不区分大小写</span><br><span class="line">  </span><br><span class="line">  -user [所有者]  按所有者搜索</span><br><span class="line">  </span><br><span class="line">  -nouser   查找没有所有者的文件 </span><br><span class="line">  </span><br><span class="line">  -mtime  [] 修改文件内容的时间 </span><br><span class="line">  -atime  [] 文件访问时间</span><br><span class="line">  -ctime  [] 改变文件属性的时间</span><br><span class="line">    [-10 10 +10  10天内  10天当天  +10天前]</span><br><span class="line">  </span><br><span class="line">  -size [大小]  当前目录下查找大小是 25k的文件</span><br><span class="line">    [-25k 25k +25k]</span><br><span class="line">    [-2M 2M +2M]</span><br><span class="line">  </span><br><span class="line">  -inum [id号]  </span><br><span class="line">  </span><br><span class="line">  -a   and 逻辑与,同时满足两个条件</span><br><span class="line">   eg find /etc -size +25k -a -size -50k</span><br><span class="line"></span><br><span class="line">  -o   or  逻辑或,两个条件满足一个条件即可</span><br><span class="line">  </span><br><span class="line">  -exec [一个命令] &#123;&#125; \;   搜索出来的结果再执行一次命令</span><br><span class="line">   eg find /etc -size +25k -a -size -50k -exec ls -lh &#123;&#125; \;</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>通配符</span><br><span class="line">*    匹配任何内容</span><br><span class="line">?    匹配任意一个字符</span><br><span class="line">[]   匹配任意一个中口号内的字符    </span><br><span class="line">     eg:  abc  abd</span><br><span class="line">     find /home -name ab[cd]</span><br></pre></td></tr></table></figure>
-<p>​</p>
-</li>
-<li><p>grep</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>grep</span><br><span class="line">grep "size" system.log</span><br><span class="line"></span><br><span class="line">grep是包含匹配   在  system.log  中查找"size"</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>​</p>
-</li>
-<li><p>帮助命令</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">man [命令]</span><br><span class="line"></span><br><span class="line">whatis [命令] </span><br><span class="line"></span><br><span class="line">man -f [命令]   命令的帮助级别</span><br><span class="line"></span><br><span class="line">man -k [命令]   模糊匹配</span><br><span class="line"> </span><br><span class="line">apropos [命令]   模糊匹配</span><br><span class="line"></span><br><span class="line">[命令] --help</span><br><span class="line"></span><br><span class="line">内核的命令查看帮助</span><br><span class="line"></span><br><span class="line">help [命令]</span><br></pre></td></tr></table></figure>
-<p>​</p>
-</li>
-<li><p>压缩与解压缩</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">常用压缩格式   .zip  .gz  .bz2   .tar.gz   .tar.bz2</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>zip</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">zip [压缩文件名字] [源文件]</span><br><span class="line"></span><br><span class="line">zip -r [压缩文件名字] [源目录]</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>解压缩</span><br><span class="line">unzip [zip文件]</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>gz</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">gzip [源文件]   </span><br><span class="line"><span class="meta">#</span>压缩为.gz格式的压缩文件,源文件会消失</span><br><span class="line"></span><br><span class="line">gzip -c [源文件] &gt; 压缩文件</span><br><span class="line"><span class="meta">#</span>压缩为.gz格式 ,源文件保留</span><br><span class="line"></span><br><span class="line">gzip -r [源目录] </span><br><span class="line"><span class="meta">#</span>压缩目录下所有的子文件,但是不能压缩目录</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>解压缩</span><br><span class="line">gzip -d [压缩文件]</span><br><span class="line"></span><br><span class="line">gunzip [压缩文件]</span><br><span class="line"></span><br><span class="line">gzp -d -r [目录]   解压目录下所有的文件</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>tar </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#tar</span><br><span class="line">tar -cvf [打包文件名] [源文件]</span><br><span class="line">  -c 打包</span><br><span class="line">  -v 显示过程</span><br><span class="line">  -f 指定打包后的文件名</span><br><span class="line">     eg tar -cvf jp.tar jp</span><br><span class="line"></span><br><span class="line">#解压缩</span><br><span class="line">tar -xvf [压缩文件]</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ul>
-<pre><code>- .tar.gz
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">tar -zcvf [压缩文件名] [源文件]</span><br><span class="line"></span><br><span class="line">#解压缩</span><br><span class="line">tar -zxvf [压缩包名.tar.gz]</span><br></pre></td></tr></table></figure>
-</code></pre><ul>
-<li>关机和重启</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">shutdown [选项] 时间</span><br><span class="line"> -c   取消前一个关机命令</span><br><span class="line"> -h   关机</span><br><span class="line"> -r   重启</span><br><span class="line"> </span><br><span class="line">logout 退出登录</span><br></pre></td></tr></table></figure>
-<ul>
-<li>其他的命令</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">w  显示所有的登录用户</span><br><span class="line">last  所有登录信息</span><br><span class="line">lastlog   所有用户登录信息</span><br></pre></td></tr></table></figure>
-<ul>
-<li>其他快捷键</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">control + c   强制终止当前命令</span><br><span class="line">control + l   清屏</span><br><span class="line">control + a   光标移动到行首</span><br><span class="line">control + e   光标移动到行尾</span><br><span class="line">control + u   从光标位置删除到行首</span><br><span class="line">control + z   把命令放入到后台</span><br><span class="line">control + r   在历史记录中搜索</span><br></pre></td></tr></table></figure>
-<ul>
-<li>输出重定向</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">#标准的输出重定向</span><br><span class="line">命令 &gt; 文件    覆盖的方式写入</span><br><span class="line"></span><br><span class="line">命令 &gt;&gt; 文件   追加的方式写入</span><br><span class="line"></span><br><span class="line">#错误输出重定向</span><br><span class="line"></span><br><span class="line">错误命令 2&gt; 文件  覆盖的方式写入错误提示</span><br><span class="line">错误命令 2&gt;&gt; 文件  追加的方式写入错误提示</span><br><span class="line"></span><br><span class="line">#正确和错误的同时输出</span><br><span class="line">命令  &gt;&gt; 文件 2&gt;&amp;1</span><br><span class="line"></span><br><span class="line">命令  &amp;&gt;&gt; 文件</span><br><span class="line"></span><br><span class="line">#正确错误分开输出</span><br><span class="line">命令 &gt;&gt; 文件 2&gt;&gt; 文件</span><br></pre></td></tr></table></figure>
-<p>-输入重定向</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">wc [选项] [文件名]</span><br><span class="line">    -c 统计字节数</span><br><span class="line">    -w 统计单词数</span><br><span class="line">    -l 统计行数</span><br><span class="line"> </span><br><span class="line">wc</span><br><span class="line">在终端输入文字    </span><br><span class="line">control + D 统计结果</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">wc [文件名]</span><br><span class="line">   文件内容输入到终端</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>管道符</p>
-<ul>
-<li><p>多命令执行(前一条命令的结果不会传入)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[命令1] ; [命令2]    顺序执行</span><br><span class="line"></span><br><span class="line">[命令1] &amp;&amp; [命令2]    </span><br><span class="line">    命令1执行正确   命令2执行</span><br><span class="line">    命令1执行错误   命令2不会执行</span><br><span class="line"></span><br><span class="line">[命令1] || [命令2]  </span><br><span class="line">    当命令1执行不正确   命令2执行</span><br><span class="line">    命令1执行正确   命令2就不会执行</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ul>
-<pre><code>- 管道符(前一条命令的结果传入下一个命令)
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> # |</span><br><span class="line">[命令1] | [命令2]</span><br><span class="line">   命令2会去操作命令1执行的结果</span><br></pre></td></tr></table></figure>
-</code></pre><ul>
-<li>通配符</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">?       任意一个字符</span><br><span class="line">*       任意内容</span><br><span class="line">[]      匹配括号中的某一个字符</span><br><span class="line">[-]     匹配括号中的任意一个字符 - 代表一个范围 [a-z] [1-3]</span><br><span class="line">[^]     表示匹配不是括号中的字符 比如[^0-9] 指匹配不是数字的字符</span><br><span class="line"></span><br><span class="line">&apos;&apos;      单引号   在单引号中所有字符都没有特殊含义</span><br><span class="line">&quot;&quot;      双引号 除了&quot;$&quot; 和 &quot;`&quot; &quot;\&quot; 其他字符都没有特殊意义</span><br><span class="line"></span><br><span class="line">``      反引号 是系统命令内容</span><br><span class="line">$()     用来引用系统命令</span><br><span class="line">#       shell中表示注释</span><br><span class="line">$       调用变量的值</span><br><span class="line">\       转义符</span><br></pre></td></tr></table></figure>
-
           
+netstat -an
+
+1查看所有网络连接
+
+more命令
+
+123456789101112131415选项-num    指定屏幕的行数（以整数表示）+num    从行号num开始显示-d    让more给用户显示信息[Press space to continue, &apos;q&ap
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/12/24/Linux-学习笔记/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1633,24 +1266,19 @@ public void onCharacteristicChanged(BluetoothGatt gatt,
       
         
           
-            <p>####一、简介</p>
-<p>Stetho是一个Android应用调试工具。集成后，开发人员可以通过Chrome的开发工具查看App相关的信息和调试；可视化操作，不需要自己使用adb也不需要root权限。</p>
-<p>####二、APP集成</p>
-<p>1.下载最新的jar，或者通过Gradle引入stetho的libraay</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">compile &apos;com.facebook.stetho:stetho:1.3.1&apos;</span><br></pre></td></tr></table></figure>
-<p>2.只需要在 Application的 onCreate 方法中调用</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public class MyApplication extends Application &#123;</span><br><span class="line">   public void onCreate() &#123;</span><br><span class="line">     super.onCreate();</span><br><span class="line">     Stetho.initializeWithDefaults(this);</span><br><span class="line">   &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-<p>3.如果还想查看网络请求的话，需要引入另外的Library</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">compile &apos;com.facebook.stetho:stetho-okhttp3:1.3.1&apos;</span><br></pre></td></tr></table></figure>
-<p>4.使用okhttp 还需要添加 StethoInterceptor</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">OkHttpClient client = new OkHttpClient.Builder()</span><br><span class="line">             .addNetworkInterceptor(new StethoInterceptor())</span><br><span class="line">             .build();</span><br></pre></td></tr></table></figure>
-<p>####三、使用<br>配置完成之后，在Chrome地址栏输入<code>chrome://inspect</code></p>
-<blockquote>
-<p>chrome://inspect/#devices</p>
-</blockquote>
-<p>chrome会检测到我们的app，点击 <em>inspect</em> 进入查看页面</p>
-
-          
+          ####一、简介
+Stetho是一个Android应用调试工具。集成后，开发人员可以通过Chrome的开发工具查看App相关的信息和调试；可视化操作，不需要自己使用adb也不需要root权限。
+####二、APP集成
+1.下载最新的jar，或者通过Gradle引入stetho的libraay
+1co
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/12/24/Facebook-Stetho——Android开发调试神器/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1790,10 +1418,16 @@ public void onCharacteristicChanged(BluetoothGatt gatt,
       
         
           
-            <p>####String.format()</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">%s  字符串类型 &quot;mingrisoft&quot;</span><br><span class="line">%c  字符类型    &apos;m&apos;</span><br><span class="line">%b  布尔类型    true</span><br><span class="line">%d  整数类型（十进制）   99</span><br><span class="line">%x  整数类型（十六进制）  FF</span><br><span class="line">%o  整数类型（八进制）   77</span><br><span class="line">%f  浮点类型    99.99</span><br><span class="line">%a  十六进制浮点类型    FF.35AE</span><br><span class="line">%e  指数类型    9.38e+5</span><br><span class="line">%g  通用浮点类型（f和e类型中较短的）</span><br><span class="line">%h  散列码 </span><br><span class="line">%%  百分比类型   ％</span><br><span class="line">%n  换行符</span><br><span class="line">%tx 日期与时间类型（x代表不同的日期与时间转换符</span><br></pre></td></tr></table></figure>
-
-          
+          ####String.format()
+1234567891011121314%s  字符串类型 &quot;mingrisoft&quot;%c  字符类型    &apos;m&apos;%b  布尔类型    true%d  整数类型（十进制）   99%x  整数类型（十六进制）  FF%o
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/12/23/String-format的参数表/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1933,10 +1567,16 @@ public void onCharacteristicChanged(BluetoothGatt gatt,
       
         
           
-            <p>####透明度对照表</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">100% — FF</span><br><span class="line"></span><br><span class="line">95% — F2</span><br><span class="line"></span><br><span class="line">90% — E6</span><br><span class="line"></span><br><span class="line">85% — D9</span><br><span class="line"></span><br><span class="line">80% — CC</span><br><span class="line"></span><br><span class="line">75% — BF</span><br><span class="line"></span><br><span class="line">70% — B3</span><br><span class="line"></span><br><span class="line">65% — A6</span><br><span class="line"></span><br><span class="line">60% — 99</span><br><span class="line"></span><br><span class="line">55% — 8C</span><br><span class="line"></span><br><span class="line">50% — 80</span><br><span class="line"></span><br><span class="line">45% — 73</span><br><span class="line"></span><br><span class="line">40% — 66</span><br><span class="line"></span><br><span class="line">35% — 59</span><br><span class="line"></span><br><span class="line">30% — 4D</span><br><span class="line"></span><br><span class="line">25% — 40</span><br><span class="line"></span><br><span class="line">20% — 33</span><br><span class="line"></span><br><span class="line">15% — 26</span><br><span class="line"></span><br><span class="line">10% — 1A</span><br><span class="line"></span><br><span class="line">5% — 0D</span><br><span class="line"></span><br><span class="line">0% — 00</span><br></pre></td></tr></table></figure>
-
-          
+          ####透明度对照表
+1234567891011121314151617181920212223242526272829303132333435363738394041100% — FF95% — F290% — E685% — D980% — CC75% — BF70% — B365% — A66
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/12/23/透明度对照表/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -2056,35 +1696,35 @@ public void onCharacteristicChanged(BluetoothGatt gatt,
 
           
 
-          <div class="links-of-author motion-element">
-            
-              
-                <span class="links-of-author-item">
-                  <a href="https://github.com/phyooos" target="_blank" title="GitHub">
-                    
-                      <i class="fa fa-fw fa-github"></i>GitHub</a>
-                </span>
-              
-                <span class="links-of-author-item">
-                  <a href="mailto:wangzhumoo@gmail.com" target="_blank" title="E-Mail">
-                    
-                      <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-                </span>
-              
-                <span class="links-of-author-item">
-                  <a href="https://www.jianshu.com/u/1e62cc41ac06" target="_blank" title="简书">
-                    
-                      <i class="fa fa-fw fa-book"></i>简书</a>
-                </span>
-              
-                <span class="links-of-author-item">
-                  <a href="https://www.zhihu.com/people/phyooos/activities" target="_blank" title="知乎">
-                    
-                      <i class="fa fa-fw fa-link"></i>知乎</a>
-                </span>
-              
-            
-          </div>
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/phyooos" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:wangzhumoo@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.jianshu.com/u/1e62cc41ac06" target="_blank" title="简书">
+                      
+                        <i class="fa fa-fw fa-book"></i>简书</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.zhihu.com/people/phyooos/activities" target="_blank" title="知乎">
+                      
+                        <i class="fa fa-fw fa-link"></i>知乎</a>
+                  </span>
+                
+            </div>
+          
 
           
           
@@ -2129,7 +1769,7 @@ public void onCharacteristicChanged(BluetoothGatt gatt,
 
 
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.3</div>
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
 
 
 
@@ -2220,28 +1860,28 @@ public void onCharacteristicChanged(BluetoothGatt gatt,
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
 
 
 
   
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
 
 
 
@@ -2279,323 +1919,6 @@ public void onCharacteristicChanged(BluetoothGatt gatt,
 
 
   
-
-  <script type="text/javascript">
-    // Popup Window;
-    var isfetched = false;
-    var isXml = true;
-    // Search DB path;
-    var search_path = "search.xml";
-    if (search_path.length === 0) {
-      search_path = "search.xml";
-    } else if (/json$/i.test(search_path)) {
-      isXml = false;
-    }
-    var path = "/" + search_path;
-    // monitor main search box;
-
-    var onPopupClose = function (e) {
-      $('.popup').hide();
-      $('#local-search-input').val('');
-      $('.search-result-list').remove();
-      $('#no-result').remove();
-      $(".local-search-pop-overlay").remove();
-      $('body').css('overflow', '');
-    }
-
-    function proceedsearch() {
-      $("body")
-        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
-        .css('overflow', 'hidden');
-      $('.search-popup-overlay').click(onPopupClose);
-      $('.popup').toggle();
-      var $localSearchInput = $('#local-search-input');
-      $localSearchInput.attr("autocapitalize", "none");
-      $localSearchInput.attr("autocorrect", "off");
-      $localSearchInput.focus();
-    }
-
-    // search function;
-    var searchFunc = function(path, search_id, content_id) {
-      'use strict';
-
-      // start loading animation
-      $("body")
-        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
-          '<div id="search-loading-icon">' +
-          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
-          '</div>' +
-          '</div>')
-        .css('overflow', 'hidden');
-      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
-
-      $.ajax({
-        url: path,
-        dataType: isXml ? "xml" : "json",
-        async: true,
-        success: function(res) {
-          // get the contents from search data
-          isfetched = true;
-          $('.popup').detach().appendTo('.header-inner');
-          var datas = isXml ? $("entry", res).map(function() {
-            return {
-              title: $("title", this).text(),
-              content: $("content",this).text(),
-              url: $("url" , this).text()
-            };
-          }).get() : res;
-          var input = document.getElementById(search_id);
-          var resultContent = document.getElementById(content_id);
-          var inputEventFunction = function() {
-            var searchText = input.value.trim().toLowerCase();
-            var keywords = searchText.split(/[\s\-]+/);
-            if (keywords.length > 1) {
-              keywords.push(searchText);
-            }
-            var resultItems = [];
-            if (searchText.length > 0) {
-              // perform local searching
-              datas.forEach(function(data) {
-                var isMatch = false;
-                var hitCount = 0;
-                var searchTextCount = 0;
-                var title = data.title.trim();
-                var titleInLowerCase = title.toLowerCase();
-                var content = data.content.trim().replace(/<[^>]+>/g,"");
-                var contentInLowerCase = content.toLowerCase();
-                var articleUrl = decodeURIComponent(data.url);
-                var indexOfTitle = [];
-                var indexOfContent = [];
-                // only match articles with not empty titles
-                if(title != '') {
-                  keywords.forEach(function(keyword) {
-                    function getIndexByWord(word, text, caseSensitive) {
-                      var wordLen = word.length;
-                      if (wordLen === 0) {
-                        return [];
-                      }
-                      var startPosition = 0, position = [], index = [];
-                      if (!caseSensitive) {
-                        text = text.toLowerCase();
-                        word = word.toLowerCase();
-                      }
-                      while ((position = text.indexOf(word, startPosition)) > -1) {
-                        index.push({position: position, word: word});
-                        startPosition = position + wordLen;
-                      }
-                      return index;
-                    }
-
-                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
-                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
-                  });
-                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
-                    isMatch = true;
-                    hitCount = indexOfTitle.length + indexOfContent.length;
-                  }
-                }
-
-                // show search results
-
-                if (isMatch) {
-                  // sort index by position of keyword
-
-                  [indexOfTitle, indexOfContent].forEach(function (index) {
-                    index.sort(function (itemLeft, itemRight) {
-                      if (itemRight.position !== itemLeft.position) {
-                        return itemRight.position - itemLeft.position;
-                      } else {
-                        return itemLeft.word.length - itemRight.word.length;
-                      }
-                    });
-                  });
-
-                  // merge hits into slices
-
-                  function mergeIntoSlice(text, start, end, index) {
-                    var item = index[index.length - 1];
-                    var position = item.position;
-                    var word = item.word;
-                    var hits = [];
-                    var searchTextCountInSlice = 0;
-                    while (position + word.length <= end && index.length != 0) {
-                      if (word === searchText) {
-                        searchTextCountInSlice++;
-                      }
-                      hits.push({position: position, length: word.length});
-                      var wordEnd = position + word.length;
-
-                      // move to next position of hit
-
-                      index.pop();
-                      while (index.length != 0) {
-                        item = index[index.length - 1];
-                        position = item.position;
-                        word = item.word;
-                        if (wordEnd > position) {
-                          index.pop();
-                        } else {
-                          break;
-                        }
-                      }
-                    }
-                    searchTextCount += searchTextCountInSlice;
-                    return {
-                      hits: hits,
-                      start: start,
-                      end: end,
-                      searchTextCount: searchTextCountInSlice
-                    };
-                  }
-
-                  var slicesOfTitle = [];
-                  if (indexOfTitle.length != 0) {
-                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
-                  }
-
-                  var slicesOfContent = [];
-                  while (indexOfContent.length != 0) {
-                    var item = indexOfContent[indexOfContent.length - 1];
-                    var position = item.position;
-                    var word = item.word;
-                    // cut out 100 characters
-                    var start = position - 20;
-                    var end = position + 80;
-                    if(start < 0){
-                      start = 0;
-                    }
-                    if (end < position + word.length) {
-                      end = position + word.length;
-                    }
-                    if(end > content.length){
-                      end = content.length;
-                    }
-                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
-                  }
-
-                  // sort slices in content by search text's count and hits' count
-
-                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
-                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
-                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
-                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
-                      return sliceRight.hits.length - sliceLeft.hits.length;
-                    } else {
-                      return sliceLeft.start - sliceRight.start;
-                    }
-                  });
-
-                  // select top N slices in content
-
-                  var upperBound = parseInt('1');
-                  if (upperBound >= 0) {
-                    slicesOfContent = slicesOfContent.slice(0, upperBound);
-                  }
-
-                  // highlight title and content
-
-                  function highlightKeyword(text, slice) {
-                    var result = '';
-                    var prevEnd = slice.start;
-                    slice.hits.forEach(function (hit) {
-                      result += text.substring(prevEnd, hit.position);
-                      var end = hit.position + hit.length;
-                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
-                      prevEnd = end;
-                    });
-                    result += text.substring(prevEnd, slice.end);
-                    return result;
-                  }
-
-                  var resultItem = '';
-
-                  if (slicesOfTitle.length != 0) {
-                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
-                  } else {
-                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
-                  }
-
-                  slicesOfContent.forEach(function (slice) {
-                    resultItem += "<a href='" + articleUrl + "'>" +
-                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
-                      "...</p>" + "</a>";
-                  });
-
-                  resultItem += "</li>";
-                  resultItems.push({
-                    item: resultItem,
-                    searchTextCount: searchTextCount,
-                    hitCount: hitCount,
-                    id: resultItems.length
-                  });
-                }
-              })
-            };
-            if (keywords.length === 1 && keywords[0] === "") {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
-            } else if (resultItems.length === 0) {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
-            } else {
-              resultItems.sort(function (resultLeft, resultRight) {
-                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
-                  return resultRight.searchTextCount - resultLeft.searchTextCount;
-                } else if (resultLeft.hitCount !== resultRight.hitCount) {
-                  return resultRight.hitCount - resultLeft.hitCount;
-                } else {
-                  return resultRight.id - resultLeft.id;
-                }
-              });
-              var searchResultList = '<ul class=\"search-result-list\">';
-              resultItems.forEach(function (result) {
-                searchResultList += result.item;
-              })
-              searchResultList += "</ul>";
-              resultContent.innerHTML = searchResultList;
-            }
-          }
-
-          if ('auto' === 'auto') {
-            input.addEventListener('input', inputEventFunction);
-          } else {
-            $('.search-icon').click(inputEventFunction);
-            input.addEventListener('keypress', function (event) {
-              if (event.keyCode === 13) {
-                inputEventFunction();
-              }
-            });
-          }
-
-          // remove loading animation
-          $(".local-search-pop-overlay").remove();
-          $('body').css('overflow', '');
-
-          proceedsearch();
-        }
-      });
-    }
-
-    // handle and trigger popup window;
-    $('.popup-trigger').click(function(e) {
-      e.stopPropagation();
-      if (isfetched === false) {
-        searchFunc(path, 'local-search-input', 'local-search-result');
-      } else {
-        proceedsearch();
-      };
-    });
-
-    $('.popup-btn-close').click(onPopupClose);
-    $('.popup').click(function(e){
-      e.stopPropagation();
-    });
-    $(document).on('keyup', function (event) {
-      var shouldDismissSearchPopup = event.which === 27 &&
-        $('.search-popup').is(':visible');
-      if (shouldDismissSearchPopup) {
-        onPopupClose();
-      }
-    });
-  </script>
 
 
 

@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.wangzhumo.com/2017/12/25/Android%E5%BC%80%E5%8F%91%E4%B8%AD%E5%B8%B8%E7%94%A8%E7%9A%84Adb%E5%91%BD%E4%BB%A4/</loc>
+    
+    <lastmod>2018-01-11T04:06:20.969Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.wangzhumo.com/404.html</loc>
     
     <lastmod>2018-01-10T16:04:17.000Z</lastmod>
@@ -103,13 +110,6 @@
     <loc>http://www.wangzhumo.com/2017/12/25/Retrofit2-Okhttp3-Rxjava2-%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82%E5%B0%81%E8%A3%85(%E4%B8%8A)/</loc>
     
     <lastmod>2017-12-25T08:13:49.835Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.wangzhumo.com/2017/12/25/Android%E5%BC%80%E5%8F%91%E4%B8%AD%E5%B8%B8%E7%94%A8%E7%9A%84Adb%E5%91%BD%E4%BB%A4/</loc>
-    
-    <lastmod>2017-12-25T06:42:14.770Z</lastmod>
     
   </url>
   

@@ -82,14 +82,14 @@
 <meta name="description" content="Bug如下:1Caused by: java.lang.RuntimeException: cannot find implementation for com.wangzhumo.app.datasource.database.AppDB. AppDB_Impl does not exist 寻找原因debug依次发现:  getInstance()为空 12345678910111213pub">
 <meta name="keywords" content="Android,Bug,Room">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Room --AppDatabase_Impl does not exist的异解决">
-<meta property="og:url" content="http://www.wangzhumo.com/2018/01/17/Room-AppDatabase-Impl-does-not-exist的异解决/index.html">
+<meta property="og:title" content="Room --AppDatabase_Impl does not exist的异常解决">
+<meta property="og:url" content="http://www.wangzhumo.com/2018/01/17/Room-AppDatabase-Impl-does-not-exist的异常解决/index.html">
 <meta property="og:site_name" content="王诛魔">
 <meta property="og:description" content="Bug如下:1Caused by: java.lang.RuntimeException: cannot find implementation for com.wangzhumo.app.datasource.database.AppDB. AppDB_Impl does not exist 寻找原因debug依次发现:  getInstance()为空 12345678910111213pub">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-17T09:35:13.395Z">
+<meta property="og:updated_time" content="2018-01-17T09:38:59.953Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Room --AppDatabase_Impl does not exist的异解决">
+<meta name="twitter:title" content="Room --AppDatabase_Impl does not exist的异常解决">
 <meta name="twitter:description" content="Bug如下:1Caused by: java.lang.RuntimeException: cannot find implementation for com.wangzhumo.app.datasource.database.AppDB. AppDB_Impl does not exist 寻找原因debug依次发现:  getInstance()为空 12345678910111213pub">
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://www.wangzhumo.com/2018/01/17/Room-AppDatabase-Impl-does-not-exist的异解决/"/>
+  <link rel="canonical" href="http://www.wangzhumo.com/2018/01/17/Room-AppDatabase-Impl-does-not-exist的异常解决/"/>
 
 
 
 
 
-  <title>Room --AppDatabase_Impl does not exist的异解决 | 王诛魔</title>
+  <title>Room --AppDatabase_Impl does not exist的异常解决 | 王诛魔</title>
   
 
 
@@ -253,7 +253,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.wangzhumo.com/2018/01/17/Room-AppDatabase-Impl-does-not-exist的异解决/">
+    <link itemprop="mainEntityOfPage" href="http://www.wangzhumo.com/2018/01/17/Room-AppDatabase-Impl-does-not-exist的异常解决/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="wangzhumo">
@@ -270,7 +270,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">Room --AppDatabase_Impl does not exist的异解决</h2>
+          <h2 class="post-title" itemprop="name headline">Room --AppDatabase_Impl does not exist的异常解决</h2>
         
 
         <div class="post-meta">
@@ -381,9 +381,9 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//arch</span><br><span class="line">api deps.archLibs.archExtensions</span><br><span class="line">api deps.archLibs.archLifecycleCommon</span><br><span class="line">api deps.archLibs.archRoomRuntime</span><br><span class="line">kapt deps.archLibs.archRoomCompiler</span><br></pre></td></tr></table></figure>
 <p>查看发现,我已经添加了,那么什么鬼问题呢?</p>
 <p><strong>怀疑是library的问题,打开我使用Room的library</strong>    ,查看 <code>lib_datasource -&gt; build.gradle</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">dependencies &#123;</span><br><span class="line">    implementation fileTree(dir: &apos;libs&apos;, include: [&apos;*.jar&apos;])</span><br><span class="line">    api project(&apos;:lib_opensource&apos;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">apply plugin: &apos;com.android.library&apos;</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">dependencies &#123;</span><br><span class="line">    implementation fileTree(dir: &apos;libs&apos;, include: [&apos;*.jar&apos;])</span><br><span class="line">    api project(&apos;:lib_opensource&apos;)</span><br><span class="line"></span><br><span class="line">//    kapt deps.archLibs.archRoomCompiler</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>果然忘了加</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">apply plugin: &apos;com.android.library&apos;</span><br><span class="line">apply plugin: &apos;kotlin-android&apos;</span><br><span class="line">apply plugin: &apos;kotlin-kapt&apos;</span><br><span class="line"></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">apply plugin: &apos;com.android.library&apos;</span><br><span class="line">apply plugin: &apos;kotlin-android&apos;</span><br><span class="line">apply plugin: &apos;kotlin-kapt&apos;</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">dependencies &#123;</span><br><span class="line">    implementation fileTree(dir: &apos;libs&apos;, include: [&apos;*.jar&apos;])</span><br><span class="line">    api project(&apos;:lib_opensource&apos;)</span><br><span class="line"></span><br><span class="line">//    kapt deps.archLibs.archRoomCompiler</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>就Ok了,我又可以愉快的玩耍了</p>
 <h4 id="记得-kapt"><a href="#记得-kapt" class="headerlink" title="记得:  kapt"></a>记得:  kapt</h4>
       

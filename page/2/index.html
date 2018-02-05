@@ -252,6 +252,165 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.wangzhumo.com/2017/12/25/Centos 创建用户并实现免密码登录/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wangzhumo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/headimage.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="王诛魔">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/25/Centos 创建用户并实现免密码登录/" itemprop="url">Centos 创建用户并实现免密码登录</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-25T16:25:04+08:00">
+                2017-12-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Server/" itemprop="url" rel="index">
+                    <span itemprop="name">Server</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>比如,创建一个名为wzm的账号</p>
+</blockquote>
+<p>####创建账号</p>
+<p>1.创建</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# adduser wzm</span><br><span class="line">[root@localhost ~]# passwd wzm</span><br><span class="line"></span><br><span class="line">#此时,输入两次密码即可</span><br></pre></td></tr></table></figure>
+<p>2.赋予sudo</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">#找到sudoers</span><br><span class="line">[root@localhost ~]# whereis sudoers</span><br><span class="line"></span><br><span class="line">#修改sudoers的读写权限</span><br><span class="line">[root@localhost ~]# chmod -v u+w /etc/sudoers</span><br><span class="line"></span><br><span class="line">#加入新用户</span><br><span class="line"></span><br><span class="line">## Allow root to run any commands anywher  </span><br><span class="line">root    ALL=(ALL)       ALL  </span><br><span class="line">linuxidc  ALL=(ALL)       ALL  #这个是新增的用户</span><br><span class="line"></span><br><span class="line">#把sudoers权限还给他</span><br><span class="line">[root@localhost ~]# chmod -v u-w /etc/sudoers</span><br></pre></td></tr></table></figure>
+<p>3.尽情享用吧</p>
+<p>####ssh免密码登录</p>
+<p>1.修改配置文件<br><code>sudo vim /etc/ssh/sshd_config</code></p>
+<p>2.重启ssh服务<br><code>service sshd restart</code></p>
+<p>3.生成密钥<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa</span><br><span class="line">     默认在 ~/.ssh目录生成两个文件：</span><br><span class="line">    id_rsa      ：私钥</span><br><span class="line">    id_rsa.pub  ：公钥</span><br></pre></td></tr></table></figure></p>
+<p>4.导入本机<br><code>cat ~/.ssh/id_rsa.pub &gt;&gt; ~/.ssh/authorized_keys</code></p>
+<p>5.下载到客户端并设置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">scp [-r] 用户名@ip:文件路径 本地路径</span><br><span class="line">#下载文件</span><br><span class="line"></span><br><span class="line">scp [-r] 本地文件 用户名@ip:上传路径 </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">eg:</span><br><span class="line">~/.ssh ⌚ 16:27:33</span><br><span class="line">$ scp id_rsa.pub root@45.XX.XX.XX:/home/</span><br><span class="line">id_rsa.pub</span><br></pre></td></tr></table></figure></p>
+<p>6.改权限<br>如果希望ssh公钥生效需满足至少下面两个条件：　　　　　<br>1) .ssh目录的权限必须是700<br>2) .ssh/authorized_keys文件权限必须是600</p>
+<p>eg:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">~ ⌚ 16:33:21</span><br><span class="line">$ ssh wzm@45.XX.XX.XX</span><br><span class="line">Last login: Mon Dec 25 16:21:11 2017 from 118.102.XXX.XXX</span><br><span class="line">[wzm@wangzhumo ~]$</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.wangzhumo.com/2017/12/25/Android项目中使用RxBus进行通讯/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1779,149 +1938,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.wangzhumo.com/2017/12/25/EditText的输入属性InputType以及imeOptions/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="wangzhumo">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/headimage.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="王诛魔">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/12/25/EditText的输入属性InputType以及imeOptions/" itemprop="url">EditText的输入属性InputType以及imeOptions</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-25T10:11:15+08:00">
-                2017-12-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android/" itemprop="url" rel="index">
-                    <span itemprop="name">Android</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><strong>EditText的输入属性</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">android:imeOptions=&quot;flagNoExtractUi&quot;  //使软键盘不全屏显示，只占用部分屏幕</span><br><span class="line">android:imeOptions=&quot;actionNone&quot;  //输入框右侧不带任何提示</span><br><span class="line">android:imeOptions=&quot;actionGo&quot;    //右下角按键内容为&apos;开始&apos;</span><br><span class="line">android:imeOptions=&quot;actionSearch&quot;  //右下角按键为搜索</span><br><span class="line">android:imeOptions=&quot;actionSend&quot;    //右下角按键内容为&apos;发送&apos;</span><br><span class="line">android:imeOptions=&quot;actionNext&quot;   //右下角按键内容为&apos;下一步&apos;</span><br><span class="line">android:imeOptions=&quot;actionDone&quot;  //右下角按键内容为&apos;完成&apos;</span><br></pre></td></tr></table></figure></p>
-<p><strong>EditText的inputType属性</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">&lt;EditText</span><br><span class="line">    android:inputType=&quot;phone&quot; //电话号码</span><br><span class="line">    android:inputType=&quot;none&quot; </span><br><span class="line">    android:inputType=&quot;text&quot;  //文本类型</span><br><span class="line">    android:inputType=&quot;textCapCharacters&quot; //字母大写 </span><br><span class="line">    android:inputType=&quot;textCapWords&quot; //首字母大写 </span><br><span class="line">    android:inputType=&quot;textCapSentences&quot; //仅第一个字母大写 </span><br><span class="line">    android:inputType=&quot;textAutoCorrect&quot; //自动完成 </span><br><span class="line">    android:inputType=&quot;textAutoComplete&quot; //自动完成 </span><br><span class="line">    android:inputType=&quot;textMultiLine&quot; //多行输入 </span><br><span class="line">    android:inputType=&quot;textImeMultiLine&quot; //输入法多行</span><br><span class="line">    android:inputType=&quot;textNoSuggestions&quot; //不提示 </span><br><span class="line">    android:inputType=&quot;textUri&quot; //网址 </span><br><span class="line">    android:inputType=&quot;textEmailAddress&quot; //电子邮件地址 </span><br><span class="line">    android:inputType=&quot;textEmailSubject&quot; //邮件主题 </span><br><span class="line">    android:inputType=&quot;textShortMessage&quot; //短讯 </span><br><span class="line">    android:inputType=&quot;textLongMessage&quot; //长信息 </span><br><span class="line">    android:inputType=&quot;textPersonName&quot; //人名 </span><br><span class="line">    android:inputType=&quot;textPostalAddress&quot; //地址</span><br><span class="line">    android:inputType=&quot;textPassword&quot; //密码 </span><br><span class="line">    android:inputType=&quot;textVisiblePassword&quot; //可见密码</span><br><span class="line">    android:inputType=&quot;textWebEditText&quot; //作为网页表单的文本 </span><br><span class="line">    android:inputType=&quot;textFilter&quot; //文本筛选过滤 </span><br><span class="line">    android:inputType=&quot;textPhonetic&quot; //拼音输入 </span><br><span class="line">    android:inputType=&quot;number&quot; //数字 </span><br><span class="line">    android:inputType=&quot;numberSigned&quot; //带符号数字格式 </span><br><span class="line">    android:inputType=&quot;numberDecimal&quot; //带小数点的浮点格式 </span><br><span class="line">    android:inputType=&quot;datetime&quot; //时间日期 </span><br><span class="line">    android:inputType=&quot;date&quot; //日期键盘 </span><br><span class="line">    android:inputType=&quot;time&quot; //时间键盘</span><br><span class="line">    /&gt;</span><br></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1976,7 +1992,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-count">32</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1998,7 +2014,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

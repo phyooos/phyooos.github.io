@@ -4,6 +4,135 @@
 
     
   <url>
+    <loc>http://www.wangzhumo.com/2018/02/26/Android-%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95-%E4%B8%80/</loc>
+    <lastmod>2018-02-26T11:21:36.496Z</lastmod>
+    <data>
+        <display>
+        <title>Android 单元测试(一)</title>
+        <pubTime>2018-02-26T06:25:49.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>Android单元测试</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.wangzhumo.com/2018/02/26/Android-Studio-%E4%B8%AD%E4%BD%BF%E7%94%A8tools-sample/</loc>
+    <lastmod>2018-02-26T05:42:17.470Z</lastmod>
+    <data>
+        <display>
+        <title>Android Studio 中使用tools:sample</title>
+        <pubTime>2018-02-26T02:31:28.000Z</pubTime>
+        
+        <tag>Android Studio</tag>
+         
+        <tag>Android</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android Studio" url="http://www.wangzhumo.com/categories/Android-Studio/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.wangzhumo.com/2017/12/26/Android-Studio%E6%8A%A5%E9%94%99Error-Running-app-cannot-debug-application/</loc>
+    <lastmod>2018-02-26T02:33:22.000Z</lastmod>
+    <data>
+        <display>
+        <title>Android Studio报错Error Running app: cannot debug application</title>
+        <pubTime>2017-12-26T07:26:29.000Z</pubTime>
+        
+        <tag>Android Studio</tag>
+         
+        <tag>Android</tag>
+         
+        <tag>Bug</tag>
+         
+         
+           
+             
+              <breadCrumb title="Bug记录" url="http://www.wangzhumo.com/categories/Bug%E8%AE%B0%E5%BD%95/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.wangzhumo.com/2017/12/25/Android-Studio-%E5%AF%BC%E5%85%A5-Vitamio%E5%8F%8A%E6%A8%AA%E7%AB%96%E5%B1%8F%E5%88%87%E6%8D%A2/</loc>
+    <lastmod>2018-02-26T02:33:06.709Z</lastmod>
+    <data>
+        <display>
+        <title>Android Studio 导入 Vitamio及横竖屏切换</title>
+        <pubTime>2017-12-25T01:28:42.000Z</pubTime>
+        
+        <tag>Android Studio</tag>
+         
+        <tag>Android</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android Studio" url="http://www.wangzhumo.com/categories/Android-Studio/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.wangzhumo.com/2017/12/25/Android-Studio-%E5%9F%BA%E6%9C%AC%E8%AE%BE%E7%BD%AE/</loc>
+    <lastmod>2018-02-26T02:33:01.444Z</lastmod>
+    <data>
+        <display>
+        <title>Android Studio 基本设置</title>
+        <pubTime>2017-12-25T01:35:39.000Z</pubTime>
+        
+        <tag>Android Studio</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android Studio" url="http://www.wangzhumo.com/categories/Android-Studio/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.wangzhumo.com/2017/12/25/Android-Studio-%E4%BD%BF%E7%94%A8%E6%AD%A3%E5%BC%8F%E7%AD%BE%E5%90%8Ddebug%E8%B0%83%E8%AF%95/</loc>
+    <lastmod>2018-02-26T02:32:53.935Z</lastmod>
+    <data>
+        <display>
+        <title>Android Studio 使用正式签名debug调试</title>
+        <pubTime>2017-12-25T01:38:59.000Z</pubTime>
+        
+        <tag>Android Studio</tag>
+         
+        <tag>Android</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android Studio" url="http://www.wangzhumo.com/categories/Android-Studio/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.wangzhumo.com/2018/02/23/2018-02-23/</loc>
     <lastmod>2018-02-23T04:28:20.634Z</lastmod>
     <data>
@@ -259,30 +388,6 @@
         <title>Apk Install 的各种问题</title>
         <pubTime>2017-12-28T06:48:09.000Z</pubTime>
         
-        <tag>Android</tag>
-         
-        <tag>Bug</tag>
-         
-         
-           
-             
-              <breadCrumb title="Bug记录" url="http://www.wangzhumo.com/categories/Bug%E8%AE%B0%E5%BD%95/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.wangzhumo.com/2017/12/26/Android-Studio%E6%8A%A5%E9%94%99Error-Running-app-cannot-debug-application/</loc>
-    <lastmod>2017-12-26T07:30:21.206Z</lastmod>
-    <data>
-        <display>
-        <title>Android Studio报错Error Running app: cannot debug application</title>
-        <pubTime>2017-12-26T07:26:29.000Z</pubTime>
-        
-        <tag>Android Studio</tag>
-         
         <tag>Android</tag>
          
         <tag>Bug</tag>
@@ -617,28 +722,6 @@
 
     
   <url>
-    <loc>http://www.wangzhumo.com/2017/12/25/Android-Studio-%E4%BD%BF%E7%94%A8%E6%AD%A3%E5%BC%8F%E7%AD%BE%E5%90%8Ddebug%E8%B0%83%E8%AF%95/</loc>
-    <lastmod>2017-12-25T01:49:06.359Z</lastmod>
-    <data>
-        <display>
-        <title>Android Studio 使用正式签名debug调试</title>
-        <pubTime>2017-12-25T01:38:59.000Z</pubTime>
-        
-        <tag>Android Studio</tag>
-         
-        <tag>Android</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://www.wangzhumo.com/categories/Android/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://www.wangzhumo.com/2017/12/25/BottomNavigationView%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/</loc>
     <lastmod>2017-12-25T01:47:43.000Z</lastmod>
     <data>
@@ -646,48 +729,6 @@
         <title>BottomNavigationView使用指南</title>
         <pubTime>2017-12-25T01:40:44.000Z</pubTime>
         
-        <tag>Android</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://www.wangzhumo.com/categories/Android/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.wangzhumo.com/2017/12/25/Android-Studio-%E5%9F%BA%E6%9C%AC%E8%AE%BE%E7%BD%AE/</loc>
-    <lastmod>2017-12-25T01:36:14.099Z</lastmod>
-    <data>
-        <display>
-        <title>Android Studio 基本设置</title>
-        <pubTime>2017-12-25T01:35:39.000Z</pubTime>
-        
-        <tag>Android Studio</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://www.wangzhumo.com/categories/Android/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.wangzhumo.com/2017/12/25/Android-Studio-%E5%AF%BC%E5%85%A5-Vitamio%E5%8F%8A%E6%A8%AA%E7%AB%96%E5%B1%8F%E5%88%87%E6%8D%A2/</loc>
-    <lastmod>2017-12-25T01:33:44.501Z</lastmod>
-    <data>
-        <display>
-        <title>Android Studio 导入 Vitamio及横竖屏切换</title>
-        <pubTime>2017-12-25T01:28:42.000Z</pubTime>
-        
-        <tag>Android Studio</tag>
-         
         <tag>Android</tag>
          
          

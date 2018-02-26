@@ -285,6 +285,421 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.wangzhumo.com/2017/12/25/低功耗蓝牙iBeacon的开发笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wangzhumo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/headimage.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="王诛魔">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/25/低功耗蓝牙iBeacon的开发笔记/" itemprop="url">低功耗蓝牙iBeacon的开发笔记</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-25T09:37:23+08:00">2017-12-25</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>###1.挣扎的开始<br>各种百度,google,发现国内资料很少,有的也是商业公司提供的sdk,这并不符合我需要,<br>google倒是不少,然而以我的英语水平,望洋兴叹罢了@<br>不发牢骚了:</p>
+<blockquote>
+<p>首先你需要了解这些资料<br>1、profile<br>profile可以理解为一种规范，一个标准的通信协议，它存在于从机中。蓝牙组织规定了一些标准的profile，例如 HID OVER GATT ，防丢器 ，心率计等。每个profile中会包含多个service，每个service代表从机的一种能力。</p>
+<p>2、service<br>service可以理解为一个服务，在ble从机中，通过有多个服务，例如电量信息服务、系统信息服务等，每个service中又包含多个characteristic特征值。每个具体的characteristic特征值才是ble通信的主题。比如当前的电量是80%，所以会通过电量的characteristic特征值存在从机的profile里，这样主机就可以通过这个characteristic来读取80%这个数据</p>
+<p>3、characteristic<br>characteristic特征值，ble主从机的通信均是通过characteristic来实现，可以理解为一个标签，通过这个标签可以获取或者写入想要的内容。</p>
+<p>4、UUID<br>UUID，统一识别码，我们刚才提到的service和characteristic，都需要一个唯一的uuid来标识<br>PS: 百度到的,我以一个过来人的身份保证这个很重要</p>
+</blockquote>
+<p>###2.资料,准备<br>资料看这里:</p>
+<ul>
+<li>这也是最重要的资料来源,谷歌SDK的例子里面有的项目<br><img src="http://img.blog.csdn.net/20160710190336812" alt="Android SDK 中的doc文档"></li>
+</ul>
+<ul>
+<li>接上文,说完资料,<blockquote>
+<p>这是一个很好的demo<br>sdk\samples\android-22\connectivity\BluetoothLeGatt</p>
+</blockquote>
+</li>
+</ul>
+<p>该目录下为谷歌提供的demo,我的应用也是在它的基础上改进而成的.<br>由以下部分组成:<br>1.一个服务 BluetoothLeService,主负责与蓝牙设备进行数据交换</p>
+<p>2.两个activity:DeviceControlActivity,DeviceScanActivity<br>    见名知意,一个负责扫描设备,而两外一个与设备进行交互</p>
+<p>3.一个SampleGattAttributes<br>   主要是存储了一些UUID,我对它进行了加强</p>
+<p>###3.BLE设备的使用步骤概况<br>1.首先要说明的一点是,要求Android版本为4.3及其以上<br>  接着确认设备支持<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 支持BLE</span><br><span class="line"> *  check to determine whether BLE is supported on the device</span><br><span class="line"> */</span><br><span class="line">public void isSupported()&#123;</span><br><span class="line">     if (!getPackageManager().hasSystemFeature(PackageManager.FEATURE_BLUETOOTH_LE)) &#123;</span><br><span class="line">            Toast.makeText(this, &quot;设备不支持BLE功能&quot;, Toast.LENGTH_SHORT).show();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">```  </span><br><span class="line"></span><br><span class="line">2.确认手机支持并打开蓝牙的状态下,你就可以进行设备的搜索了</span><br><span class="line">   有两种模式</span><br></pre></td></tr></table></figure></p>
+<p>//第一种<br>//serviceUuids   指定设备的UUID<br>//callback       搜索的回调<br>startLeScan(final UUID[] serviceUuids, final LeScanCallback callback)</p>
+<p>//第二种<br>//其实就是不传入serviceUuids的,就是说搜索范围内所有蓝牙设备<br>public boolean startLeScan(LeScanCallback callback) {<br>     return startLeScan(null, callback);<br>}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">3.同时记得停止搜索,当然你也可以一直搜</span><br><span class="line">PS：其实我见到的app大部分是不停的搜索，这样的话会有一个广播数据持续刷新的效果,那么很多的距离判断什么的都是通过这种不停搜索的形式来工作的</span><br></pre></td></tr></table></figure>
+<p>//mBluetoothAdapter   请自行查看谷歌文档<br>//mLeScanCallback     这就是上面提过的LeScanCallback的实例<br>mBluetoothAdapter.stopLeScan(mLeScanCallback);<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">接着就是在回调中拿到各个设备数据了</span><br></pre></td></tr></table></figure></p>
+<p>/**</p>
+<ul>
+<li><p>搜索设备回调<br>*/<br>private BluetoothAdapter.LeScanCallback mLeScanCallback =</p>
+<pre><code>new BluetoothAdapter.LeScanCallback() {
+</code></pre><p> @Override<br> public void onLeScan(final BluetoothDevice device, int rssi, </p>
+<pre><code>byte[] scanRecord) {
+</code></pre><p> }<br>};</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">这里有几个值得说一下的东西</span><br><span class="line">- **1.BluetoothDevice device**</span><br><span class="line">![这里写图片描述](http://img.blog.csdn.net/20160712000123059)</span><br><span class="line">应该可以看的很清楚,	device中包含了设备的基本信息			   </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">- **2.rssi信号质量,也有人告诉我是质量**</span><br><span class="line">不过我这次并没有使用到</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">- **3.byte[] scanRecord (重头戏)**</span><br><span class="line">广播响应包数据</span><br><span class="line">一般包括两个部分,我使用的主要是ServiceData域</span><br><span class="line">**在这里需要注意的是，这两个部分都存在于广播数据，而且并不是两部分都有，有可能是只有一个部分，所以一定要看情设备的硬件规范，因为这涉及到后面解析广播数据**</span><br><span class="line"></span><br><span class="line">要知道，我们都是拿byte[]数组中的某些部分对应特定值,一旦对应关系打乱，那么数据解析就没什么正确性可言了 </span><br><span class="line">这些广播数据都是依据一定的规则指定 的,所以这时候你需要设备厂商的文档来查看对应的数据,以及其结构</span><br><span class="line">PS:需要注意的一点是,这些数据都是byte[],你需要将它们转化(一般常用的做法是,先转化为16进制的字符串,而后再进行读取解析)</span><br><span class="line"></span><br><span class="line">###4.读取蓝牙设备内部数据</span><br><span class="line">这里涉及到两个重要部分</span><br><span class="line">service  以及 characteristic</span><br><span class="line"></span><br><span class="line">一般来说</span><br><span class="line"> 一个Service  eg: FF01-XXXXXXXXXXX-XXXXX</span><br><span class="line"> 下面可能有很多的characteristic</span><br><span class="line">Marjor : FF16 -XXXXXX</span><br><span class="line">Power : FF17 - XXX</span><br><span class="line">....一堆的characteristic </span><br><span class="line"></span><br><span class="line">- **如果需要给指定的项目写入一个数据**</span><br><span class="line">   条件：</span><br><span class="line">                1.此特征在哪个Service下，即该service的UUID</span><br><span class="line">                2.该特征的UUID</span><br><span class="line">                3.该特征的写入格式，16进制还是其他的东西</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>//代码片段1<br>//此方法获取对应特征值的对象BluetoothGattCharacteristic的实体<br>    public BluetoothGattCharacteristic getCharacteristic(String service,String charact) {<br>        if (mBluetoothGatt == null) return null;<br>        if(mBluetoothGatt.getService(UUID.fromString(service))==null){return null ;}<br>        return mBluetoothGatt.getService(UUID.fromString(service)).getCharacteristic(UUID.fromString(charact));<br>    }</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>//代码片段2<br>if(!TextUtils.isEmpty(value)){//输入非空<br>      byte[] arrayOfByte= new byte[2];//传入数据规定为2个byte<br>      arrayOfByte[0] = ((byte)Integer.parseInt((value).substring(0, 2), 16));<br>      arrayOfByte[1] = ((byte)Integer.parseInt((value).substring(2, 4), 16));<br>      //上面操作，先切，再转为16进制<br>      characteristic.setValue(arrayOfByte);<br>      //characteristic实体就是片段1代码获取到的<br>      gattServer.writeCharacteristic(characteristic);<br>      //所有的操作都封装在一个service中，gattServer为其实体对象<br>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
+<p>  //片段3就是服务中的写入方法<br>  /**</p>
+<pre><code> * 写入一个数据
+ * @param characteristic
+ */
+public void writeCharacteristic(BluetoothGattCharacteristic characteristic) {
+    mBluetoothGatt.setCharacteristicNotification(characteristic, true);
+    mBluetoothGatt.writeCharacteristic(characteristic);
+}
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>//代码片段4   这是回调，<br>//在连接时就作为参数传入了 mBluetoothGatt = device.connectGatt(this, false, mGattCallback);<br>private final BluetoothGattCallback mGattCallback = new BluetoothGattCallback() {<br>        @Override<br>        public void onConnectionStateChange(BluetoothGatt gatt, int status, int newState) {<br>            if (newState == BluetoothProfile.STATE_CONNECTED) {<br>                Log.e(TAG, “连接至 GATT server.”);<br>            } else if (newState == BluetoothProfile.STATE_DISCONNECTED) {<br>                Log.e(TAG, “断开 GATT server.”);<br>            }<br>        }</p>
+<pre><code>@Override
+public void onServicesDiscovered(BluetoothGatt gatt, int status) {
+    if (status == BluetoothGatt.GATT_SUCCESS) {
+        Log.e(TAG, &quot;建立连接成功&quot;);              
+    } else {
+        Log.e(TAG, &quot;连接状态异常: &quot; + status);
+    }
+}
+
+@Override
+public void onCharacteristicWrite(BluetoothGatt gatt, BluetoothGattCharacteristic characteristic, int status) {
+    if (status == BluetoothGatt.GATT_SUCCESS) {
+          Log.e(TAG, &quot;写入数据成功&quot;);   
+    } 
+}
+
+@Override
+public void onCharacteristicRead(BluetoothGatt gatt, BluetoothGattCharacteristic
+        characteristic, int status) {
+    if (status == BluetoothGatt.GATT_SUCCESS) {
+       Log.e(TAG, &quot;读取数据成功&quot;);   
+    }
+}
+
+@Override
+public void onCharacteristicChanged(BluetoothGatt gatt,
+                                    BluetoothGattCharacteristic characteristic) {
+    Log.e(TAG, &quot;连接状态发生改变&quot;);      
+};
+</code></pre><p>}<br>```</p>
+<blockquote>
+<p>PS:<strong>这里的例子是写入，其实读取的操作与此类似，操作完成后在回调里面判断状态以及读取数据即可</strong></p>
+</blockquote>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.wangzhumo.com/2017/12/25/Android-Studio-基本设置/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wangzhumo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/headimage.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="王诛魔">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/25/Android-Studio-基本设置/" itemprop="url">Android Studio 基本设置</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-25T09:35:39+08:00">2017-12-25</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android-Studio/" itemprop="url" rel="index"><span itemprop="name">Android Studio</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>####1.常用的快捷键</p>
+<ul>
+<li>ALT + Enter 自动提示</li>
+<li><p>ALT + Ins<br><img src="http://img.blog.csdn.net/20160503215809984" alt="这里写图片描述"></p>
+<blockquote>
+<p>get set 构造方法  重写方法<br>以及一些插件如这里的 GsonFormat 以及 Butterknife</p>
+</blockquote>
+</li>
+<li><p>Ctrl + Alt + F  全局变量</p>
+</li>
+<li><p>Ctrl +Shift + Enter   加; 以及if 的(){}</p>
+</li>
+<li><p>Ctrl + P  以及  Ctrl + Q  方法参数以及文档</p>
+</li>
+<li><p>Ctrl +O 继承重写的方法</p>
+</li>
+<li><p>Ctrl + /   Ctrl +Shift + /    注释</p>
+</li>
+<li><p>Ctrl + Alt + L 格式化</p>
+</li>
+<li><p>Ctrl + D  Ctrl + Y   复制 删除行</p>
+</li>
+<li><p>Ctrl + Shift + U 大小写</p>
+</li>
+<li><p>Shift Shift     Ctrl + F  全局  当前 搜索 </p>
+</li>
+<li><p>Ctrl + U 到父类</p>
+</li>
+<li><p>Ctrl + Alt + B 找到子类</p>
+</li>
+<li><p>Ctrl + H     类结构</p>
+</li>
+<li><p>Ctrl+Shift + H   方法层次</p>
+</li>
+<li><p>Ctrl + Alt + H   调用层次</p>
+</li>
+<li><p>Alt + F7  find use  非常好用的功能</p>
+</li>
+<li><p>Shift + F6  重命名</p>
+</li>
+<li><p>logt + Enter    Tag </p>
+</li>
+<li><p>loge logd …    打印log</p>
+</li>
+</ul>
+<hr>
+<p>####2.自动生成代码 </p>
+<blockquote>
+<p>Ctrl  + J   </p>
+</blockquote>
+<p><img src="http://img.blog.csdn.net/20160503222913571" alt="这里写图片描述"></p>
+<p>里面相当多的模版代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">if 判空     ifn</span><br><span class="line">for 循环     for </span><br><span class="line">foreach     foreach</span><br><span class="line">setVisibility     gone</span><br><span class="line">findViewById   fbc</span><br><span class="line">instanceof    inst</span><br></pre></td></tr></table></figure></p>
+<p>这些比较常用</p>
+<p>####3.自动导入包<br>Settings&gt;Editor&gt;General&gt;Auto import<br><img src="http://img.blog.csdn.net/20160503215409545" alt="这里写图片描述"></p>
+<p>####4.其他设置已经导出</p>
+<blockquote>
+<p>ps : 在百度云里有<br><img src="http://img.blog.csdn.net/20160503223900468" alt="这里写图片描述"></p>
+</blockquote>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.wangzhumo.com/2017/12/25/Android-Studio-导入-Vitamio及横竖屏切换/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -337,7 +752,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android-Studio/" itemprop="url" rel="index"><span itemprop="name">Android Studio</span></a></span>
 
                 
                 
@@ -1224,7 +1639,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">35</span>
+                    <span class="site-state-item-count">37</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1247,7 +1662,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">5</span>
+                      
+                    
+                    <span class="site-state-item-count">6</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -1294,7 +1711,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">17</span>
+                      
+                    
+                    <span class="site-state-item-count">18</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

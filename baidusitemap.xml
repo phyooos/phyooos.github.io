@@ -4,21 +4,21 @@
 
     
   <url>
-    <loc>http://www.wangzhumo.com/Bug/RelativeLayout%E4%B8%ADButton%E8%A6%86%E7%9B%96%E5%85%B6%E4%BB%96View/</loc>
-    <lastmod>2018-03-07T05:09:51.138Z</lastmod>
+    <loc>http://www.wangzhumo.com/Android-Source/Handler%E9%80%9A%E8%AE%AF%E6%9C%BA%E5%88%B6%E5%88%86%E6%9E%90/</loc>
+    <lastmod>2018-03-07T11:21:51.989Z</lastmod>
     <data>
         <display>
-        <title>RelativeLayout中Button覆盖其他View</title>
-        <pubTime>2018-03-07T03:53:36.000Z</pubTime>
+        <title>Android通讯机制分析-Handler</title>
+        <pubTime>2018-03-07T06:13:47.000Z</pubTime>
         
         <tag>Android</tag>
          
-        <tag>Bug</tag>
+        <tag>Handler</tag>
          
          
            
              
-              <breadCrumb title="Bug" url="http://www.wangzhumo.com/categories/Bug/"/>
+              <breadCrumb title="Android Source" url="http://www.wangzhumo.com/categories/Android-Source/"/>
           
         </display>
     </data>
@@ -27,7 +27,7 @@
     
   <url>
     <loc>http://www.wangzhumo.com/Android-Source/Activity%E4%B8%8EFragment%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/</loc>
-    <lastmod>2018-03-05T11:24:53.633Z</lastmod>
+    <lastmod>2018-03-07T06:06:48.732Z</lastmod>
     <data>
         <display>
         <title>Activity与Fragment的生命周期</title>
@@ -43,6 +43,28 @@
            
              
               <breadCrumb title="Android Source" url="http://www.wangzhumo.com/categories/Android-Source/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.wangzhumo.com/Bug/RelativeLayout%E4%B8%ADButton%E8%A6%86%E7%9B%96%E5%85%B6%E4%BB%96View/</loc>
+    <lastmod>2018-03-07T05:09:51.138Z</lastmod>
+    <data>
+        <display>
+        <title>RelativeLayout中Button覆盖其他View</title>
+        <pubTime>2018-03-07T03:53:36.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>Bug</tag>
+         
+         
+           
+             
+              <breadCrumb title="Bug" url="http://www.wangzhumo.com/categories/Bug/"/>
           
         </display>
     </data>

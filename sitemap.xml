@@ -2,9 +2,44 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.wangzhumo.com/Bug/RelativeLayout%E4%B8%ADButton%E8%A6%86%E7%9B%96%E5%85%B6%E4%BB%96View/</loc>
+    
+    <lastmod>2018-03-07T05:09:51.138Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.wangzhumo.com/Android-Source/Activity%E4%B8%8EFragment%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/</loc>
+    
+    <lastmod>2018-03-05T11:24:53.633Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.wangzhumo.com/Android/ConfigChanges%E7%9A%84%E5%B1%9E%E6%80%A7%E5%80%BC/</loc>
+    
+    <lastmod>2018-03-05T10:26:08.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.wangzhumo.com/Android-Test/Android-%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95-%E4%BA%8C/</loc>
+    
+    <lastmod>2018-03-05T06:02:12.092Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.wangzhumo.com/Android-Test/Android-%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95-%E4%B8%80/</loc>
+    
+    <lastmod>2018-03-01T07:29:23.818Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.wangzhumo.com/Flutter/Flutter%E5%AE%89%E8%A3%85%E6%8C%87%E5%8D%97MAC%E7%89%88/</loc>
     
-    <lastmod>2018-02-28T16:43:47.415Z</lastmod>
+    <lastmod>2018-02-28T16:44:14.198Z</lastmod>
     
   </url>
   
@@ -61,13 +96,6 @@
     <loc>http://www.wangzhumo.com/Bug/WebView%E6%92%AD%E6%94%BEH5%E8%A7%86%E5%B1%8F%E6%B2%A1%E6%9C%89%E7%94%BB%E9%9D%A2-%E5%8F%AA%E6%9C%89%E5%A3%B0%E9%9F%B3/</loc>
     
     <lastmod>2018-02-28T16:28:33.437Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.wangzhumo.com/uncategorized/Android-%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95-%E4%B8%80/</loc>
-    
-    <lastmod>2018-02-26T11:21:36.496Z</lastmod>
     
   </url>
   

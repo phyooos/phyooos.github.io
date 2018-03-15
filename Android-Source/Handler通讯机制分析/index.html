@@ -112,7 +112,7 @@
 <meta property="og:description" content="Handler在Android世界中的地位不言而喻.这篇笔记算是简单的记录一下我对于Handler的理解. 当时第一次对Handler产生兴趣是我在知乎上看到一个问题: Android中为什么主线程不会因为Looper.loop()里的死循环卡死 Handler消息机制的构成 Handler 主要就是发送各种消息sendMessage等,以及处理消息handleMessage  Message 即">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://www.wangzhumo.com/images/handler_class.png">
-<meta property="og:updated_time" content="2018-03-07T11:21:51.989Z">
+<meta property="og:updated_time" content="2018-03-08T02:32:05.867Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android通讯机制分析-Handler">
 <meta name="twitter:description" content="Handler在Android世界中的地位不言而喻.这篇笔记算是简单的记录一下我对于Handler的理解. 当时第一次对Handler产生兴趣是我在知乎上看到一个问题: Android中为什么主线程不会因为Looper.loop()里的死循环卡死 Handler消息机制的构成 Handler 主要就是发送各种消息sendMessage等,以及处理消息handleMessage  Message 即">
@@ -391,7 +391,36 @@
 </li>
 </ul>
 <p><img src="/images/handler_class.png" alt="handler"></p>
-
+<h4 id="Message类分析"><a href="#Message类分析" class="headerlink" title="Message类分析"></a>Message类分析</h4><p>首先我们要看到</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">private static Message sPool;</span><br><span class="line"></span><br><span class="line">// sometimes we store linked lists of these things</span><br><span class="line">/*package*/ Message next;</span><br></pre></td></tr></table></figure>
+<p><code>sPool</code>声明为static 也就是说所有的Message实例共享</p>
+<p><code>next</code>则为每一个实例都有的</p>
+<p>Message类中,一系列的obtain,如下:</p>
+<p>obtain(Handler h)</p>
+<p>obtain(Handler h, int what)</p>
+<p>obtain(Handler h, Runnable callback)</p>
+<p>…</p>
+<p>obtain()</p>
+<ul>
+<li><p>复用机制</p>
+<p>我们查看源码可知,他们最后都调用obtain()获得一个Message实体</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">android.os.Message#obtain()</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">    * Return a new Message instance from the global pool. Allows us to</span></span><br><span class="line"><span class="comment">    * avoid allocating new objects in many cases.</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Message <span class="title">obtain</span><span class="params">()</span> </span>&#123;</span><br><span class="line">       <span class="keyword">synchronized</span> (sPoolSync) &#123;</span><br><span class="line">           <span class="keyword">if</span> (sPool != <span class="keyword">null</span>) &#123;</span><br><span class="line">               Message m = sPool;</span><br><span class="line">               sPool = m.next;</span><br><span class="line">               m.next = <span class="keyword">null</span>;</span><br><span class="line">               m.flags = <span class="number">0</span>; <span class="comment">// clear in-use flag</span></span><br><span class="line">               sPoolSize--;</span><br><span class="line">               <span class="keyword">return</span> m;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> <span class="keyword">new</span> Message();</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>可以看到,当<code>sPool</code>为<code>null</code>时才会<code>new Message();</code></p>
+<p>如果不为<code>null</code>则把当前的<code>sPool</code>赋值给<code>Message m</code>  而后把<code>sPool</code>赋值为<code>m.next()</code>(也就是sPool没有赋值前它的下一个Message对象)</p>
+<p>查看源码分析可知,有一个Message的消息池,采用的是单链表头插法,next永远指向的是下一个可复用的实例地址</p>
+<p>所以,如果我们在代码中要使用Message实例,就尽量使用<code>obtain()</code>这一系列方法,而不要直接New</p>
+<ul>
+<li><p>加入消息池</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">android.os.Message#recycleUnchecked</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">    * Recycles a Message that may be in-use.</span></span><br><span class="line"><span class="comment">    * Used internally by the MessageQueue and Looper when disposing of queued Messages.</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="function"><span class="keyword">void</span> <span class="title">recycleUnchecked</span><span class="params">()</span> </span>&#123;</span><br><span class="line">       <span class="comment">// Mark the message as in use while it remains in the recycled object pool.</span></span><br><span class="line">       <span class="comment">// Clear out all other details.</span></span><br><span class="line">       flags = FLAG_IN_USE;</span><br><span class="line">       what = <span class="number">0</span>;</span><br><span class="line">       arg1 = <span class="number">0</span>;</span><br><span class="line">       arg2 = <span class="number">0</span>;</span><br><span class="line">       obj = <span class="keyword">null</span>;</span><br><span class="line">       replyTo = <span class="keyword">null</span>;</span><br><span class="line">       sendingUid = -<span class="number">1</span>;</span><br><span class="line">       when = <span class="number">0</span>;</span><br><span class="line">       target = <span class="keyword">null</span>;</span><br><span class="line">       callback = <span class="keyword">null</span>;</span><br><span class="line">       data = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">       <span class="keyword">synchronized</span> (sPoolSync) &#123;</span><br><span class="line">           <span class="keyword">if</span> (sPoolSize &lt; MAX_POOL_SIZE) &#123;</span><br><span class="line">               next = sPool;</span><br><span class="line">               sPool = <span class="keyword">this</span>;</span><br><span class="line">               sPoolSize++;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>这里其实就是把无用的Message实例,加入消息池的地方.</p>
+<p><code>sPoolSize &lt; MAX_POOL_SIZE</code>只要当前消息池没有到极限,就<code>next = sPool;</code>且<code>sPool = this;</code></p>
+<p>可以简单理解为把之前的<code>sPool</code>可复用对象向后移动一位,把当前这个要回收的Message置为第一个可复用对象</p>
+</li>
+</ul>
+<p><strong>所以,Message主要就是装载数据,并且实现了Message的复用机制</strong></p>
+<h4 id="MessageQueue类分析"><a href="#MessageQueue类分析" class="headerlink" title="MessageQueue类分析"></a>MessageQueue类分析</h4>
       
     </div>
     
@@ -657,7 +686,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Handler消息机制的构成"><span class="nav-number">1.</span> <span class="nav-text">Handler消息机制的构成</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Handler消息机制的构成"><span class="nav-number">1.</span> <span class="nav-text">Handler消息机制的构成</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Message类分析"><span class="nav-number">2.</span> <span class="nav-text">Message类分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MessageQueue类分析"><span class="nav-number">3.</span> <span class="nav-text">MessageQueue类分析</span></a></li></ol></div>
             
 
           </div>

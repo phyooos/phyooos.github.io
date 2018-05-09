@@ -285,6 +285,202 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.wangzhumo.com/uncategorized/Android的启动流程/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wangzhumo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/headimage.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="王诛魔">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/uncategorized/Android的启动流程/" itemprop="url">Android的启动流程</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-09T15:00:12+08:00">2018-05-09</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h5 id="系统结构"><a href="#系统结构" class="headerlink" title="系统结构"></a>系统结构</h5><ul>
+<li><p>应用层</p>
+<p>即为开发出来的一些app,当然还包括了一些系统App</p>
+</li>
+<li><p>应用框架层(Java API Framework)</p>
+<p>这一层由java编写,提供给我们平时开发使用的API,主要的一些组件:</p>
+<ul>
+<li><p>Manager</p>
+<p>Activity Manager , Window Manager , Package Manager ,Location Manager </p>
+<p>Notification Manager,Resource Manager,Telephony Manager</p>
+</li>
+<li><p>Content Providers</p>
+</li>
+<li><p>View System</p>
+</li>
+</ul>
+</li>
+<li><p>系统运行库层</p>
+<p>C/C++程序库和Android运行时库</p>
+</li>
+<li><p>硬件抽象层(<strong>HAL</strong>)</p>
+</li>
+<li><p>Linux内核层</p>
+</li>
+</ul>
+<p><img src="/images/android_boot_process.png" alt="boot"></p>
+<h5 id="Android的启动主要过程"><a href="#Android的启动主要过程" class="headerlink" title="Android的启动主要过程"></a>Android的启动主要过程</h5><ol>
+<li><p><strong>init进程</strong></p>
+<p>init进程是由内核启动的,是用户空间的第一个进程,可以说是一个root进程</p>
+<ul>
+<li>当init进程启动后会创建挂载系统目录,设备节点,</li>
+<li>解析init.rc 和 init.hardware.rc,启动属性服务，以及一系列的服务和进程</li>
+</ul>
+</li>
+</ol>
+<ol>
+<li><p><strong>本地守护进程</strong></p>
+<p>启动</p>
+<blockquote>
+<p>servicemanager  管理binder的通讯</p>
+<p>surfaceflinger  UI</p>
+<p>mediaserver  音视频,相机</p>
+<p>netd  蓝牙、wifi、usb等</p>
+<p>adbd</p>
+<p>rild</p>
+<p>installd </p>
+</blockquote>
+<p>需要注意的是这些都是一个独立的Linux进程</p>
+</li>
+<li><p><strong>Native系统服务</strong></p>
+<p>运行在本地守护进程中,所属进程初始化的时候会将Native系统服务注册到ServiceManager中,方便我们通过Binder机制调用Native系统服务</p>
+</li>
+<li><p><strong>Java服务</strong></p>
+<p>再创建本地服务的同时,init进程还会创建Zygote进程</p>
+<p>Zygote也是Android中相当重要的一个进程了,Zygote进程会建立一个Dalvik VM并且启动</p>
+<p>System Server系统服务</p>
+<p>System Server将启动Android Service</p>
+<blockquote>
+<p>AccessibilityManagerService 截获用户输入，并根据输入给用户一些额外的反馈，起到辅助效果的服务<br>AccountManagerService 管理设备中所有账号的服务，包括账号、密码、授权管理功能<br>ActivityManagerService 管理所有组件的服务，安卓系统的核心服务 AlarmManagerService 管理闹钟的服务<br>AppWidgetService 管理APP widgets的工作，包括加载、删除、布局等<br>AssetAtlasService 将一些系统图片资源合并成一个纹理图传给GPU达到硬件加速的效果的服务<br>AudioService 管理音频的服务<br>BackupManagerService 管理备份和应用数据的服务<br>BatteryService 管理电池的服务<br>BluetoothManagerService 管理系统蓝牙的服务<br>CertBlacklister 更新系统SSL证书的公共秘钥和序列号黑名单的服务<br>ClipboardService 管理系统剪贴板的服务<br>CommonTimeManagementService 管理公共时间配置的服务<br>ConnectivityService 管理网络连接的服务<br>ContentService 管理系统数据更新通知的服务，和ContentProvider密切相关<br>CountryDetectorService 检测当前系统所属国家的服务<br>DevicePolicyManagerService 管理系统设备配置的服务<br>DeviceStorageMonitorService 管理系统存储空间的服务，当存储空间小于某个阈值时，会发出警告广播<br>DiskStateService 管理系统存储空间统计的服务<br>DisplayManagerService 管理显示设备的服务<br>DreamManagerService 管理屏幕保护的服务<br>DropBoxManagerService 生成和管理系统运行中日志文件的服务<br>EntropyMixer 加载和保存随机信息的服务<br>IdleMaintenanceService 管理系统在空闲时执行维护任务的服务<br>InputManagerService 管理触屏输入的服务<br>InputMethodManagerService 管理系统输入法的服务<br>LightsService 管理光传感器的服务<br>LocationManagerService 管理定位和位置的服务<br>LockSettingsService 管理系统锁屏设置的服务<br>MountService 管理系统存储设备挂载和卸载的服务<br>NetWorkManagementService 管理系统网络的服务<br>NetWorkPolicyManagerService 管理网络连接策略的服务<br>NetWorkStatsService 管理网络连接状态的服务<br>NetWorkTimeUpdateService 根据网络时间更新本地时间的服务<br>NotificationManagerService 管理系统通知的服务<br>PackageManagerService 管理应用包的服务<br>PowerManagerService 管理系统电源的服务<br>PrintManagerService 管理打印的服务<br>RecognitionManagerService 管理身份识别的服务<br>SamplingProfilerService 记录和分析系统启动性能的服务<br>SchedulingPolicyService 管理系统调度策略的服务<br>SearchManagerServcie 管理系统搜索功能的服务<br>SerialServie 管理系统串口设备的服务<br>StatusBarManagerService 管理系统状态栏的服务<br>TelephonyRegistry 监听和管理通话事件和状态的服务<br>TextServicesManagerService 文本拼写检查的服务<br>UiModeManagerService 设置和管理系统UI模式的服务<br>UsbService 管理USB连接的服务<br>UserManagerService 管理系统用户身份信息的服务<br>VibratorService 管理系统振动器的服务<br>ＷallpaperManagerService 管理系统桌面背景墙纸的服务<br>WifiP2pService 管理Wifi点对点连接的服务<br>WifiService 管理系统Wifi设备的服务<br>WindowManagerService 管理窗口的服务，安卓系统的核心服务</p>
+</blockquote>
+<p>这些服务都会注册到Service Manager中去,完成ServcieManager对服务的管理</p>
+<p>需要注意的是,由System Server创建的这些服务,都是存在于System Server进程中的线程</p>
+<p>举例说明一下</p>
+<blockquote>
+<p>servicemanager是init的子进程</p>
+<p>Zygote是init的子进程，fork出来所有的虚拟机</p>
+<p>system server是Zygote的子进程</p>
+</blockquote>
+</li>
+</ol>
+<ol>
+<li><p><strong>Home启动</strong></p>
+<p>当所有的任务启动后,会通过ActivityManager启动Home界面</p>
+<p>同时发送ACTION_BOOT_COMPLETED广播</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.wangzhumo.com/Android-Source/Handler通讯机制分析/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1750,167 +1946,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.wangzhumo.com/Android/Android项目中使用Timber-Logger日志输出/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="wangzhumo">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/headimage.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="王诛魔">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/Android/Android项目中使用Timber-Logger日志输出/" itemprop="url">Android项目中使用Timber + Logger日志输出</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-07T17:48:58+08:00">2018-02-07</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>不啰嗦了,直接开始.</p>
-<h4 id="添加依赖"><a href="#添加依赖" class="headerlink" title="添加依赖"></a>添加依赖</h4><blockquote>
-<p>Logger   <a href="https://github.com/orhanobut/logger" target="_blank" rel="noopener">orhanobut/Logger</a></p>
-<p>Timber  <a href="https://github.com/JakeWharton/timber" target="_blank" rel="noopener">JakeWharton/timber</a></p>
-</blockquote>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//logger</span></span><br><span class="line">implementation <span class="string">'com.orhanobut:logger:2.1.1'</span></span><br><span class="line"><span class="comment">//timber</span></span><br><span class="line">implementation <span class="string">'com.jakewharton.timber:timber:4.6.0'</span></span><br></pre></td></tr></table></figure>
-<h4 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h4><p>我放在了我的Application.java中初始化的</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 初始化Timber</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">initTimber</span><span class="params">()</span> </span>&#123;</span><br><span class="line">     	<span class="comment">//配置Logger</span></span><br><span class="line">       FormatStrategy formatStrategy = PrettyFormatStrategy.newBuilder()</span><br><span class="line">               .showThreadInfo(<span class="keyword">true</span>)   </span><br><span class="line">               .methodCount(<span class="number">2</span>)</span><br><span class="line">               .methodOffset(<span class="number">7</span>)</span><br><span class="line">               .tag(<span class="string">"MY_LOG"</span>)</span><br><span class="line">               .build();</span><br><span class="line">     	<span class="comment">//配置Logger在Debug时不打印</span></span><br><span class="line">       Logger.addLogAdapter(<span class="keyword">new</span> AndroidLogAdapter(formatStrategy)&#123;</span><br><span class="line">           <span class="meta">@Override</span></span><br><span class="line">           <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isLoggable</span><span class="params">(<span class="keyword">int</span> priority, String tag)</span> </span>&#123;</span><br><span class="line">               <span class="keyword">return</span> BuildConfig.DEBUG;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;);</span><br><span class="line">     	<span class="comment">//给Timber一个树...大神这么打比喻的 😆</span></span><br><span class="line">       Timber.plant(<span class="keyword">new</span> Timber.DebugTree()&#123;</span><br><span class="line">           <span class="meta">@Override</span></span><br><span class="line">           <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">log</span><span class="params">(<span class="keyword">int</span> priority, String tag, </span></span></span><br><span class="line"><span class="function"><span class="params">                              @NotNull String message, Throwable t)</span> </span>&#123;</span><br><span class="line">               Logger.log(priority,tag,message,t);</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-<p><img src="https://github.com/orhanobut/logger/blob/master/art/logger_output.png" alt="logger"></p>
-<p>其中:</p>
-<p><code>showThreadInfo(true)</code>  是否显示ThreadInfo</p>
-<p><code>methodCount(2)</code>        日志输出时显示几行</p>
-<p><code>methodOffset(7)</code>      方法偏移量,默认是5,这个自己调大,调小看看就明白了</p>
-<p><code>tag(&quot;MY_LOG&quot;)</code>          自定义的Tag,默认值是PRETTY_LOGGER</p>
-<h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Timber.e(<span class="string">"下载状态发生改变 = %s"</span>, downLoadInfo.status )</span><br><span class="line">Timber.e(<span class="string">"下载进度 = %d"</span>, mBindingView.progressBar.progress )</span><br></pre></td></tr></table></figure>
-<p>logger负责生成message的方法</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> String <span class="title">createMessage</span><span class="params">(String message, Object... args)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> args == <span class="keyword">null</span> || args.length == <span class="number">0</span> ? message : String.format(message, args);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><code>String.format(message, args)</code>这就赋予了我们在写信息的时候使用占位符.记得要符合format的格式哦</p>
-<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>其实按我现在的需求,Logger完全符合我,为什么加上Timber那?</p>
-<p>Timber可以做到分发,到时候我可以加上 DiskFileTree  …  什么的,方便后期有变化的时候修改</p>
-<p>然而,我在Logger里发现了一个类</p>
-<p><code>com.orhanobut.logger.DiskLogAdapter</code></p>
-<p>原来它已经支持写到本地了.. 宝宝心里苦</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1962,7 +1997,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">43</span>
+                    <span class="site-state-item-count">44</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2050,7 +2085,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">22</span>
+                      
+                    
+                    <span class="site-state-item-count">23</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

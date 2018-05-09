@@ -5,15 +5,16 @@
     <url>%2Funcategorized%2FAndroid%E7%9A%84%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B%2F</url>
     <content type="text"><![CDATA[系统结构 应用层 即为开发出来的一些app,当然还包括了一些系统App 应用框架层(Java API Framework) 这一层由java编写,提供给我们平时开发使用的API,主要的一些组件: Manager Activity Manager , Window Manager , Package Manager ,Location Manager Notification Manager,Resource Manager,Telephony Manager Content Providers View System 系统运行库层 C/C++程序库和Android运行时库 硬件抽象层(HAL) Linux内核层 Android的启动主要过程 init进程 init进程是由内核启动的,是用户空间的第一个进程,可以说是一个root进程 当init进程启动后会创建挂载系统目录,设备节点, 解析init.rc 和 init.hardware.rc,启动属性服务，以及一系列的服务和进程 本地守护进程 启动 servicemanager 管理binder的通讯 surfaceflinger UI mediaserver 音视频,相机 netd 蓝牙、wifi、usb等 adbd rild installd 需要注意的是这些都是一个独立的Linux进程 Native系统服务 运行在本地守护进程中,所属进程初始化的时候会将Native系统服务注册到ServiceManager中,方便我们通过Binder机制调用Native系统服务 Java服务 再创建本地服务的同时,init进程还会创建Zygote进程 Zygote也是Android中相当重要的一个进程了,Zygote进程会建立一个Dalvik VM并且启动 System Server系统服务 System Server将启动Android Service AccessibilityManagerService 截获用户输入，并根据输入给用户一些额外的反馈，起到辅助效果的服务AccountManagerService 管理设备中所有账号的服务，包括账号、密码、授权管理功能ActivityManagerService 管理所有组件的服务，安卓系统的核心服务 AlarmManagerService 管理闹钟的服务AppWidgetService 管理APP widgets的工作，包括加载、删除、布局等AssetAtlasService 将一些系统图片资源合并成一个纹理图传给GPU达到硬件加速的效果的服务AudioService 管理音频的服务BackupManagerService 管理备份和应用数据的服务BatteryService 管理电池的服务BluetoothManagerService 管理系统蓝牙的服务CertBlacklister 更新系统SSL证书的公共秘钥和序列号黑名单的服务ClipboardService 管理系统剪贴板的服务CommonTimeManagementService 管理公共时间配置的服务ConnectivityService 管理网络连接的服务ContentService 管理系统数据更新通知的服务，和ContentProvider密切相关CountryDetectorService 检测当前系统所属国家的服务DevicePolicyManagerService 管理系统设备配置的服务DeviceStorageMonitorService 管理系统存储空间的服务，当存储空间小于某个阈值时，会发出警告广播DiskStateService 管理系统存储空间统计的服务DisplayManagerService 管理显示设备的服务DreamManagerService 管理屏幕保护的服务DropBoxManagerService 生成和管理系统运行中日志文件的服务EntropyMixer 加载和保存随机信息的服务IdleMaintenanceService 管理系统在空闲时执行维护任务的服务InputManagerService 管理触屏输入的服务InputMethodManagerService 管理系统输入法的服务LightsService 管理光传感器的服务LocationManagerService 管理定位和位置的服务LockSettingsService 管理系统锁屏设置的服务MountService 管理系统存储设备挂载和卸载的服务NetWorkManagementService 管理系统网络的服务NetWorkPolicyManagerService 管理网络连接策略的服务NetWorkStatsService 管理网络连接状态的服务NetWorkTimeUpdateService 根据网络时间更新本地时间的服务NotificationManagerService 管理系统通知的服务PackageManagerService 管理应用包的服务PowerManagerService 管理系统电源的服务PrintManagerService 管理打印的服务RecognitionManagerService 管理身份识别的服务SamplingProfilerService 记录和分析系统启动性能的服务SchedulingPolicyService 管理系统调度策略的服务SearchManagerServcie 管理系统搜索功能的服务SerialServie 管理系统串口设备的服务StatusBarManagerService 管理系统状态栏的服务TelephonyRegistry 监听和管理通话事件和状态的服务TextServicesManagerService 文本拼写检查的服务UiModeManagerService 设置和管理系统UI模式的服务UsbService 管理USB连接的服务UserManagerService 管理系统用户身份信息的服务VibratorService 管理系统振动器的服务ＷallpaperManagerService 管理系统桌面背景墙纸的服务WifiP2pService 管理Wifi点对点连接的服务WifiService 管理系统Wifi设备的服务WindowManagerService 管理窗口的服务，安卓系统的核心服务 这些服务都会注册到Service Manager中去,完成ServcieManager对服务的管理 需要注意的是,由System Server创建的这些服务,都是存在于System Server进程中的线程 举例说明一下 servicemanager是init的子进程 Zygote是init的子进程，fork出来所有的虚拟机 system server是Zygote的子进程 Home启动 当所有的任务启动后,会通过ActivityManager启动Home界面 同时发送ACTION_BOOT_COMPLETED广播]]></content>
       <tags>
-        <tag>Android Source</tag>
+        <tag>Android</tag>
+        <tag>Source Code</tag>
       </tags>
   </entry>
   <entry>
     <title><![CDATA[Android通讯机制分析-Handler]]></title>
-    <url>%2FAndroid-Source%2FHandler%E9%80%9A%E8%AE%AF%E6%9C%BA%E5%88%B6%E5%88%86%E6%9E%90%2F</url>
+    <url>%2FSource-Code%2FHandler%E9%80%9A%E8%AE%AF%E6%9C%BA%E5%88%B6%E5%88%86%E6%9E%90%2F</url>
     <content type="text"><![CDATA[Handler在Android世界中的地位不言而喻.这篇笔记算是简单的记录一下我对于Handler的理解. 当时第一次对Handler产生兴趣是我在知乎上看到一个问题: Android中为什么主线程不会因为Looper.loop()里的死循环卡死 Handler消息机制的构成 Handler 主要就是发送各种消息sendMessage等,以及处理消息handleMessage Message 即是传递消息的载体,有时候也会承载硬件发出的消息. Looper 这是一个循环Looper.loop,并负责将消息发送给目标. MessageQueue 消息队负责将消息发送都消息池以及在消息池中拿走消息 ​ Message类分析首先我们要看到 1234private static Message sPool;// sometimes we store linked lists of these things/*package*/ Message next; sPool声明为static 也就是说所有的Message实例共享 next则为每一个实例都有的 Message类中,一系列的obtain,如下: obtain(Handler h) obtain(Handler h, int what) obtain(Handler h, Runnable callback) … obtain() 复用机制 我们查看源码可知,他们最后都调用obtain()获得一个Message实体 12345678910111213141516171819android.os.Message#obtain()/** * Return a new Message instance from the global pool. Allows us to * avoid allocating new objects in many cases. */ public static Message obtain() &#123; synchronized (sPoolSync) &#123; if (sPool != null) &#123; Message m = sPool; sPool = m.next; m.next = null; m.flags = 0; // clear in-use flag sPoolSize--; return m; &#125; &#125; return new Message(); &#125; 可以看到,当sPool为null时才会new Message(); 如果不为null则把当前的sPool赋值给Message m 而后把sPool赋值为m.next()(也就是sPool没有赋值前它的下一个Message对象) 查看源码分析可知,有一个Message的消息池,采用的是单链表头插法,next永远指向的是下一个可复用的实例地址 所以,如果我们在代码中要使用Message实例,就尽量使用obtain()这一系列方法,而不要直接New 加入消息池 1234567891011121314151617181920212223242526272829android.os.Message#recycleUnchecked/** * Recycles a Message that may be in-use. * Used internally by the MessageQueue and Looper when disposing of queued Messages. */ void recycleUnchecked() &#123; // Mark the message as in use while it remains in the recycled object pool. // Clear out all other details. flags = FLAG_IN_USE; what = 0; arg1 = 0; arg2 = 0; obj = null; replyTo = null; sendingUid = -1; when = 0; target = null; callback = null; data = null; synchronized (sPoolSync) &#123; if (sPoolSize &lt; MAX_POOL_SIZE) &#123; next = sPool; sPool = this; sPoolSize++; &#125; &#125; &#125; 这里其实就是把无用的Message实例,加入消息池的地方. sPoolSize &lt; MAX_POOL_SIZE只要当前消息池没有到极限,就next = sPool;且sPool = this; 可以简单理解为把之前的sPool可复用对象向后移动一位,把当前这个要回收的Message置为第一个可复用对象 所以,Message主要就是装载数据,并且实现了Message的复用机制 MessageQueue类分析]]></content>
       <categories>
-        <category>Android Source</category>
+        <category>Source Code</category>
       </categories>
       <tags>
         <tag>Android</tag>
@@ -100,8 +101,8 @@
         <category>Android Studio</category>
       </categories>
       <tags>
-        <tag>Android Studio</tag>
         <tag>Android</tag>
+        <tag>Android Studio</tag>
       </tags>
   </entry>
   <entry>
@@ -243,8 +244,8 @@
         <category>Bug</category>
       </categories>
       <tags>
-        <tag>Android Studio</tag>
         <tag>Android</tag>
+        <tag>Android Studio</tag>
         <tag>Bug</tag>
       </tags>
   </entry>
@@ -418,8 +419,8 @@
         <category>Android Studio</category>
       </categories>
       <tags>
-        <tag>Android Studio</tag>
         <tag>Android</tag>
+        <tag>Android Studio</tag>
       </tags>
   </entry>
   <entry>
@@ -452,8 +453,8 @@
         <category>Android Studio</category>
       </categories>
       <tags>
-        <tag>Android Studio</tag>
         <tag>Android</tag>
+        <tag>Android Studio</tag>
       </tags>
   </entry>
   <entry>

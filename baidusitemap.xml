@@ -4,6 +4,30 @@
 
     
   <url>
+    <loc>http://www.wangzhumo.com/Android/Activity%E4%B8%8EFragment%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/</loc>
+    <lastmod>2018-05-09T10:08:36.000Z</lastmod>
+    <data>
+        <display>
+        <title>Activity与Fragment的生命周期</title>
+        <pubTime>2018-03-05T06:02:42.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>Fragment</tag>
+         
+        <tag>Activity</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://www.wangzhumo.com/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.wangzhumo.com/Source-Code/Android%E7%9A%84%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B/</loc>
     <lastmod>2018-05-09T10:07:10.411Z</lastmod>
     <data>
@@ -61,30 +85,6 @@
            
              
               <breadCrumb title="Android" url="http://www.wangzhumo.com/categories/Android/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.wangzhumo.com/Android-Source/Activity%E4%B8%8EFragment%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/</loc>
-    <lastmod>2018-03-07T06:06:48.732Z</lastmod>
-    <data>
-        <display>
-        <title>Activity与Fragment的生命周期</title>
-        <pubTime>2018-03-05T06:02:42.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-        <tag>Fragment</tag>
-         
-        <tag>Activity</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android Source" url="http://www.wangzhumo.com/categories/Android-Source/"/>
           
         </display>
     </data>
@@ -288,9 +288,9 @@
         <title>Android Studio报错Error Running app: cannot debug application</title>
         <pubTime>2017-12-26T07:26:29.000Z</pubTime>
         
-        <tag>Android Studio</tag>
-         
         <tag>Android</tag>
+         
+        <tag>Android Studio</tag>
          
         <tag>Bug</tag>
          
@@ -380,9 +380,9 @@
         <title>Android Studio 中使用tools:sample</title>
         <pubTime>2018-02-26T02:31:28.000Z</pubTime>
         
-        <tag>Android Studio</tag>
-         
         <tag>Android</tag>
+         
+        <tag>Android Studio</tag>
          
          
            
@@ -402,9 +402,9 @@
         <title>Android Studio 导入 Vitamio及横竖屏切换</title>
         <pubTime>2017-12-25T01:28:42.000Z</pubTime>
         
-        <tag>Android Studio</tag>
-         
         <tag>Android</tag>
+         
+        <tag>Android Studio</tag>
          
          
            
@@ -444,9 +444,9 @@
         <title>Android Studio 使用正式签名debug调试</title>
         <pubTime>2017-12-25T01:38:59.000Z</pubTime>
         
-        <tag>Android Studio</tag>
-         
         <tag>Android</tag>
+         
+        <tag>Android Studio</tag>
          
          
            

@@ -49,10 +49,10 @@
   </entry>
   <entry>
     <title><![CDATA[Activity与Fragment的生命周期]]></title>
-    <url>%2FAndroid-Source%2FActivity%E4%B8%8EFragment%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%2F</url>
+    <url>%2FAndroid%2FActivity%E4%B8%8EFragment%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%2F</url>
     <content type="text"><![CDATA[前言做Android开发好些年了,这些基础的知识,完完整整的在博客上写一次. Activity生命周期必不可少的一张图,来自Google Android developer 的文档上 回调方法简述 onCreate() 当Activity创建时,会回调该方法,常用于初始化View 或其他的一些功能的初始化 onStart() Activity已经初始化完毕,此时的页面是可见状态,则回调onStart();方法 Activity启动：onCreate() -&gt; onStart() -&gt; onResume() onResume() 当Activity可见,并且获得焦点,可以与用户交互时回调 在我们处理一些视屏操作,或者是Fragment懒加载等都可以用到 onPause() 当调用onPause()时,说明Activity被阻挡,部分UI已经不可见了,但是Activity的UI并没有完全消失. onStop() 当Activity完全不可见,且到了后台之后,如果系统内存不足,系统可能会杀死当前Activity 在这个方法中可以取消一些动画效果等 onDestory() Activity退出,销毁 常用于销毁,回收资源 经典场景1.正常启动 系统调用onCreate方法 , 然后调用onStart() , 最后调用 onResume() ,用户可操作. 123E/MainActivity: ---- onCreate ----E/MainActivity: ---- onStart ----E/MainActivity: ---- onResume ---- 2.正常退出 Activity先失去焦点不可交互 123E/MainActivity: ---- onPause ----E/MainActivity: ---- onStop ----E/MainActivity: ---- onDestroy ---- 2.弹出Dialog MainActivity什么log也没有打印,说明不对Activity造成影响 3.跳转一个透明的Activity页面(1像素的同理) MainActivity只调用了onPause() 因为MainActivity的UI被遮挡了 1E/MainActivity: ---- onPause ---- 4.从被遮挡状态恢复 1E/MainActivity: ---- onResume ---- 6.锁屏 12E/MainActivity: ---- onPause ----E/MainActivity: ---- onStop ---- 此时,MainActivity已经在后台了. 7.从锁屏恢复 12E/MainActivity: ---- onStart ----E/MainActivity: ---- onResume ---- 可以发现,不仅仅走了onResume() ,还走了一次onStart() 8.横竖屏切换 正常切换 123456789E/MainActivity: ---- onPause ----E/MainActivity: ---- onStop ----E/MainActivity: ---- onDestroy ----E/MainActivity: ---- onCreate ----E/MainActivity: ---- onStart ----E/MainActivity: ---- onResume ----如果你什么都不设置,直接切换是这样的. 保留Activity的切换 12345678910我在manifest.xml文件中,添加了&lt;activity android:name=&quot;.MainActivity&quot; android:configChanges=&quot;orientation|screenSize&quot;&gt; &lt;intent-filter&gt; &lt;action android:name=&quot;android.intent.action.MAIN&quot; /&gt; &lt;category android:name=&quot;android.intent.category.LAUNCHER&quot; /&gt;&lt;/intent-filter&gt;&lt;/activity&gt; 此时: Activity不会被销毁,从而重新创建,而是调用onConfigurationChanged 12345@Override public void onConfigurationChanged(Configuration newConfig) &#123; super.onConfigurationChanged(newConfig); //do somethings&#125; ​ Fragment生命周期惯例,如图: 回调方法简述其中onAttach() onCreateView() onActivityCreated() onDestroy() onDetach() 和Activity的不一致 onAttach() Fragment与它所依赖的Activity建立关联 onCreateView() 这里是给Fragment创建视图用的,在onCreate()中初始化Fragment,但是视图等还是没有加载上去的 onActivityCreated() 如果调用该方法,说明Fragment依赖的Activity中onCreate()已经执行完毕 onDestroyView() Fragment中的布局销毁,移除 要注意的是,此时Fragment与它所依赖的Activity还是关联的 onDestroy() 此时,Fragment被销毁 onDetach() 解除与Activity的关联 PS: Fragment中的onResume()并不十分准确,所以如果要做懒加载,要判断fragment不能使用onResume判断 经典场景1.正常启动 真的是超级多啊 1234567E/BlankFragment: ---- onAttach ---- 关联ActivityE/BlankFragment: ---- onCreate ---- Fragment初始化E/BlankFragment: ---- onCreateView ---- 创建Fragment的布局E/BlankFragment: ---- onViewCreated ---- onCreateView执行完后被触发E/BlankFragment: ---- onActivityCreated ---- 关联的Activity OnCreate()执行完毕后触发E/BlankFragment: ---- onStart ---- Fragment可见E/BlankFragment: ---- onResume ---- Fragment可交互,一般不使用它来判断 2.正常退出(或者是它关联的Activity被销毁了) 12345E/BlankFragment: ---- onPause ----E/BlankFragment: ---- onStop ----E/BlankFragment: ---- onDestroyView ----E/BlankFragment: ---- onDestroy ----E/BlankFragment: ---- onDetach ---- 3.进入后台 12E/BlankFragment: ---- onPause ----E/BlankFragment: ---- onStop ---- 4.从锁屏到解锁 123456E/BlankFragment: ---- onPause ----E/BlankFragment: ---- onSaveInstanceState ----E/BlankFragment: ---- onStop ----E/BlankFragment: ---- onStart ----E/BlankFragment: ---- onResume ---- 5.切换到OtherFragment 123E/BlankFragment: ---- onPause ----E/BlankFragment: ---- onStop ----E/BlankFragment: ---- onDestroyView ---- 6.从OtherFragment切换回本Fragment 1234E/BlankFragment: ---- onCreateView ----E/BlankFragment: ---- onActivityCreated ----E/BlankFragment: ---- onStart ---- E/BlankFragment: ---- onResume ----]]></content>
       <categories>
-        <category>Android Source</category>
+        <category>Android</category>
       </categories>
       <tags>
         <tag>Android</tag>
@@ -104,8 +104,8 @@
         <category>Android Studio</category>
       </categories>
       <tags>
-        <tag>Android Studio</tag>
         <tag>Android</tag>
+        <tag>Android Studio</tag>
       </tags>
   </entry>
   <entry>
@@ -247,8 +247,8 @@
         <category>Bug</category>
       </categories>
       <tags>
-        <tag>Android Studio</tag>
         <tag>Android</tag>
+        <tag>Android Studio</tag>
         <tag>Bug</tag>
       </tags>
   </entry>
@@ -422,8 +422,8 @@
         <category>Android Studio</category>
       </categories>
       <tags>
-        <tag>Android Studio</tag>
         <tag>Android</tag>
+        <tag>Android Studio</tag>
       </tags>
   </entry>
   <entry>
@@ -456,8 +456,8 @@
         <category>Android Studio</category>
       </categories>
       <tags>
-        <tag>Android Studio</tag>
         <tag>Android</tag>
+        <tag>Android Studio</tag>
       </tags>
   </entry>
   <entry>

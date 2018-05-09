@@ -4,6 +4,28 @@
 
     
   <url>
+    <loc>http://www.wangzhumo.com/Source-Code/Android%E7%9A%84%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B/</loc>
+    <lastmod>2018-05-09T10:07:10.411Z</lastmod>
+    <data>
+        <display>
+        <title>Android的启动流程</title>
+        <pubTime>2018-05-09T07:00:12.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>Source Code</tag>
+         
+         
+           
+             
+              <breadCrumb title="Source Code" url="http://www.wangzhumo.com/categories/Source-Code/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.wangzhumo.com/Source-Code/Handler%E9%80%9A%E8%AE%AF%E6%9C%BA%E5%88%B6%E5%88%86%E6%9E%90/</loc>
     <lastmod>2018-05-09T09:59:02.204Z</lastmod>
     <data>
@@ -20,25 +42,6 @@
              
               <breadCrumb title="Source Code" url="http://www.wangzhumo.com/categories/Source-Code/"/>
           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.wangzhumo.com/uncategorized/Android%E7%9A%84%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B/</loc>
-    <lastmod>2018-05-09T09:58:48.594Z</lastmod>
-    <data>
-        <display>
-        <title>Android的启动流程</title>
-        <pubTime>2018-05-09T07:00:12.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-        <tag>Source Code</tag>
-         
-         
-           
         </display>
     </data>
     </url>
@@ -285,9 +288,9 @@
         <title>Android Studio报错Error Running app: cannot debug application</title>
         <pubTime>2017-12-26T07:26:29.000Z</pubTime>
         
-        <tag>Android</tag>
-         
         <tag>Android Studio</tag>
+         
+        <tag>Android</tag>
          
         <tag>Bug</tag>
          
@@ -377,9 +380,9 @@
         <title>Android Studio 中使用tools:sample</title>
         <pubTime>2018-02-26T02:31:28.000Z</pubTime>
         
-        <tag>Android</tag>
-         
         <tag>Android Studio</tag>
+         
+        <tag>Android</tag>
          
          
            
@@ -399,9 +402,9 @@
         <title>Android Studio 导入 Vitamio及横竖屏切换</title>
         <pubTime>2017-12-25T01:28:42.000Z</pubTime>
         
-        <tag>Android</tag>
-         
         <tag>Android Studio</tag>
+         
+        <tag>Android</tag>
          
          
            
@@ -441,9 +444,9 @@
         <title>Android Studio 使用正式签名debug调试</title>
         <pubTime>2017-12-25T01:38:59.000Z</pubTime>
         
-        <tag>Android</tag>
-         
         <tag>Android Studio</tag>
+         
+        <tag>Android</tag>
          
          
            

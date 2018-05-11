@@ -285,6 +285,495 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.wangzhumo.com/Source-Code/Android-Binder机制-一/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wangzhumo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/headimage.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="王诛魔">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/Source-Code/Android-Binder机制-一/" itemprop="url">Android Binder机制(一)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-11T13:56:25+08:00">2018-05-11</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Source-Code/" itemprop="url" rel="index"><span itemprop="name">Source Code</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.wangzhumo.com/Java/线程与进程的异同以及Android中的IPC机制/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wangzhumo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/headimage.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="王诛魔">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/Java/线程与进程的异同以及Android中的IPC机制/" itemprop="url">线程与进程的异同以及Android中的IPC机制</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-10T17:16:06+08:00">2018-05-10</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="线程与进程"><a href="#线程与进程" class="headerlink" title="线程与进程"></a>线程与进程</h3><p>Google  Doc (<a href="https://developer.android.com/guide/components/processes-and-threads" target="_blank" rel="noopener">https://developer.android.com/guide/components/processes-and-threads</a>)</p>
+<ul>
+<li><p>进程是资源分配的最小单位，线程是cpu调度的最小单位.</p>
+</li>
+<li><p>进程是应用程序的执行实例,一个进程中可以包含多个线程,</p>
+<p>而一个进程的创建分配是要消耗较大的性能的,相比来说线程就要比进程的开销小.</p>
+</li>
+<li><p>对于进程来说不共享资源,内存是独立的.而线程共享它所在的线程的资源,内存.</p>
+</li>
+<li><p>进程间的通信就要更加麻烦,需要使用IPC( Inter-Proscess Communication)进程间的通讯</p>
+<p>线程方便很多,但是线程间的同步又是一个较为大的课题了.</p>
+<p>​</p>
+<blockquote>
+<p>想强调的是，线程关注的是中央处理器的运行，而不是进程那样关注内存等资源的管理。</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="Android中的IPC机制"><a href="#Android中的IPC机制" class="headerlink" title="Android中的IPC机制"></a>Android中的IPC机制</h3><p>如下图所示:(已经不知道哪里的配图了…感谢分享)</p>
+<p><img src="/images/android_ipc.png" alt=""></p>
+<h4 id="IPC简介"><a href="#IPC简介" class="headerlink" title="IPC简介"></a>IPC简介</h4><p>IPC(Inter-Process Communication) 进程间通信</p>
+<p>使用场景:</p>
+<p>在Android程序中，一般情况下一个程序就是一个进程</p>
+<ol>
+<li><p>App间的通信,常见的如需要使用其他App的数据</p>
+</li>
+<li><p>一个App使用多进程,比如指定运行线程<code>android:process=&quot;:name&quot;</code></p>
+<blockquote>
+<p>需要注意的是,如果一个App使用多进程,Application也会多次创建</p>
+</blockquote>
+</li>
+</ol>
+<h4 id="Bundle"><a href="#Bundle" class="headerlink" title="Bundle"></a>Bundle</h4><p>常见于Activity,service中传递数据</p>
+<p>需要注意的是,bundle中的数据必须支持序列化(Serializable,Parcelable)</p>
+<h4 id="文件共享"><a href="#文件共享" class="headerlink" title="文件共享"></a>文件共享</h4><p>SharedPreference就是这种实现的.</p>
+<p>适合对同步要求不高的使用方式,需要注意处理好并发的问题.</p>
+<h4 id="Messenger"><a href="#Messenger" class="headerlink" title="Messenger"></a>Messenger</h4><p>Messenger 对 AIDL 进行了封装，它实现了一种基于消息的进程间通信的方式</p>
+<p><code>frameworks/base/core/java/android/os/IMessenger.aidl</code></p>
+<p>它的AIDL文件就在这里保存着!</p>
+<h4 id="AIDL"><a href="#AIDL" class="headerlink" title="AIDL"></a>AIDL</h4><p>AIDL（Android Interface definition language） 是 Android 提供的一种进程间通信 (IPC) 机制</p>
+<p>需要注意的是AIDL支持的数据类型与Java接口支持的数据类型有些不同:</p>
+<ol>
+<li>所有基础类型（int, char…）</li>
+<li>String，List，Map</li>
+<li>所有Parcelable的类</li>
+</ol>
+<p>并且要根据需要添加 in out 的关键词</p>
+<h4 id="ContentProvider"><a href="#ContentProvider" class="headerlink" title="ContentProvider"></a>ContentProvider</h4><p>主要是针对数据库使用的,最常见的例子就是Android中有很多已经定义好的ContentProvider</p>
+<h4 id="Socket"><a href="#Socket" class="headerlink" title="Socket"></a>Socket</h4><p>说道这里,就不得不提一下<strong>Binder</strong>了</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.wangzhumo.com/Java/Java中的内存模型/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wangzhumo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/headimage.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="王诛魔">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/Java/Java中的内存模型/" itemprop="url">Java中的内存模型</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-09T22:26:54+08:00">2018-05-09</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><img src="/images/java_heap_stack.png" alt="java_heap_stack"></p>
+<h4 id="1-堆"><a href="#1-堆" class="headerlink" title="1. 堆"></a>1. 堆</h4><p>在JVM中只有一个,java回收机制主要就是作用于这一块</p>
+<p>堆主要是用来存放存储对象的内容及其本身的.</p>
+<h4 id="2-方法区"><a href="#2-方法区" class="headerlink" title="2. 方法区"></a>2. 方法区</h4><p>方法区也和堆一样,是被线程共享的.</p>
+<p>存放了类的信息(方法,字段,名称),静态变量,常量</p>
+<p>Java1.7之前,字符串常量池也是放在这里的,但是1.7以后移动到堆里面去了</p>
+<h4 id="3-虚拟机栈"><a href="#3-虚拟机栈" class="headerlink" title="3. 虚拟机栈"></a>3. 虚拟机栈</h4><p><img src="/images/java_stack.png" alt="java_stack"></p>
+<p>每一个栈帧的出入栈都是一个方法被调起直到结束返回的过程.</p>
+<p>每个线程都会有一个自己的Java栈，栈帧中包括</p>
+<ul>
+<li><p>局部变量表(Local Variables)</p>
+<p>方法中的局部变量,函数的参数等.对于基础类型的变量直接存储他的值,而引用类型的变量</p>
+<p>则存储的是指向对象的引用</p>
+</li>
+<li><p>操作数栈(Operand Stack)</p>
+</li>
+<li><p>指向运行时常量池的引用(Reference to runtime constant pool)</p>
+<p>保证方法可以使用当前类的常量</p>
+</li>
+<li><p>方法返回地址(Return Address)</p>
+<p>执行一个方法完成后需要返回调用它的地方</p>
+</li>
+<li><p>附加信息</p>
+</li>
+</ul>
+<h4 id="4-程序计数器"><a href="#4-程序计数器" class="headerlink" title="4. 程序计数器"></a>4. 程序计数器</h4><p>Program Counter Register 也称作为PC寄存器,保存的是程序当前执行的指令的地址</p>
+<h4 id="5-本地方法栈"><a href="#5-本地方法栈" class="headerlink" title="5.本地方法栈"></a>5.本地方法栈</h4><p>本地方法栈则是为执行本地方法（Native Method）服务的</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.wangzhumo.com/Source-Code/Android的启动流程/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1501,469 +1990,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.wangzhumo.com/Android-Test/Android-单元测试-一/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="wangzhumo">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/headimage.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="王诛魔">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/Android-Test/Android-单元测试-一/" itemprop="url">Android 单元测试(一)</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-26T14:25:49+08:00">2018-02-26</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android-Test/" itemprop="url" rel="index"><span itemprop="name">Android Test</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="初识单元测试"><a href="#初识单元测试" class="headerlink" title="初识单元测试"></a>初识单元测试</h4><p>当项目越来越大的时候,打包 &gt; 测试 &gt; 改代码 &gt; 打包 &gt; 测试 ….这样的流程既费时也费力.</p>
-<p>所以,了解一下单元测试,看看是否能够解决这个问题.</p>
-<p>(平时太懒了,就没正经的了解过Android这边的单元测试,没有一个确切的概念)</p>
-<p>那么,我学习单元测试的原因竟然是 <strong>因为我懒</strong></p>
-<p>当我们建立一个项目的时候,Android Studio总会去自动导入一个包</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">testImplementation &apos;junit:junit:4.12&apos;</span><br></pre></td></tr></table></figure>
-<p>这个就是传说中的   Junit 了,这玩意针对Java的,所以不涉及到Android部分的测试可以使用</p>
-<p>跟着介绍也打了一个例子:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//在commonlib中写了一个Calculator,里面简单的加法</span></span><br><span class="line"><span class="keyword">package</span> com.wangzhumo.app.commonlib.utils;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Calculator</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> a + b;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">verity</span><span class="params">(String phone)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (phone == <span class="keyword">null</span> || phone.isEmpty()) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"phone cannot be empty"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> phone;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//在主项目中</span></span><br><span class="line"><span class="comment">//test目录下</span></span><br><span class="line"><span class="keyword">package</span> com.wangzhumo.app.test;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CalculatorTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    Calculator calculator;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Before</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">initCalculator</span><span class="params">()</span></span>&#123;</span><br><span class="line">        calculator = <span class="keyword">new</span> Calculator();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testCalculator</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">        <span class="keyword">int</span> sum = calculator.add(<span class="number">1</span>,<span class="number">5</span>);</span><br><span class="line">        Assert.assertEquals(<span class="number">6</span>,sum);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 加入提示信息</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testCalculatorWithMessage</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">        <span class="keyword">int</span> sum = calculator.add(<span class="number">1</span>,<span class="number">5</span>);</span><br><span class="line">        <span class="comment">//assertEquals 方法前面加一个 string 当抛出异常的时候会输出这个message</span></span><br><span class="line">        <span class="comment">//可以让我们更清楚的明白是什么问题</span></span><br><span class="line">        Assert.assertEquals(<span class="string">"你的数学太烂了"</span>,<span class="number">5</span>,sum);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 如果抛出IllegalArgumentException异常才算通过</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Test</span>(expected = IllegalArgumentException.class)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testVerity</span><span class="params">()</span></span>&#123;</span><br><span class="line">        calculator.verity(<span class="string">""</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>然后选中方法直接执行比如 : testCalculatorWithMessage()</p>
-<p>选中Run ‘testCalculatorWithMessage()’ 就可以看到输出 (控制台中  Run 面板)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">java.lang.AssertionError: 你的数学太烂了 </span><br><span class="line">Expected :5</span><br><span class="line">Actual   :6</span><br><span class="line"> &lt;Click to see difference&gt;</span><br></pre></td></tr></table></figure>
-<h4 id="Android-中的单元测试"><a href="#Android-中的单元测试" class="headerlink" title="Android 中的单元测试"></a>Android 中的单元测试</h4><p>上面简单的使用 Junit 就可以测试Java中的方法,但是与我的需求并不符合,所以继续看</p>
-<p>使用<strong>robolectric</strong></p>
-<blockquote>
-<p><a href="https://github.com/robolectric/robolectric" target="_blank" rel="noopener">https://github.com/robolectric/robolectric</a></p>
-<p><a href="http://robolectric.org/" target="_blank" rel="noopener">http://robolectric.org</a></p>
-</blockquote>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.wangzhumo.com/Android-Studio/Android-Studio-中使用tools-sample/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="wangzhumo">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/headimage.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="王诛魔">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/Android-Studio/Android-Studio-中使用tools-sample/" itemprop="url">Android Studio 中使用tools:sample</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-26T10:31:28+08:00">2018-02-26</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android-Studio/" itemprop="url" rel="index"><span itemprop="name">Android Studio</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p>Google 官方文档</p>
-<p><a href="https://developer.android.com/studio/write/tool-attributes.html#toolssample_resources" target="_blank" rel="noopener">https://developer.android.com/studio/write/tool-attributes.html#toolssample_resources</a></p>
-</blockquote>
-<p>他所能达到的效果就是,提供给你一些数据,并直接在 Preview 或者 Design面板中查看样式</p>
-<h4 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h4><p>不如放一个图来的直观</p>
-<p>item中使用 sample资源</p>
-<p><img src="/images/tools_item.png" alt="item"></p>
-<p>将item加入到list中查看效果</p>
-<p><img src="/images/tools_list.png" alt="list"></p>
-<h4 id="准备使用tools"><a href="#准备使用tools" class="headerlink" title="准备使用tools"></a>准备使用tools</h4><h5 id="Android-Studio"><a href="#Android-Studio" class="headerlink" title="Android Studio"></a>Android Studio</h5><p>注意要使用Android Studio 3.0 + 的版本</p>
-<h5 id="命名空间"><a href="#命名空间" class="headerlink" title="命名空间"></a>命名空间</h5><p><code>xmlns:tools=&quot;http://schemas.android.com/tools&quot;</code></p>
-<p>然后就可以使用tools的相关属性了</p>
-<p>在google文档中我们可以看到有很多其他可用的,具体使用效果请自行查阅文档.</p>
-<p>如:</p>
-<p><strong>context</strong>   <strong>showIn</strong>  <strong>layout</strong>   <strong>listitem</strong>   <strong>layoutManager</strong>     <strong>itemCount</strong></p>
-<p>使用方式为:</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">layout</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xmlns:tools</span>=<span class="string">"http://schemas.android.com/tools"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">RelativeLayout</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">tools:context</span>=<span class="string">"com.wangzhumo.app.tips.page.NearbyFragment"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">com.jcodecraeer.xrecyclerview.XRecyclerView</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:id</span>=<span class="string">"@+id/recycleview"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">tools:layoutManager</span>=<span class="string">"GridLayoutManager"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">tools:itemCount</span>=<span class="string">"5"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">tools:spanCount</span>=<span class="string">"2"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">tools:listitem</span>=<span class="string">"@layout/nearby_list_item"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">com.jcodecraeer.xrecyclerview.XRecyclerView</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">RelativeLayout</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">layout</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h4 id="可用资源"><a href="#可用资源" class="headerlink" title="可用资源"></a>可用资源</h4><h5 id="google已提供的资源"><a href="#google已提供的资源" class="headerlink" title="google已提供的资源"></a>google已提供的资源</h5><p><img src="/images/tools_google.png" alt="google"></p>
-<p>这些资源可以在xml中直接使用,也可以在自定义的资源中使用</p>
-<p>使用方式为:</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 这里面的资源在</span></span><br><span class="line"><span class="comment">Android Studio/Applications/Android Studio.app/Contents/plugins/android/lib/sampleData/backgrounds/scenic--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ImageView</span></span></span><br><span class="line"><span class="tag">    <span class="attr">...</span></span></span><br><span class="line"><span class="tag">    <span class="attr">tools:src</span>=<span class="string">"@tools:sample/backgrounds/scenic"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ImageView</span>&gt;</span>    </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 这个是一段假文章 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">TextView</span></span></span><br><span class="line"><span class="tag">    <span class="attr">...</span>      </span></span><br><span class="line"><span class="tag">    <span class="attr">tools:text</span>=<span class="string">"@tools:sample/lorem/random"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">TextView</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h5 id="自定义的资源"><a href="#自定义的资源" class="headerlink" title="自定义的资源"></a>自定义的资源</h5><p><img src="/images/tools_new.png" alt="new"></p>
-<p>创建一个 sampledata 文件夹</p>
-<p><img src="/images/tools_files.png" alt="file"></p>
-<ul>
-<li><p><code>sampledata/images</code> 文件中都是些图片资源</p>
-</li>
-<li><p><code>description</code>文件中是描述性文字, 注意<strong>每一行为一项个元素</strong></p>
-</li>
-<li><p><code>hotels</code> 也是一些文字,不过是一些酒店名字</p>
-</li>
-<li><p><code>hotel.json</code></p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"data"</span>:[</span><br><span class="line">    &#123;  </span><br><span class="line">      "name":"@sample/hotels",    //这里使用的是自己定义的  hotels 文件中的字段</span><br><span class="line">      "img":"@tools:sample/backgrounds/scenic",</span><br><span class="line">      "desc":"@sample/description"   //这里使用的是自己定义的  description 文件中的字段</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">"name"</span>:<span class="string">"@sample/hotels"</span>,</span><br><span class="line">      "img":"@tools:sample/backgrounds/scenic",  //这里的就是自带的资源了</span><br><span class="line">      "desc":"@sample/description"</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">"name"</span>:<span class="string">"@sample/hotels"</span>,</span><br><span class="line">      "img":"@sample/images",  //这种就是/images 文件中的资源</span><br><span class="line">      "desc":"@sample/description"</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">"name"</span>:<span class="string">"@sample/hotels"</span>,</span><br><span class="line">      <span class="attr">"img"</span>:<span class="string">"@tools:sample/backgrounds/scenic"</span>,</span><br><span class="line">      <span class="attr">"desc"</span>:<span class="string">"@sample/description"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">"name"</span>:<span class="string">"@sample/hotels"</span>,</span><br><span class="line">      <span class="attr">"img"</span>:<span class="string">"@tools:sample/backgrounds/scenic"</span>,</span><br><span class="line">      <span class="attr">"desc"</span>:<span class="string">"@sample/description"</span></span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>使用方式为:</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">TextView</span></span></span><br><span class="line"><span class="tag">	<span class="attr">...</span></span></span><br><span class="line"><span class="tag">    <span class="attr">tools:text</span>=<span class="string">"@sample/hotels"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">ImageView</span></span></span><br><span class="line"><span class="tag">	<span class="attr">...</span></span></span><br><span class="line"><span class="tag">    <span class="attr">tools:src</span>=<span class="string">"@sample/images"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.wangzhumo.com/uncategorized/2018-02-23/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="wangzhumo">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/headimage.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="王诛魔">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/uncategorized/2018-02-23/" itemprop="url">Fri Feb 23 2018 00:00:00 GMT+0800 (CST)</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-23T11:42:05+08:00">2018-02-23</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h5 id="【入住时间】"><a href="#【入住时间】" class="headerlink" title="【入住时间】"></a>【入住时间】</h5><p>2018年03月18日之前</p>
-<h5 id="【地址】"><a href="#【地址】" class="headerlink" title="【地址】"></a>【地址】</h5><p>最优选择: 10号线北段</p>
-<p>次优选择: 8号线</p>
-<h5 id="【性别】"><a href="#【性别】" class="headerlink" title="【性别】"></a>【性别】</h5><p>男 </p>
-<h5 id="【几个人住】"><a href="#【几个人住】" class="headerlink" title="【几个人住】"></a>【几个人住】</h5><p>两个人住,我和我媳妇.</p>
-<h5 id="【工作行业】"><a href="#【工作行业】" class="headerlink" title="【工作行业】"></a>【工作行业】</h5><p>开发 设计</p>
-<h5 id="【预算】"><a href="#【预算】" class="headerlink" title="【预算】"></a>【预算】</h5><p>2000 - 3000 </p>
-<h5 id="【是否养宠物】"><a href="#【是否养宠物】" class="headerlink" title="【是否养宠物】"></a>【是否养宠物】</h5><p>没有宠物 </p>
-<h5 id="【简要介绍自己】"><a href="#【简要介绍自己】" class="headerlink" title="【简要介绍自己】"></a>【简要介绍自己】</h5><p>90后,会做饭,平时安静,干净,不抽烟喝酒<br>性格认真严谨,讲道理<br>会爱惜房子,退租一定恢复原样</p>
-<h5 id="【其他说明】"><a href="#【其他说明】" class="headerlink" title="【其他说明】"></a>【其他说明】</h5><p>希望有厨房,热水器,洗衣机.<br>同时也希望合租的朋友也能一起维护公共卫生</p>
-<h5 id="【联系方式】"><a href="#【联系方式】" class="headerlink" title="【联系方式】"></a>【联系方式】</h5><p>微信：phyooos（注明豆瓣租房）<br>其他：phyooos@163.com </p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2015,7 +2041,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">44</span>
+                    <span class="site-state-item-count">46</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>

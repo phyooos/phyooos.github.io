@@ -4,6 +4,92 @@
 
     
   <url>
+    <loc>http://www.wangzhumo.com/Source-Code/Android-Binder%E6%9C%BA%E5%88%B6-%E4%B8%80/</loc>
+    <lastmod>2018-05-11T05:58:43.351Z</lastmod>
+    <data>
+        <display>
+        <title>Android Binder机制(一)</title>
+        <pubTime>2018-05-11T05:56:25.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>Source Code</tag>
+         
+        <tag>Binder</tag>
+         
+         
+           
+             
+              <breadCrumb title="Source Code" url="http://www.wangzhumo.com/categories/Source-Code/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.wangzhumo.com/Java/%E7%BA%BF%E7%A8%8B%E4%B8%8E%E8%BF%9B%E7%A8%8B%E7%9A%84%E5%BC%82%E5%90%8C%E4%BB%A5%E5%8F%8AAndroid%E4%B8%AD%E7%9A%84IPC%E6%9C%BA%E5%88%B6/</loc>
+    <lastmod>2018-05-11T05:57:49.516Z</lastmod>
+    <data>
+        <display>
+        <title>线程与进程的异同以及Android中的IPC机制</title>
+        <pubTime>2018-05-10T09:16:06.000Z</pubTime>
+        
+        <tag>Java</tag>
+         
+         
+           
+             
+              <breadCrumb title="Java" url="http://www.wangzhumo.com/categories/Java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.wangzhumo.com/Java/Java%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/</loc>
+    <lastmod>2018-05-10T09:16:37.418Z</lastmod>
+    <data>
+        <display>
+        <title>Java中的内存模型</title>
+        <pubTime>2018-05-09T14:26:54.000Z</pubTime>
+        
+        <tag>Java</tag>
+         
+         
+           
+             
+              <breadCrumb title="Java" url="http://www.wangzhumo.com/categories/Java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.wangzhumo.com/Source-Code/Android%E7%9A%84%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B/</loc>
+    <lastmod>2018-05-09T10:32:15.451Z</lastmod>
+    <data>
+        <display>
+        <title>Android的启动流程</title>
+        <pubTime>2018-05-09T07:00:12.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>Source Code</tag>
+         
+         
+           
+             
+              <breadCrumb title="Source Code" url="http://www.wangzhumo.com/categories/Source-Code/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.wangzhumo.com/Android/Activity%E4%B8%8EFragment%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/</loc>
     <lastmod>2018-05-09T10:08:36.000Z</lastmod>
     <data>
@@ -21,28 +107,6 @@
            
              
               <breadCrumb title="Android" url="http://www.wangzhumo.com/categories/Android/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.wangzhumo.com/Source-Code/Android%E7%9A%84%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B/</loc>
-    <lastmod>2018-05-09T10:07:10.411Z</lastmod>
-    <data>
-        <display>
-        <title>Android的启动流程</title>
-        <pubTime>2018-05-09T07:00:12.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-        <tag>Source Code</tag>
-         
-         
-           
-             
-              <breadCrumb title="Source Code" url="http://www.wangzhumo.com/categories/Source-Code/"/>
           
         </display>
     </data>
@@ -453,23 +517,6 @@
              
               <breadCrumb title="Android Studio" url="http://www.wangzhumo.com/categories/Android-Studio/"/>
           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.wangzhumo.com/uncategorized/2018-02-23/</loc>
-    <lastmod>2018-02-23T04:28:20.634Z</lastmod>
-    <data>
-        <display>
-        <title>Fri Feb 23 2018 00:00:00 GMT+0800 (CST)</title>
-        <pubTime>2018-02-23T03:42:05.000Z</pubTime>
-        
-        <tag>合租</tag>
-         
-         
-           
         </display>
     </data>
     </url>

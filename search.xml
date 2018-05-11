@@ -1,6 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Android Binder机制(一)]]></title>
+    <url>%2FSource-Code%2FAndroid-Binder%E6%9C%BA%E5%88%B6-%E4%B8%80%2F</url>
+    <content type="text"></content>
+      <categories>
+        <category>Source Code</category>
+      </categories>
+      <tags>
+        <tag>Android</tag>
+        <tag>Source Code</tag>
+        <tag>Binder</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[线程与进程的异同以及Android中的IPC机制]]></title>
+    <url>%2FJava%2F%E7%BA%BF%E7%A8%8B%E4%B8%8E%E8%BF%9B%E7%A8%8B%E7%9A%84%E5%BC%82%E5%90%8C%E4%BB%A5%E5%8F%8AAndroid%E4%B8%AD%E7%9A%84IPC%E6%9C%BA%E5%88%B6%2F</url>
+    <content type="text"><![CDATA[线程与进程Google Doc (https://developer.android.com/guide/components/processes-and-threads) 进程是资源分配的最小单位，线程是cpu调度的最小单位. 进程是应用程序的执行实例,一个进程中可以包含多个线程, 而一个进程的创建分配是要消耗较大的性能的,相比来说线程就要比进程的开销小. 对于进程来说不共享资源,内存是独立的.而线程共享它所在的线程的资源,内存. 进程间的通信就要更加麻烦,需要使用IPC( Inter-Proscess Communication)进程间的通讯 线程方便很多,但是线程间的同步又是一个较为大的课题了. ​ 想强调的是，线程关注的是中央处理器的运行，而不是进程那样关注内存等资源的管理。 Android中的IPC机制如下图所示:(已经不知道哪里的配图了…感谢分享) IPC简介IPC(Inter-Process Communication) 进程间通信 使用场景: 在Android程序中，一般情况下一个程序就是一个进程 App间的通信,常见的如需要使用其他App的数据 一个App使用多进程,比如指定运行线程android:process=&quot;:name&quot; 需要注意的是,如果一个App使用多进程,Application也会多次创建 Bundle常见于Activity,service中传递数据 需要注意的是,bundle中的数据必须支持序列化(Serializable,Parcelable) 文件共享SharedPreference就是这种实现的. 适合对同步要求不高的使用方式,需要注意处理好并发的问题. MessengerMessenger 对 AIDL 进行了封装，它实现了一种基于消息的进程间通信的方式 frameworks/base/core/java/android/os/IMessenger.aidl 它的AIDL文件就在这里保存着! AIDLAIDL（Android Interface definition language） 是 Android 提供的一种进程间通信 (IPC) 机制 需要注意的是AIDL支持的数据类型与Java接口支持的数据类型有些不同: 所有基础类型（int, char…） String，List，Map 所有Parcelable的类 并且要根据需要添加 in out 的关键词 ContentProvider主要是针对数据库使用的,最常见的例子就是Android中有很多已经定义好的ContentProvider Socket说道这里,就不得不提一下Binder了]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Java中的内存模型]]></title>
+    <url>%2FJava%2FJava%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B%2F</url>
+    <content type="text"><![CDATA[1. 堆在JVM中只有一个,java回收机制主要就是作用于这一块 堆主要是用来存放存储对象的内容及其本身的. 2. 方法区方法区也和堆一样,是被线程共享的. 存放了类的信息(方法,字段,名称),静态变量,常量 Java1.7之前,字符串常量池也是放在这里的,但是1.7以后移动到堆里面去了 3. 虚拟机栈 每一个栈帧的出入栈都是一个方法被调起直到结束返回的过程. 每个线程都会有一个自己的Java栈，栈帧中包括 局部变量表(Local Variables) 方法中的局部变量,函数的参数等.对于基础类型的变量直接存储他的值,而引用类型的变量 则存储的是指向对象的引用 操作数栈(Operand Stack) 指向运行时常量池的引用(Reference to runtime constant pool) 保证方法可以使用当前类的常量 方法返回地址(Return Address) 执行一个方法完成后需要返回调用它的地方 附加信息 4. 程序计数器Program Counter Register 也称作为PC寄存器,保存的是程序当前执行的指令的地址 5.本地方法栈本地方法栈则是为执行本地方法（Native Method）服务的]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Android的启动流程]]></title>
     <url>%2FSource-Code%2FAndroid%E7%9A%84%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B%2F</url>
     <content type="text"><![CDATA[系统结构 应用层 即为开发出来的一些app,当然还包括了一些系统App 应用框架层(Java API Framework) 这一层由java编写,提供给我们平时开发使用的API,主要的一些组件: Manager Activity Manager , Window Manager , Package Manager ,Location Manager Notification Manager,Resource Manager,Telephony Manager Content Providers View System 系统运行库层 C/C++程序库和Android运行时库 硬件抽象层(HAL) Linux内核层 Android的启动主要过程 init进程 init进程是由内核启动的,是用户空间的第一个进程,可以说是一个root进程 当init进程启动后会创建挂载系统目录,设备节点, 解析init.rc 和 init.hardware.rc,启动属性服务，以及一系列的服务和进程 本地守护进程 启动 servicemanager 管理binder的通讯 surfaceflinger UI mediaserver 音视频,相机 netd 蓝牙、wifi、usb等 adbd rild installd 需要注意的是这些都是一个独立的Linux进程 Native系统服务 运行在本地守护进程中,所属进程初始化的时候会将Native系统服务注册到ServiceManager中,方便我们通过Binder机制调用Native系统服务 Java服务 再创建本地服务的同时,init进程还会创建Zygote进程 Zygote也是Android中相当重要的一个进程了,Zygote进程会建立一个Dalvik VM并且启动 System Server系统服务 System Server将启动Android Service AccessibilityManagerService 截获用户输入，并根据输入给用户一些额外的反馈，起到辅助效果的服务AccountManagerService 管理设备中所有账号的服务，包括账号、密码、授权管理功能ActivityManagerService 管理所有组件的服务，安卓系统的核心服务 AlarmManagerService 管理闹钟的服务AppWidgetService 管理APP widgets的工作，包括加载、删除、布局等AssetAtlasService 将一些系统图片资源合并成一个纹理图传给GPU达到硬件加速的效果的服务AudioService 管理音频的服务BackupManagerService 管理备份和应用数据的服务BatteryService 管理电池的服务BluetoothManagerService 管理系统蓝牙的服务CertBlacklister 更新系统SSL证书的公共秘钥和序列号黑名单的服务ClipboardService 管理系统剪贴板的服务CommonTimeManagementService 管理公共时间配置的服务ConnectivityService 管理网络连接的服务ContentService 管理系统数据更新通知的服务，和ContentProvider密切相关CountryDetectorService 检测当前系统所属国家的服务DevicePolicyManagerService 管理系统设备配置的服务DeviceStorageMonitorService 管理系统存储空间的服务，当存储空间小于某个阈值时，会发出警告广播DiskStateService 管理系统存储空间统计的服务DisplayManagerService 管理显示设备的服务DreamManagerService 管理屏幕保护的服务DropBoxManagerService 生成和管理系统运行中日志文件的服务EntropyMixer 加载和保存随机信息的服务IdleMaintenanceService 管理系统在空闲时执行维护任务的服务InputManagerService 管理触屏输入的服务InputMethodManagerService 管理系统输入法的服务LightsService 管理光传感器的服务LocationManagerService 管理定位和位置的服务LockSettingsService 管理系统锁屏设置的服务MountService 管理系统存储设备挂载和卸载的服务NetWorkManagementService 管理系统网络的服务NetWorkPolicyManagerService 管理网络连接策略的服务NetWorkStatsService 管理网络连接状态的服务NetWorkTimeUpdateService 根据网络时间更新本地时间的服务NotificationManagerService 管理系统通知的服务PackageManagerService 管理应用包的服务PowerManagerService 管理系统电源的服务PrintManagerService 管理打印的服务RecognitionManagerService 管理身份识别的服务SamplingProfilerService 记录和分析系统启动性能的服务SchedulingPolicyService 管理系统调度策略的服务SearchManagerServcie 管理系统搜索功能的服务SerialServie 管理系统串口设备的服务StatusBarManagerService 管理系统状态栏的服务TelephonyRegistry 监听和管理通话事件和状态的服务TextServicesManagerService 文本拼写检查的服务UiModeManagerService 设置和管理系统UI模式的服务UsbService 管理USB连接的服务UserManagerService 管理系统用户身份信息的服务VibratorService 管理系统振动器的服务ＷallpaperManagerService 管理系统桌面背景墙纸的服务WifiP2pService 管理Wifi点对点连接的服务WifiService 管理系统Wifi设备的服务WindowManagerService 管理窗口的服务，安卓系统的核心服务 这些服务都会注册到Service Manager中去,完成ServcieManager对服务的管理 需要注意的是,由System Server创建的这些服务,都是存在于System Server进程中的线程 举例说明一下 servicemanager是init的子进程 Zygote是init的子进程，fork出来所有的虚拟机 system server是Zygote的子进程 Home启动 当所有的任务启动后,会通过ActivityManager启动Home界面 同时发送ACTION_BOOT_COMPLETED广播]]></content>
@@ -106,14 +141,6 @@
       <tags>
         <tag>Android</tag>
         <tag>Android Studio</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Fri Feb 23 2018 00:00:00 GMT+0800 (CST)]]></title>
-    <url>%2Funcategorized%2F2018-02-23%2F</url>
-    <content type="text"><![CDATA[【入住时间】2018年03月18日之前 【地址】最优选择: 10号线北段 次优选择: 8号线 【性别】男 【几个人住】两个人住,我和我媳妇. 【工作行业】开发 设计 【预算】2000 - 3000 【是否养宠物】没有宠物 【简要介绍自己】90后,会做饭,平时安静,干净,不抽烟喝酒性格认真严谨,讲道理会爱惜房子,退租一定恢复原样 【其他说明】希望有厨房,热水器,洗衣机.同时也希望合租的朋友也能一起维护公共卫生 【联系方式】微信：phyooos（注明豆瓣租房）其他：phyooos@163.com]]></content>
-      <tags>
-        <tag>合租</tag>
       </tags>
   </entry>
   <entry>

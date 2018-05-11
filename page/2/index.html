@@ -285,6 +285,338 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.wangzhumo.com/Android-Test/Android-单元测试-一/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wangzhumo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/headimage.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="王诛魔">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/Android-Test/Android-单元测试-一/" itemprop="url">Android 单元测试(一)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-26T14:25:49+08:00">2018-02-26</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android-Test/" itemprop="url" rel="index"><span itemprop="name">Android Test</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="初识单元测试"><a href="#初识单元测试" class="headerlink" title="初识单元测试"></a>初识单元测试</h4><p>当项目越来越大的时候,打包 &gt; 测试 &gt; 改代码 &gt; 打包 &gt; 测试 ….这样的流程既费时也费力.</p>
+<p>所以,了解一下单元测试,看看是否能够解决这个问题.</p>
+<p>(平时太懒了,就没正经的了解过Android这边的单元测试,没有一个确切的概念)</p>
+<p>那么,我学习单元测试的原因竟然是 <strong>因为我懒</strong></p>
+<p>当我们建立一个项目的时候,Android Studio总会去自动导入一个包</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">testImplementation &apos;junit:junit:4.12&apos;</span><br></pre></td></tr></table></figure>
+<p>这个就是传说中的   Junit 了,这玩意针对Java的,所以不涉及到Android部分的测试可以使用</p>
+<p>跟着介绍也打了一个例子:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//在commonlib中写了一个Calculator,里面简单的加法</span></span><br><span class="line"><span class="keyword">package</span> com.wangzhumo.app.commonlib.utils;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Calculator</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> a + b;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">verity</span><span class="params">(String phone)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (phone == <span class="keyword">null</span> || phone.isEmpty()) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"phone cannot be empty"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> phone;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//在主项目中</span></span><br><span class="line"><span class="comment">//test目录下</span></span><br><span class="line"><span class="keyword">package</span> com.wangzhumo.app.test;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CalculatorTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    Calculator calculator;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Before</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">initCalculator</span><span class="params">()</span></span>&#123;</span><br><span class="line">        calculator = <span class="keyword">new</span> Calculator();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testCalculator</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">        <span class="keyword">int</span> sum = calculator.add(<span class="number">1</span>,<span class="number">5</span>);</span><br><span class="line">        Assert.assertEquals(<span class="number">6</span>,sum);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 加入提示信息</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testCalculatorWithMessage</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">        <span class="keyword">int</span> sum = calculator.add(<span class="number">1</span>,<span class="number">5</span>);</span><br><span class="line">        <span class="comment">//assertEquals 方法前面加一个 string 当抛出异常的时候会输出这个message</span></span><br><span class="line">        <span class="comment">//可以让我们更清楚的明白是什么问题</span></span><br><span class="line">        Assert.assertEquals(<span class="string">"你的数学太烂了"</span>,<span class="number">5</span>,sum);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 如果抛出IllegalArgumentException异常才算通过</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Test</span>(expected = IllegalArgumentException.class)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testVerity</span><span class="params">()</span></span>&#123;</span><br><span class="line">        calculator.verity(<span class="string">""</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后选中方法直接执行比如 : testCalculatorWithMessage()</p>
+<p>选中Run ‘testCalculatorWithMessage()’ 就可以看到输出 (控制台中  Run 面板)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">java.lang.AssertionError: 你的数学太烂了 </span><br><span class="line">Expected :5</span><br><span class="line">Actual   :6</span><br><span class="line"> &lt;Click to see difference&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="Android-中的单元测试"><a href="#Android-中的单元测试" class="headerlink" title="Android 中的单元测试"></a>Android 中的单元测试</h4><p>上面简单的使用 Junit 就可以测试Java中的方法,但是与我的需求并不符合,所以继续看</p>
+<p>使用<strong>robolectric</strong></p>
+<blockquote>
+<p><a href="https://github.com/robolectric/robolectric" target="_blank" rel="noopener">https://github.com/robolectric/robolectric</a></p>
+<p><a href="http://robolectric.org/" target="_blank" rel="noopener">http://robolectric.org</a></p>
+</blockquote>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.wangzhumo.com/Android-Studio/Android-Studio-中使用tools-sample/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wangzhumo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/headimage.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="王诛魔">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/Android-Studio/Android-Studio-中使用tools-sample/" itemprop="url">Android Studio 中使用tools:sample</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-26T10:31:28+08:00">2018-02-26</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android-Studio/" itemprop="url" rel="index"><span itemprop="name">Android Studio</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>Google 官方文档</p>
+<p><a href="https://developer.android.com/studio/write/tool-attributes.html#toolssample_resources" target="_blank" rel="noopener">https://developer.android.com/studio/write/tool-attributes.html#toolssample_resources</a></p>
+</blockquote>
+<p>他所能达到的效果就是,提供给你一些数据,并直接在 Preview 或者 Design面板中查看样式</p>
+<h4 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h4><p>不如放一个图来的直观</p>
+<p>item中使用 sample资源</p>
+<p><img src="/images/tools_item.png" alt="item"></p>
+<p>将item加入到list中查看效果</p>
+<p><img src="/images/tools_list.png" alt="list"></p>
+<h4 id="准备使用tools"><a href="#准备使用tools" class="headerlink" title="准备使用tools"></a>准备使用tools</h4><h5 id="Android-Studio"><a href="#Android-Studio" class="headerlink" title="Android Studio"></a>Android Studio</h5><p>注意要使用Android Studio 3.0 + 的版本</p>
+<h5 id="命名空间"><a href="#命名空间" class="headerlink" title="命名空间"></a>命名空间</h5><p><code>xmlns:tools=&quot;http://schemas.android.com/tools&quot;</code></p>
+<p>然后就可以使用tools的相关属性了</p>
+<p>在google文档中我们可以看到有很多其他可用的,具体使用效果请自行查阅文档.</p>
+<p>如:</p>
+<p><strong>context</strong>   <strong>showIn</strong>  <strong>layout</strong>   <strong>listitem</strong>   <strong>layoutManager</strong>     <strong>itemCount</strong></p>
+<p>使用方式为:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">layout</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xmlns:tools</span>=<span class="string">"http://schemas.android.com/tools"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">RelativeLayout</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">tools:context</span>=<span class="string">"com.wangzhumo.app.tips.page.NearbyFragment"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">com.jcodecraeer.xrecyclerview.XRecyclerView</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:id</span>=<span class="string">"@+id/recycleview"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">tools:layoutManager</span>=<span class="string">"GridLayoutManager"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">tools:itemCount</span>=<span class="string">"5"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">tools:spanCount</span>=<span class="string">"2"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">tools:listitem</span>=<span class="string">"@layout/nearby_list_item"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">com.jcodecraeer.xrecyclerview.XRecyclerView</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">RelativeLayout</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">layout</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="可用资源"><a href="#可用资源" class="headerlink" title="可用资源"></a>可用资源</h4><h5 id="google已提供的资源"><a href="#google已提供的资源" class="headerlink" title="google已提供的资源"></a>google已提供的资源</h5><p><img src="/images/tools_google.png" alt="google"></p>
+<p>这些资源可以在xml中直接使用,也可以在自定义的资源中使用</p>
+<p>使用方式为:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 这里面的资源在</span></span><br><span class="line"><span class="comment">Android Studio/Applications/Android Studio.app/Contents/plugins/android/lib/sampleData/backgrounds/scenic--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ImageView</span></span></span><br><span class="line"><span class="tag">    <span class="attr">...</span></span></span><br><span class="line"><span class="tag">    <span class="attr">tools:src</span>=<span class="string">"@tools:sample/backgrounds/scenic"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ImageView</span>&gt;</span>    </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 这个是一段假文章 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">TextView</span></span></span><br><span class="line"><span class="tag">    <span class="attr">...</span>      </span></span><br><span class="line"><span class="tag">    <span class="attr">tools:text</span>=<span class="string">"@tools:sample/lorem/random"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">TextView</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h5 id="自定义的资源"><a href="#自定义的资源" class="headerlink" title="自定义的资源"></a>自定义的资源</h5><p><img src="/images/tools_new.png" alt="new"></p>
+<p>创建一个 sampledata 文件夹</p>
+<p><img src="/images/tools_files.png" alt="file"></p>
+<ul>
+<li><p><code>sampledata/images</code> 文件中都是些图片资源</p>
+</li>
+<li><p><code>description</code>文件中是描述性文字, 注意<strong>每一行为一项个元素</strong></p>
+</li>
+<li><p><code>hotels</code> 也是一些文字,不过是一些酒店名字</p>
+</li>
+<li><p><code>hotel.json</code></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"data"</span>:[</span><br><span class="line">    &#123;  </span><br><span class="line">      "name":"@sample/hotels",    //这里使用的是自己定义的  hotels 文件中的字段</span><br><span class="line">      "img":"@tools:sample/backgrounds/scenic",</span><br><span class="line">      "desc":"@sample/description"   //这里使用的是自己定义的  description 文件中的字段</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">"name"</span>:<span class="string">"@sample/hotels"</span>,</span><br><span class="line">      "img":"@tools:sample/backgrounds/scenic",  //这里的就是自带的资源了</span><br><span class="line">      "desc":"@sample/description"</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">"name"</span>:<span class="string">"@sample/hotels"</span>,</span><br><span class="line">      "img":"@sample/images",  //这种就是/images 文件中的资源</span><br><span class="line">      "desc":"@sample/description"</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">"name"</span>:<span class="string">"@sample/hotels"</span>,</span><br><span class="line">      <span class="attr">"img"</span>:<span class="string">"@tools:sample/backgrounds/scenic"</span>,</span><br><span class="line">      <span class="attr">"desc"</span>:<span class="string">"@sample/description"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">"name"</span>:<span class="string">"@sample/hotels"</span>,</span><br><span class="line">      <span class="attr">"img"</span>:<span class="string">"@tools:sample/backgrounds/scenic"</span>,</span><br><span class="line">      <span class="attr">"desc"</span>:<span class="string">"@sample/description"</span></span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>使用方式为:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">TextView</span></span></span><br><span class="line"><span class="tag">	<span class="attr">...</span></span></span><br><span class="line"><span class="tag">    <span class="attr">tools:text</span>=<span class="string">"@sample/hotels"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">ImageView</span></span></span><br><span class="line"><span class="tag">	<span class="attr">...</span></span></span><br><span class="line"><span class="tag">    <span class="attr">tools:src</span>=<span class="string">"@sample/images"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.wangzhumo.com/Android/Android项目中使用Timber-Logger日志输出/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2059,355 +2391,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.wangzhumo.com/Android/Room中List-使用详解/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="wangzhumo">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/headimage.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="王诛魔">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/Android/Room中List-使用详解/" itemprop="url">Room中List<>使用详解</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-03T15:03:38+08:00">2018-01-03</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p>手摸手教你在Room中使用List<object>.</object></p>
-</blockquote>
-<p>实际项目有很多这样的结构:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;id&quot;: &quot;001&quot;,</span><br><span class="line">  &quot;name&quot;: &quot;王诛魔&quot;,</span><br><span class="line">  &quot;age&quot;: 2018,</span><br><span class="line">  &quot;books&quot;: [</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;bookId&quot;: 10081,</span><br><span class="line">      &quot;userId&quot;: 1,</span><br><span class="line">      &quot;book&quot;: &quot;断罪小学&quot;,</span><br><span class="line">      &quot;desc&quot;: &quot;漫画讲述了李杀神、王诛魔和刘斩仙三位少年，为了十万小学生的未来、为了改变被诅咒的命运，相聚在狼牙区飞虎路私立断罪小学，誓死打败四年级的魔神赵日天的故事。&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;bookId&quot;: 10088,</span><br><span class="line">      &quot;userId&quot;: 1,</span><br><span class="line">      &quot;book&quot;: &quot;狂霸天下之断罪学园&quot;,</span><br><span class="line">      &quot;desc&quot;: &quot;《狂霸天下之断罪学园》，后来因为名字太长，而且“学园”和“学院”容易混淆的原因而改名。&quot;</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>也就是,类似books这样的,List<object>作为一个元素存在.</object></p>
-<blockquote>
-<p>下面就以上面的结构为例,做一个简单的演示,按照最简答的方法实现.</p>
-</blockquote>
-<p><strong>1.添加依赖</strong></p>
-<p><a href="https://developer.android.google.cn/topic/libraries/architecture/adding-components.html" target="_blank" rel="noopener">https://developer.android.google.cn/topic/libraries/architecture/adding-components.html</a></p>
-<p>值得注意的是,如果你在kotlin中使用</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">apply plugin: <span class="string">'kotlin-kapt'</span></span><br><span class="line">...</span><br><span class="line">dependencies&#123;</span><br><span class="line">  </span><br><span class="line">  ...</span><br><span class="line">  	<span class="comment">//这个无法生成代码,要用下面的那一条,不要疏忽忘掉了.</span></span><br><span class="line">    <span class="comment">//annotationProcessor "android.arch.persistence.room:compiler:1.0.0"</span></span><br><span class="line">    </span><br><span class="line">    kapt <span class="string">"android.arch.persistence.room:compiler:1.0.0"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>一定记得使用kapt,要不然就会遇到这个BUG.</p>
-<p><strong>2.创建表</strong></p>
-<ul>
-<li><p>User.java表</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * If you have any questions, you can contact by email &#123; wangzhumoo@gmail.com&#125;</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> 王诛魔 2018/1/3 下午1:31</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Entity</span>(tableName = <span class="string">"users"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">    <span class="meta">@PrimaryKey</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> id;</span><br><span class="line">    <span class="keyword">public</span> String name;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> age;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>@Entity 中指定了表名</p>
-<p>@PrimaryKey 主键</p>
-<p>这张表users 用于保存用户数据</p>
-</li>
-</ul>
-<ul>
-<li><p>Book.java表</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * If you have any questions, you can contact by email &#123; wangzhumoo@gmail.com&#125;</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> 王诛魔 2018/1/3 下午1:30</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Entity</span>(foreignKeys = &#123;</span><br><span class="line">        <span class="meta">@ForeignKey</span>(</span><br><span class="line">                entity = User.class,</span><br><span class="line">                parentColumns =&#123;<span class="string">"id"</span>&#125;,</span><br><span class="line">                childColumns = &#123;<span class="string">"userId"</span>&#125;)</span><br><span class="line">&#125;,tableName = <span class="string">"books"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Book</span> </span>&#123;</span><br><span class="line">    <span class="meta">@PrimaryKey</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> bookId;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> userId;<span class="comment">//同User.java中的id</span></span><br><span class="line">    <span class="keyword">public</span> String book;</span><br><span class="line">    <span class="keyword">public</span> String desc;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>@Entity 中</p>
-<ul>
-<li>foreignKeys = {} 中外键,可以是多个,这里只关联了User表</li>
-<li>tableName = “books” 指定了表名</li>
-</ul>
-<p>@PrimaryKey 该表主键</p>
-<p>​</p>
-<p>​</p>
-</li>
-<li><p>UserAndBook.java表 —-UserAndBook只是辅助,不作为一张表存在.</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * If you have any questions, you can contact by email &#123; wangzhumoo@gmail.com&#125;</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> 王诛魔 2018/1/3 下午1:43</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserAndBook</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Embedded</span>   <span class="comment">//请看之前的文章,这是指把User中所有元素带入到这里作为元素存在</span></span><br><span class="line">    <span class="keyword">public</span> User userEntity;</span><br><span class="line"></span><br><span class="line">  	<span class="comment">//@Relation</span></span><br><span class="line">    <span class="meta">@Relation</span>(parentColumn = <span class="string">"id"</span>,entityColumn = <span class="string">"userId"</span>,entity = Book.class)</span><br><span class="line">    <span class="keyword">public</span> List&lt;Book&gt; books;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>@Embedded   请看另一篇,有解释</p>
-<p>​</p>
-<p>@Relation <a href="https://developer.android.google.cn/reference/android/arch/persistence/room/Relation.html" target="_blank" rel="noopener"> 点这里去看官方文档  </a></p>
-<blockquote>
-<p>A convenience annotation which can be used in a Pojo to automatically fetch relation entities. When the Pojo is returned from a query, all of its relations are also fetched by Room.</p>
-</blockquote>
-<p>个人以为就是一注解,指明关系,可以把实体关联起来,然后自动组装起来.   </p>
-<p>​</p>
-<p>并且在文档中还展示了一种高端的功能,用上面做例</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//@Relation</span></span><br><span class="line">    <span class="meta">@Relation</span>(parentColumn = <span class="string">"id"</span>,entityColumn = <span class="string">"userId"</span>,</span><br><span class="line">              entity = Book.class ,projection = &#123;<span class="string">"book"</span>&#125;)</span><br><span class="line">    <span class="keyword">public</span> List&lt;String&gt; bookNames;</span><br></pre></td></tr></table></figure>
-<p>解释一下,projection指定了要取出的值,当前指明要在 books表中寻找符合条件parentColumn = “id”,entityColumn = “userId”   的项,找到之后会拿到book这个值并返回.</p>
-</li>
-</ul>
-<p><strong>3.Dao实现</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * If you have any questions, you can contact by email &#123; wangzhumoo@gmail.com&#125;</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> 王诛魔 2018/1/3 下午4:20</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Dao</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">UserAndBookDao</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Insert</span>(onConflict = OnConflictStrategy.REPLACE)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">insert</span><span class="params">(User user)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Insert</span>(onConflict = OnConflictStrategy.REPLACE)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">insert</span><span class="params">(List&lt;Book&gt; books)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Transaction</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insert</span><span class="params">(UserAndBook userAndBook)</span></span>&#123;</span><br><span class="line">        insert(userAndBook.userEntity);</span><br><span class="line">        insert(userAndBook.books);</span><br><span class="line">    &#125;</span><br><span class="line">  </span><br><span class="line">    <span class="meta">@Query</span>(<span class="string">"SELECT * FROM users"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> List&lt;UserAndBook&gt; <span class="title">getAll</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><code>insert(User user);</code>  ,<code>insert(List&lt;Book&gt; books);</code></p>
-<p>两个方法,也可以私有化,只对外提供<code>insert(UserAndBook userAndBook)</code></p>
-<p>最近换公司项目的数据库,用sql,真的有意思,可以很方便的实现很多功能</p>
-<p><strong>4.建立数据库</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * If you have any questions, you can contact by email &#123; wangzhumoo@gmail.com&#125;</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> 王诛魔 2017/10/24 上午10:13</span></span><br><span class="line"><span class="comment"> * 数据库</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Database</span>(entities = &#123;Book.class, User.class&#125;, </span><br><span class="line">          version = <span class="number">1</span>, exportSchema = <span class="keyword">false</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">AppDB</span> <span class="keyword">extends</span> <span class="title">RoomDatabase</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String TAG = <span class="string">"AppDB"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 数据库实例</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> AppDB sInstance;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> String DATABASE_NAME = <span class="string">"developer.db"</span>;</span><br><span class="line">    <span class="keyword">private</span> ObservableBoolean mIsDatabaseCreated = <span class="keyword">new</span> ObservableBoolean(<span class="keyword">false</span>);</span><br><span class="line"></span><br><span class="line">  	</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> UserAndBookDao <span class="title">userbook</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 单例</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> context</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> AppDB <span class="title">getInstance</span><span class="params">(Context context)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (sInstance == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (AppDB.class) &#123;</span><br><span class="line">                <span class="keyword">if</span> (sInstance == <span class="keyword">null</span>) &#123;</span><br><span class="line">                    sInstance = buildDatabase(context);</span><br><span class="line">                    sInstance.updateDatabaseCreated(context);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> sInstance;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Build the database.</span></span><br><span class="line"><span class="comment">     * creates a new instance of the database.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> AppDB <span class="title">buildDatabase</span><span class="params">(Context appContext)</span> </span>&#123;</span><br><span class="line">         AppDB appDB = Room.databaseBuilder(appContext, AppDB.class, DATABASE_NAME)</span><br><span class="line">                .addCallback(<span class="keyword">new</span> Callback() &#123;</span><br><span class="line">                    <span class="meta">@Override</span></span><br><span class="line">                    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(@NonNull SupportSQLiteDatabase db)</span> </span>&#123;</span><br><span class="line">                        <span class="keyword">super</span>.onCreate(db);</span><br><span class="line">                        AppDB database = AppDB.getInstance(appContext);</span><br><span class="line">                        database.setDatabaseCreated();</span><br><span class="line">                    &#125;</span><br><span class="line"></span><br><span class="line">                    <span class="meta">@Override</span></span><br><span class="line">                    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onOpen</span><span class="params">(@NonNull SupportSQLiteDatabase db)</span> </span>&#123;</span><br><span class="line">                        <span class="keyword">super</span>.onOpen(db);</span><br><span class="line">                        Log.e(TAG, <span class="string">"onOpen: "</span> + db.getPath());</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;).build();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> appDB;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Check whether the database already exists and expose it via </span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">updateDatabaseCreated</span><span class="params">(<span class="keyword">final</span> Context context)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (context.getDatabasePath(DATABASE_NAME).exists()) &#123;</span><br><span class="line">            setDatabaseCreated();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">setDatabaseCreated</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        mIsDatabaseCreated.set(<span class="keyword">true</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ObservableBoolean <span class="title">getDatabaseCreated</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> mIsDatabaseCreated;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>为了方便使用,在Application中添加了</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> AppDB <span class="title">getDatabase</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> AppDB.getInstance(context);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>5.使用</strong></p>
-<p>这里的使用方式,不建议使用,太粗暴了.</p>
-<p>可以学学Demo,Google出的<a href="https://github.com/googlesamples/android-architecture-components" target="_blank" rel="noopener">googlesamples/android-architecture-components</a></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">class RoomActivity : BindingActivity&lt;ActivityRoomBinding, RoomViewModel&gt;() &#123;</span><br><span class="line">    val gson = Gson()</span><br><span class="line"></span><br><span class="line">    <span class="function">override fun <span class="title">getBundle</span><span class="params">(extras: Bundle)</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function">override fun <span class="title">layoutID</span><span class="params">()</span>: Int </span>= R.layout.activity_room</span><br><span class="line"></span><br><span class="line">    <span class="function">override fun <span class="title">initViews</span><span class="params">(savedInstanceState: Bundle?)</span> </span>&#123;</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//点击事件  ADD按钮,添加数据到数据库</span></span><br><span class="line">        mBindingView.button.setOnClickListener(&#123;</span><br><span class="line">            val userBook = UserAndBook()</span><br><span class="line">            val jsonStr = FileUtils.getJson(<span class="keyword">this</span>, <span class="string">"data.txt"</span>)</span><br><span class="line">            val objectJson = JsonParser().parse(jsonStr).asJsonObject</span><br><span class="line"></span><br><span class="line">            <span class="comment">//获取用户</span></span><br><span class="line">            val user = objectJson.get(<span class="string">"user"</span>)</span><br><span class="line">            userBook.userEntity = gson.fromJson&lt;User&gt;(user, User::<span class="class"><span class="keyword">class</span>.<span class="title">java</span>)</span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class">            //保存用户</span></span><br><span class="line"><span class="class">            <span class="title">Observable</span></span></span><br><span class="line"><span class="class">            	.<span class="title">empty</span>&lt;<span class="title">Any</span>&gt;()</span></span><br><span class="line"><span class="class">            	.<span class="title">observeOn</span>(<span class="title">Schedulers</span>.<span class="title">io</span>())</span></span><br><span class="line">            	.subscribe(object : EmptyObserver&lt;Any?&gt;() &#123;</span><br><span class="line">                	<span class="function">override fun <span class="title">onComplete</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                    	App.getDatabase().userbook().insert(userBook.userEntity)</span><br><span class="line">                	&#125;</span><br><span class="line">            	&#125;)</span><br><span class="line"></span><br><span class="line">            <span class="comment">//获取书籍</span></span><br><span class="line">            val books = objectJson.get(<span class="string">"books"</span>)</span><br><span class="line">            userBook.books = gson.fromJson&lt;ArrayList&lt;Book&gt;&gt;</span><br><span class="line">            					(books, object : TypeToken&lt;List&lt;Book&gt;&gt;() &#123;&#125;.type)</span><br><span class="line">            <span class="comment">//保存书籍</span></span><br><span class="line">            Observable</span><br><span class="line">            	.empty&lt;Any&gt;()</span><br><span class="line">            	.observeOn(Schedulers.io())</span><br><span class="line">            	.subscribe(object : EmptyObserver&lt;Any?&gt;() &#123;</span><br><span class="line">               		 <span class="function">override fun <span class="title">onComplete</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                    	App.getDatabase().userbook().insert(userBook.books)</span><br><span class="line">                	&#125;</span><br><span class="line">            	&#125;)</span><br><span class="line">        &#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">		<span class="comment">//点击事件,按钮QUERY   查询数据</span></span><br><span class="line">        mBindingView.button2.setOnClickListener &#123;</span><br><span class="line">            Flowable.create(FlowableOnSubscribe&lt;List&lt;UserAndBook&gt;&gt; &#123; e -&gt;</span><br><span class="line">                val userBook = App.getDatabase().userbook().all</span><br><span class="line">                e.onNext(userBook)</span><br><span class="line">                e.onComplete()</span><br><span class="line">            &#125;, BackpressureStrategy.DROP)</span><br><span class="line">                    .compose(DatabaseTransformer())</span><br><span class="line">                    .subscribe(object : DatabaseSubscriber&lt;List&lt;UserAndBook&gt;&gt;() &#123;</span><br><span class="line">                        <span class="function">override fun <span class="title">onNext</span><span class="params">(userAndBooks: List&lt;UserAndBook&gt;)</span> </span>&#123;</span><br><span class="line">                            mBindingView.data = userAndBooks[<span class="number">0</span>]</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;)</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">layout</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">data</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">import</span> <span class="attr">type</span>=<span class="string">"com.wangzhumo.app.data.UserAndBook"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">import</span> <span class="attr">type</span>=<span class="string">"com.wangzhumo.app.data.User"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">import</span> <span class="attr">type</span>=<span class="string">"com.wangzhumo.app.data.Book"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">variable</span></span></span><br><span class="line"><span class="tag">            <span class="attr">name</span>=<span class="string">"data"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">type</span>=<span class="string">"com.wangzhumo.app.data.UserAndBook"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">data</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">RelativeLayout</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">Button</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:id</span>=<span class="string">"@+id/button"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_alignParentLeft</span>=<span class="string">"true"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_alignParentStart</span>=<span class="string">"true"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_alignParentTop</span>=<span class="string">"true"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_marginLeft</span>=<span class="string">"57dp"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_marginStart</span>=<span class="string">"57dp"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_marginTop</span>=<span class="string">"125dp"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:text</span>=<span class="string">"Add"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">Button</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:id</span>=<span class="string">"@+id/button2"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_alignBaseline</span>=<span class="string">"@+id/button"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_alignBottom</span>=<span class="string">"@+id/button"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_alignParentEnd</span>=<span class="string">"true"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_alignParentRight</span>=<span class="string">"true"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_marginEnd</span>=<span class="string">"56dp"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_marginRight</span>=<span class="string">"56dp"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:text</span>=<span class="string">"Query"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">RelativeLayout</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_alignParentLeft</span>=<span class="string">"true"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_alignParentStart</span>=<span class="string">"true"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_below</span>=<span class="string">"@+id/button"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_marginTop</span>=<span class="string">"68dp"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">            <span class="tag">&lt;<span class="name">TextView</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:id</span>=<span class="string">"@+id/textView"</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:layout_alignParentLeft</span>=<span class="string">"true"</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:layout_alignParentStart</span>=<span class="string">"true"</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:layout_alignParentTop</span>=<span class="string">"true"</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:layout_marginLeft</span>=<span class="string">"36dp"</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:layout_marginStart</span>=<span class="string">"36dp"</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:layout_marginTop</span>=<span class="string">"32dp"</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:text</span>=<span class="string">"@&#123;data.userEntity.name&#125;"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">            <span class="tag">&lt;<span class="name">TextView</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:id</span>=<span class="string">"@+id/textView2"</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:layout_alignLeft</span>=<span class="string">"@+id/textView"</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:layout_alignStart</span>=<span class="string">"@+id/textView"</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:layout_below</span>=<span class="string">"@+id/textView"</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:layout_marginTop</span>=<span class="string">"41dp"</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:text</span>=<span class="string">"@&#123;data.books.get(0).book&#125;"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">            <span class="tag">&lt;<span class="name">TextView</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:id</span>=<span class="string">"@+id/textView3"</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:layout_alignLeft</span>=<span class="string">"@+id/textView2"</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:layout_alignStart</span>=<span class="string">"@+id/textView2"</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:layout_centerVertical</span>=<span class="string">"true"</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:text</span>=<span class="string">"@&#123;data.books.get(0).desc&#125;"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">RelativeLayout</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">RelativeLayout</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">layout</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p><img src="images/room_shot.png" alt="如图"></p>
-<p>​    </p>
-<p>​     </p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.wangzhumo.com/Android/Android字体不跟随系统变化/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="wangzhumo">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/headimage.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="王诛魔">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/Android/Android字体不跟随系统变化/" itemprop="url">Android字体不跟随系统变化</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-28T15:30:11+08:00">2017-12-28</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>已知的方法有两种:</p>
-<p><strong>第一种</strong></p>
-<p>不使用sp 而使用 dp</p>
-<p><strong>第二种</strong></p>
-<p>在Application中加入</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">public void onConfigurationChanged(Configuration newConfig) &#123;</span><br><span class="line">    if (newConfig.fontScale != 1)</span><br><span class="line">        getResources();</span><br><span class="line">    super.onConfigurationChanged(newConfig);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@Override</span><br><span class="line">public Resources getResources() &#123;</span><br><span class="line">     Resources res = super.getResources();</span><br><span class="line">     if (res.getConfiguration().fontScale != 1) &#123;</span><br><span class="line">        Configuration newConfig = new Configuration();</span><br><span class="line">        newConfig.setToDefaults();</span><br><span class="line">        res.updateConfiguration(newConfig, res.getDisplayMetrics()); </span><br><span class="line">     &#125;</span><br><span class="line">     return res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2459,7 +2442,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">44</span>
+                    <span class="site-state-item-count">46</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>

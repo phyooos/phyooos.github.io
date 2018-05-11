@@ -100,28 +100,31 @@
 
 
   
-  <meta name="keywords" content="合租," />
+  <meta name="keywords" content="Java," />
 
 
-<meta name="description" content="【入住时间】2018年03月18日之前 【地址】最优选择: 10号线北段 次优选择: 8号线 【性别】男  【几个人住】两个人住,我和我媳妇. 【工作行业】开发 设计 【预算】2000 - 3000  【是否养宠物】没有宠物  【简要介绍自己】90后,会做饭,平时安静,干净,不抽烟喝酒性格认真严谨,讲道理会爱惜房子,退租一定恢复原样 【其他说明】希望有厨房,热水器,洗衣机.同时也希望合租的朋友也能">
-<meta name="keywords" content="合租">
+<meta name="description" content="1. 堆在JVM中只有一个,java回收机制主要就是作用于这一块 堆主要是用来存放存储对象的内容及其本身的. 2. 方法区方法区也和堆一样,是被线程共享的. 存放了类的信息(方法,字段,名称),静态变量,常量 Java1.7之前,字符串常量池也是放在这里的,但是1.7以后移动到堆里面去了 3. 虚拟机栈 每一个栈帧的出入栈都是一个方法被调起直到结束返回的过程. 每个线程都会有一个自己的Java栈">
+<meta name="keywords" content="Java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Fri Feb 23 2018 00:00:00 GMT+0800 (CST)">
-<meta property="og:url" content="http://www.wangzhumo.com/uncategorized/2018-02-23/index.html">
+<meta property="og:title" content="Java中的内存模型">
+<meta property="og:url" content="http://www.wangzhumo.com/Java/Java中的内存模型/index.html">
 <meta property="og:site_name" content="王诛魔">
-<meta property="og:description" content="【入住时间】2018年03月18日之前 【地址】最优选择: 10号线北段 次优选择: 8号线 【性别】男  【几个人住】两个人住,我和我媳妇. 【工作行业】开发 设计 【预算】2000 - 3000  【是否养宠物】没有宠物  【简要介绍自己】90后,会做饭,平时安静,干净,不抽烟喝酒性格认真严谨,讲道理会爱惜房子,退租一定恢复原样 【其他说明】希望有厨房,热水器,洗衣机.同时也希望合租的朋友也能">
+<meta property="og:description" content="1. 堆在JVM中只有一个,java回收机制主要就是作用于这一块 堆主要是用来存放存储对象的内容及其本身的. 2. 方法区方法区也和堆一样,是被线程共享的. 存放了类的信息(方法,字段,名称),静态变量,常量 Java1.7之前,字符串常量池也是放在这里的,但是1.7以后移动到堆里面去了 3. 虚拟机栈 每一个栈帧的出入栈都是一个方法被调起直到结束返回的过程. 每个线程都会有一个自己的Java栈">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-02-23T04:28:20.634Z">
+<meta property="og:image" content="http://www.wangzhumo.com/images/java_heap_stack.png">
+<meta property="og:image" content="http://www.wangzhumo.com/images/java_stack.png">
+<meta property="og:updated_time" content="2018-05-10T09:16:37.418Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Fri Feb 23 2018 00:00:00 GMT+0800 (CST)">
-<meta name="twitter:description" content="【入住时间】2018年03月18日之前 【地址】最优选择: 10号线北段 次优选择: 8号线 【性别】男  【几个人住】两个人住,我和我媳妇. 【工作行业】开发 设计 【预算】2000 - 3000  【是否养宠物】没有宠物  【简要介绍自己】90后,会做饭,平时安静,干净,不抽烟喝酒性格认真严谨,讲道理会爱惜房子,退租一定恢复原样 【其他说明】希望有厨房,热水器,洗衣机.同时也希望合租的朋友也能">
+<meta name="twitter:title" content="Java中的内存模型">
+<meta name="twitter:description" content="1. 堆在JVM中只有一个,java回收机制主要就是作用于这一块 堆主要是用来存放存储对象的内容及其本身的. 2. 方法区方法区也和堆一样,是被线程共享的. 存放了类的信息(方法,字段,名称),静态变量,常量 Java1.7之前,字符串常量池也是放在这里的,但是1.7以后移动到堆里面去了 3. 虚拟机栈 每一个栈帧的出入栈都是一个方法被调起直到结束返回的过程. 每个线程都会有一个自己的Java栈">
+<meta name="twitter:image" content="http://www.wangzhumo.com/images/java_heap_stack.png">
 
 
 
 
 
 
-  <link rel="canonical" href="http://www.wangzhumo.com/uncategorized/2018-02-23/"/>
+  <link rel="canonical" href="http://www.wangzhumo.com/Java/Java中的内存模型/"/>
 
 
 
@@ -130,7 +133,7 @@
     sidebar: "",
   };
 </script>
-  <title>Fri Feb 23 2018 00:00:00 GMT+0800 (CST) | 王诛魔</title>
+  <title>Java中的内存模型 | 王诛魔</title>
   
 
 
@@ -286,7 +289,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.wangzhumo.com/uncategorized/2018-02-23/">
+    <link itemprop="mainEntityOfPage" href="http://www.wangzhumo.com/Java/Java中的内存模型/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="wangzhumo">
@@ -303,7 +306,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Fri Feb 23 2018 00:00:00 GMT+0800 (CST)</h1>
+          <h1 class="post-title" itemprop="name headline">Java中的内存模型</h1>
         
 
         <div class="post-meta">
@@ -315,7 +318,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-23T11:42:05+08:00">2018-02-23</time>
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-09T22:26:54+08:00">2018-05-09</time>
             
 
             
@@ -324,6 +327,24 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -352,17 +373,33 @@
       
 
       
-        <h5 id="【入住时间】"><a href="#【入住时间】" class="headerlink" title="【入住时间】"></a>【入住时间】</h5><p>2018年03月18日之前</p>
-<h5 id="【地址】"><a href="#【地址】" class="headerlink" title="【地址】"></a>【地址】</h5><p>最优选择: 10号线北段</p>
-<p>次优选择: 8号线</p>
-<h5 id="【性别】"><a href="#【性别】" class="headerlink" title="【性别】"></a>【性别】</h5><p>男 </p>
-<h5 id="【几个人住】"><a href="#【几个人住】" class="headerlink" title="【几个人住】"></a>【几个人住】</h5><p>两个人住,我和我媳妇.</p>
-<h5 id="【工作行业】"><a href="#【工作行业】" class="headerlink" title="【工作行业】"></a>【工作行业】</h5><p>开发 设计</p>
-<h5 id="【预算】"><a href="#【预算】" class="headerlink" title="【预算】"></a>【预算】</h5><p>2000 - 3000 </p>
-<h5 id="【是否养宠物】"><a href="#【是否养宠物】" class="headerlink" title="【是否养宠物】"></a>【是否养宠物】</h5><p>没有宠物 </p>
-<h5 id="【简要介绍自己】"><a href="#【简要介绍自己】" class="headerlink" title="【简要介绍自己】"></a>【简要介绍自己】</h5><p>90后,会做饭,平时安静,干净,不抽烟喝酒<br>性格认真严谨,讲道理<br>会爱惜房子,退租一定恢复原样</p>
-<h5 id="【其他说明】"><a href="#【其他说明】" class="headerlink" title="【其他说明】"></a>【其他说明】</h5><p>希望有厨房,热水器,洗衣机.<br>同时也希望合租的朋友也能一起维护公共卫生</p>
-<h5 id="【联系方式】"><a href="#【联系方式】" class="headerlink" title="【联系方式】"></a>【联系方式】</h5><p>微信：phyooos（注明豆瓣租房）<br>其他：phyooos@163.com </p>
+        <p><img src="/images/java_heap_stack.png" alt="java_heap_stack"></p>
+<h4 id="1-堆"><a href="#1-堆" class="headerlink" title="1. 堆"></a>1. 堆</h4><p>在JVM中只有一个,java回收机制主要就是作用于这一块</p>
+<p>堆主要是用来存放存储对象的内容及其本身的.</p>
+<h4 id="2-方法区"><a href="#2-方法区" class="headerlink" title="2. 方法区"></a>2. 方法区</h4><p>方法区也和堆一样,是被线程共享的.</p>
+<p>存放了类的信息(方法,字段,名称),静态变量,常量</p>
+<p>Java1.7之前,字符串常量池也是放在这里的,但是1.7以后移动到堆里面去了</p>
+<h4 id="3-虚拟机栈"><a href="#3-虚拟机栈" class="headerlink" title="3. 虚拟机栈"></a>3. 虚拟机栈</h4><p><img src="/images/java_stack.png" alt="java_stack"></p>
+<p>每一个栈帧的出入栈都是一个方法被调起直到结束返回的过程.</p>
+<p>每个线程都会有一个自己的Java栈，栈帧中包括</p>
+<ul>
+<li><p>局部变量表(Local Variables)</p>
+<p>方法中的局部变量,函数的参数等.对于基础类型的变量直接存储他的值,而引用类型的变量</p>
+<p>则存储的是指向对象的引用</p>
+</li>
+<li><p>操作数栈(Operand Stack)</p>
+</li>
+<li><p>指向运行时常量池的引用(Reference to runtime constant pool)</p>
+<p>保证方法可以使用当前类的常量</p>
+</li>
+<li><p>方法返回地址(Return Address)</p>
+<p>执行一个方法完成后需要返回调用它的地方</p>
+</li>
+<li><p>附加信息</p>
+</li>
+</ul>
+<h4 id="4-程序计数器"><a href="#4-程序计数器" class="headerlink" title="4. 程序计数器"></a>4. 程序计数器</h4><p>Program Counter Register 也称作为PC寄存器,保存的是程序当前执行的指令的地址</p>
+<h4 id="5-本地方法栈"><a href="#5-本地方法栈" class="headerlink" title="5.本地方法栈"></a>5.本地方法栈</h4><p>本地方法栈则是为执行本地方法（Native Method）服务的</p>
 
       
     </div>
@@ -380,7 +417,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/合租/" rel="tag"># 合租</a>
+            <a href="/tags/Java/" rel="tag"># Java</a>
           
         </div>
       
@@ -393,8 +430,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/Android/Android项目中使用Timber-Logger日志输出/" rel="next" title="Android项目中使用Timber + Logger日志输出">
-                <i class="fa fa-chevron-left"></i> Android项目中使用Timber + Logger日志输出
+              <a href="/Source-Code/Android的启动流程/" rel="next" title="Android的启动流程">
+                <i class="fa fa-chevron-left"></i> Android的启动流程
               </a>
             
           </div>
@@ -403,8 +440,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/Android-Studio/Android-Studio-中使用tools-sample/" rel="prev" title="Android Studio 中使用tools:sample">
-                Android Studio 中使用tools:sample <i class="fa fa-chevron-right"></i>
+              <a href="/Java/线程与进程的异同以及Android中的IPC机制/" rel="prev" title="线程与进程的异同以及Android中的IPC机制">
+                线程与进程的异同以及Android中的IPC机制 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -483,7 +520,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">44</span>
+                    <span class="site-state-item-count">46</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -633,7 +670,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#【入住时间】"><span class="nav-number">1.</span> <span class="nav-text">【入住时间】</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#【地址】"><span class="nav-number">2.</span> <span class="nav-text">【地址】</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#【性别】"><span class="nav-number">3.</span> <span class="nav-text">【性别】</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#【几个人住】"><span class="nav-number">4.</span> <span class="nav-text">【几个人住】</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#【工作行业】"><span class="nav-number">5.</span> <span class="nav-text">【工作行业】</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#【预算】"><span class="nav-number">6.</span> <span class="nav-text">【预算】</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#【是否养宠物】"><span class="nav-number">7.</span> <span class="nav-text">【是否养宠物】</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#【简要介绍自己】"><span class="nav-number">8.</span> <span class="nav-text">【简要介绍自己】</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#【其他说明】"><span class="nav-number">9.</span> <span class="nav-text">【其他说明】</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#【联系方式】"><span class="nav-number">10.</span> <span class="nav-text">【联系方式】</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-堆"><span class="nav-number">1.</span> <span class="nav-text">1. 堆</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-方法区"><span class="nav-number">2.</span> <span class="nav-text">2. 方法区</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-虚拟机栈"><span class="nav-number">3.</span> <span class="nav-text">3. 虚拟机栈</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-程序计数器"><span class="nav-number">4.</span> <span class="nav-text">4. 程序计数器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-本地方法栈"><span class="nav-number">5.</span> <span class="nav-text">5.本地方法栈</span></a></li></ol></div>
             
 
           </div>
